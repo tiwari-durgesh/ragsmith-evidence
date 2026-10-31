@@ -93,11 +93,13 @@ def test_metric_case_insensitive():
     assert result.verdict == "supports"
 
 
-def test_numeric_format_not_yet_normalized():
+
+def test_numeric_format_is_normalized():
     evidence = make_evidence()
 
     result = verify_metric_value(
         evidence, "Revenue (million USD)", 2025, "145.0"
     )
 
-    assert result.verdict == "contradicts"
+    assert result.verdict == "supports"
+

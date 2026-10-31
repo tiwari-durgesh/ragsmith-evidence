@@ -3,7 +3,7 @@ import re
 
 from ragsmith.evidence.models import Evidence
 from .judgments import SupportJudgment
-
+from .numeric import values_equal
 
 def verify_metric_value(
     evidence: Evidence,
@@ -33,7 +33,7 @@ def verify_metric_value(
                 actual_metric.casefold() == metric.strip().casefold()
                 and actual_year == year
             ):
-                if actual_value == expected_value.strip():
+                if values_equal(actual_value, expected_value):
                     verdict = "supports"
                     reason = "Exact metric, year, and value match"
                 else:
