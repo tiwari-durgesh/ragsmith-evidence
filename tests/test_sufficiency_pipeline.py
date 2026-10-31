@@ -2,7 +2,10 @@
 import pytest
 
 from ragsmith.evidence.models import Evidence
-from ragsmith.sufficiency.pipeline import assess_structured_requirement
+from ragsmith.sufficiency.pipeline import (
+    assess_structured_requirement,
+    assess_multiple_requirements,
+)
 
 
 def make_evidence(
@@ -94,3 +97,78 @@ def test_multiple_matching_evidence_full():
     assert result.supported_requirements == 1
     assert result.coverage == 1.0
     assert result.answerability == "full"
+
+def test_multiple_requirements_full():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-002", "Revenue (million USD)", 2025, "145.00"),
+    ]
+
+    result = assess_multiple_requirements(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert result.total_requirements == 2
+    assert result.supported_requirements == 2
+    assert result.coverage == 1.0
+    assert result.answerability == "full"
+
+
+def test_multiple_requirements_partial():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-002", "Profit (million USD)", 2025, "20"),
+    ]
+
+    result = assess_multiple_requirements(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert result.total_requirements == 2
+    assert result.supported_requirements == 1
+    assert result.coverage == 0.5
+    assert result.answerability == "partial"
+
+
+def test_multiple_requirements_contradiction():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-002", "Revenue (million USD)", 2025, "150"),
+    ]
+
+    result = assess_multiple_requirements(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert result.total_requirements == 2
+    assert result.supported_requirements == 1
+    assert result.coverage == 0.5
+    assert result.answerability == "abstain"
+
+
+def test_multiple_requirements_empty():
+    result = assess_multiple_requirements([], [])
+
+    assert result.total_requirements == 0
+    assert result.supported_requirements == 0
+    assert result.coverage == 0.0
+    assert result.answerability == "abstain"
+
+
+def test_multiple_requirements_duplicate_ids():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-001", "Profit (million USD)", 2025, "20"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate requirement IDs",
+    ):
+        assess_multiple_requirements(
+            requirements,
+            [make_evidence()],
+        )
