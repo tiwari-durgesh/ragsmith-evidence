@@ -122,3 +122,71 @@ def test_source_integrity_not_found(tmp_path):
     result = verify_source_integrity(db_path, "unknown-document")
 
     assert result["status"] == "not_found"
+
+import sqlite3
+
+from ragsmith.core import verify_evidence_consistency
+
+
+def make_consistency_fixture(tmp_path):
+    source = tmp_path / "document.txt"
+    source.write_text(
+        "The company reported revenue growth.",
+        encoding="utf-8",
+    )
+
+    db_path = tmp_path / "evidence.db"
+    record = ingest(source, db_path)
+
+    db = sqlite3.connect(db_path)
+    evidence_id = db.execute(
+        "SELECT evidence_id FROM evidence LIMIT 1"
+    ).fetchone()[0]
+    db.close()
+
+    return db_path, record["document_id"], evidence_id
+
+
+def test_evidence_consistent(tmp_path):
+    db_path, _, evidence_id = make_consistency_fixture(tmp_path)
+
+    result = verify_evidence_consistency(db_path, evidence_id)
+
+    assert result["status"] == "consistent"
+    assert result["evidence_version"] == result["document_hash"]
+
+
+def test_evidence_version_mismatch(tmp_path):
+    db_path, _, evidence_id = make_consistency_fixture(tmp_path)
+
+    with sqlite3.connect(db_path) as db:
+        db.execute(
+            "UPDATE evidence SET document_version = ? WHERE evidence_id = ?",
+            ("incorrect-version", evidence_id),
+        )
+
+    result = verify_evidence_consistency(db_path, evidence_id)
+
+    assert result["status"] == "version_mismatch"
+
+
+def test_evidence_document_missing(tmp_path):
+    db_path, document_id, evidence_id = make_consistency_fixture(tmp_path)
+
+    with sqlite3.connect(db_path) as db:
+        db.execute(
+            "DELETE FROM documents WHERE document_id = ?",
+            (document_id,),
+        )
+
+    result = verify_evidence_consistency(db_path, evidence_id)
+
+    assert result["status"] == "document_missing"
+
+
+def test_evidence_not_found(tmp_path):
+    db_path, _, _ = make_consistency_fixture(tmp_path)
+
+    result = verify_evidence_consistency(db_path, "unknown-evidence")
+
+    assert result["status"] == "not_found"

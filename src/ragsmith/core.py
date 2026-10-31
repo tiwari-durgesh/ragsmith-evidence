@@ -190,3 +190,51 @@ def verify_source_integrity(db_path: Path, document_id: str) -> dict:
         "expected_hash": expected_hash,
         "actual_hash": actual_hash,
     }
+
+def verify_evidence_consistency(db_path: Path, evidence_id: str) -> dict:
+    """Verify that evidence matches its stored document version."""
+    db = connect(db_path)
+
+    try:
+        row = db.execute(
+            """
+            SELECT
+                e.document_id,
+                e.document_version,
+                d.sha256
+            FROM evidence e
+            LEFT JOIN documents d
+                ON e.document_id = d.document_id
+            WHERE e.evidence_id = ?
+            """,
+            (evidence_id,),
+        ).fetchone()
+    finally:
+        db.close()
+
+    if row is None:
+        return {
+            "evidence_id": evidence_id,
+            "status": "not_found",
+        }
+
+    document_id, evidence_version, document_hash = row
+
+    if document_hash is None:
+        return {
+            "evidence_id": evidence_id,
+            "document_id": document_id,
+            "status": "document_missing",
+        }
+
+    return {
+        "evidence_id": evidence_id,
+        "document_id": document_id,
+        "status": (
+            "consistent"
+            if evidence_version == document_hash
+            else "version_mismatch"
+        ),
+        "evidence_version": evidence_version,
+        "document_hash": document_hash,
+    }
