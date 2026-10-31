@@ -10,21 +10,6 @@ from pathlib import Path
 
 SUPPORTED = {'.pdf', '.docx', '.xlsx', '.html', '.htm', '.txt'}
 
-@dataclass
-class Evidence:
-    evidence_id: str
-    document_id: str
-    document_version: str
-    kind: str
-    content: str
-    locator: str
-    page_number: int | None = None
-    section_path: str | None = None
-    table_id: str | None = None
-    row_index: int | None = None
-    extraction_method: str = ''
-    metadata: dict | None = None
-
 def _clean(x):
     return ' '.join(str(x).split()) if x is not None else ''
 
