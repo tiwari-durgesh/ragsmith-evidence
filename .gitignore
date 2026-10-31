@@ -1,0 +1,46 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Local databases and indexes
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.faiss
+*.index
+
+# Generated data
+data/processed/
+data/evaluation/generated/
+data/manifests/local/
+data/raw/*
+!data/raw/sample_policy.txt
+!data/raw/sample_report.html
+
+# Experiments and logs
+mlruns/
+logs/
+*.log
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated ingestion records
+data/manifests/*.jsonl
