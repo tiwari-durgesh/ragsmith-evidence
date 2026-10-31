@@ -157,3 +157,63 @@ def test_repeated_same_result_object_rejected():
         match="Duplicate requirement IDs",
     ):
         assess_question([result, result])
+
+def test_assessment_preserves_requirement_results():
+    results = [
+        SufficiencyResult(
+            requirement_id="req-001",
+            status="supported",
+            evidence_ids=["ev-001"],
+        ),
+        SufficiencyResult(
+            requirement_id="req-002",
+            status="unverified",
+            reason="Insufficient evidence",
+        ),
+    ]
+
+    assessment = assess_question(results)
+
+    assert assessment.requirement_results == results
+    assert len(assessment.requirement_results) == 2
+
+
+def test_assessment_preserves_evidence_and_reason():
+    result = SufficiencyResult(
+        requirement_id="req-001",
+        status="contradicted",
+        evidence_ids=["ev-002"],
+        reason="Conflicting value",
+    )
+
+    assessment = assess_question([result])
+    reported = assessment.requirement_results[0]
+
+    assert reported.requirement_id == "req-001"
+    assert reported.status == "contradicted"
+    assert reported.evidence_ids == ["ev-002"]
+    assert reported.reason == "Conflicting value"
+
+
+def test_empty_assessment_has_empty_requirement_results():
+    assessment = assess_question([])
+
+    assert assessment.requirement_results == []
+    assert assessment.total_requirements == 0
+    assert assessment.answerability == "abstain"
+
+
+def test_assessment_copies_requirement_results_list():
+    results = [
+        SufficiencyResult(
+            requirement_id="req-001",
+            status="supported",
+        ),
+    ]
+
+    assessment = assess_question(results)
+
+    results.clear()
+
+    assert len(assessment.requirement_results) == 1
+    assert assessment.requirement_results[0].requirement_id == "req-001"

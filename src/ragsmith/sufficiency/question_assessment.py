@@ -1,5 +1,4 @@
-
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from collections.abc import Sequence
 
 from .results import SufficiencyResult
@@ -13,6 +12,9 @@ class QuestionAssessment:
     supported_requirements: int
     coverage: float
     answerability: str
+    requirement_results: list[SufficiencyResult] = field(
+        default_factory=list
+    )
 
 
 def assess_question(
@@ -37,9 +39,12 @@ def assess_question(
         for result in results
     )
 
+   
     return QuestionAssessment(
         total_requirements=total,
         supported_requirements=supported,
         coverage=calculate_coverage(results),
         answerability=decide_answerability(results),
+        requirement_results=list(results),
     )
+
