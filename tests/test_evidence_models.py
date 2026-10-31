@@ -70,3 +70,55 @@ def test_search_returns_provenance_fields(tmp_path):
     assert "table_id" in evidence
     assert "row_index" in evidence
     assert "extraction_method" in evidence
+
+from ragsmith.core import ingest, verify_source_integrity
+
+
+def test_source_integrity_valid(tmp_path):
+    source = tmp_path / "document.txt"
+    source.write_text("Original document content.", encoding="utf-8")
+
+    db_path = tmp_path / "evidence.db"
+    record = ingest(source, db_path)
+
+    result = verify_source_integrity(db_path, record["document_id"])
+
+    assert result["status"] == "valid"
+    assert result["expected_hash"] == result["actual_hash"]
+
+
+def test_source_integrity_modified(tmp_path):
+    source = tmp_path / "document.txt"
+    source.write_text("Original document content.", encoding="utf-8")
+
+    db_path = tmp_path / "evidence.db"
+    record = ingest(source, db_path)
+
+    source.write_text("Modified document content.", encoding="utf-8")
+
+    result = verify_source_integrity(db_path, record["document_id"])
+
+    assert result["status"] == "modified"
+    assert result["expected_hash"] != result["actual_hash"]
+
+
+def test_source_integrity_missing(tmp_path):
+    source = tmp_path / "document.txt"
+    source.write_text("Original document content.", encoding="utf-8")
+
+    db_path = tmp_path / "evidence.db"
+    record = ingest(source, db_path)
+
+    source.unlink()
+
+    result = verify_source_integrity(db_path, record["document_id"])
+
+    assert result["status"] == "missing"
+
+
+def test_source_integrity_not_found(tmp_path):
+    db_path = tmp_path / "evidence.db"
+
+    result = verify_source_integrity(db_path, "unknown-document")
+
+    assert result["status"] == "not_found"

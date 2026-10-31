@@ -159,3 +159,34 @@ def search(db_path: Path, query: str, limit: int = 5):
         return [dict(zip(fields, row)) for row in rows]
 
     finally: db.close()
+
+
+def verify_source_integrity(db_path: Path, document_id: str) -> dict:
+    """Check whether the source file matches its ingested version."""
+    db = connect(db_path)
+
+    try:
+        row = db.execute(
+            "SELECT source_path, sha256 FROM documents WHERE document_id = ?",
+            (document_id,),
+        ).fetchone()
+    finally:
+        db.close()
+
+    if row is None:
+        return {"status": "not_found", "document_id": document_id}
+
+    source_path, expected_hash = row
+    path = Path(source_path)
+
+    if not path.is_file():
+        return {"status": "missing", "document_id": document_id}
+
+    actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+
+    return {
+        "document_id": document_id,
+        "status": "valid" if actual_hash == expected_hash else "modified",
+        "expected_hash": expected_hash,
+        "actual_hash": actual_hash,
+    }
