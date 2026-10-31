@@ -4,6 +4,7 @@ import json
 import re
 import sqlite3
 from dataclasses import dataclass, asdict
+from .evidence.models import Evidence
 from datetime import datetime, timezone
 from pathlib import Path
 
