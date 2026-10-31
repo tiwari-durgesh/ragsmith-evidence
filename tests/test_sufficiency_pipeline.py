@@ -5,6 +5,7 @@ from ragsmith.evidence.models import Evidence
 from ragsmith.sufficiency.pipeline import (
     assess_structured_requirement,
     assess_multiple_requirements,
+    generate_structured_assessment_report,
 )
 
 
@@ -169,6 +170,78 @@ def test_multiple_requirements_duplicate_ids():
         match="Duplicate requirement IDs",
     ):
         assess_multiple_requirements(
+            requirements,
+            [make_evidence()],
+        )
+
+def test_structured_report_full():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+    ]
+
+    report = generate_structured_assessment_report(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert report["total_requirements"] == 1
+    assert report["supported_requirements"] == 1
+    assert report["coverage"] == 1.0
+    assert report["answerability"] == "full"
+    assert report["requirements"][0]["status"] == "supported"
+
+
+def test_structured_report_partial():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-002", "Profit (million USD)", 2025, "20"),
+    ]
+
+    report = generate_structured_assessment_report(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert report["coverage"] == 0.5
+    assert report["answerability"] == "partial"
+    assert report["requirements"][0]["status"] == "supported"
+    assert report["requirements"][1]["status"] == "unverified"
+
+
+def test_structured_report_contradiction():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "150"),
+    ]
+
+    report = generate_structured_assessment_report(
+        requirements,
+        [make_evidence()],
+    )
+
+    assert report["answerability"] == "abstain"
+    assert report["requirements"][0]["status"] == "contradicted"
+
+
+def test_structured_report_empty():
+    report = generate_structured_assessment_report([], [])
+
+    assert report["total_requirements"] == 0
+    assert report["coverage"] == 0.0
+    assert report["answerability"] == "abstain"
+    assert report["requirements"] == []
+
+
+def test_structured_report_duplicate_ids():
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+        ("req-001", "Profit (million USD)", 2025, "20"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate requirement IDs",
+    ):
+        generate_structured_assessment_report(
             requirements,
             [make_evidence()],
         )

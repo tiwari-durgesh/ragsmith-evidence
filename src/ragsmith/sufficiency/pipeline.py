@@ -6,7 +6,7 @@ from ragsmith.evidence.models import Evidence
 from .structured_verifier import verify_metric_value
 from .aggregator import aggregate_judgments
 from .question_assessment import assess_question, QuestionAssessment
-
+from .reporting import build_assessment_report
 
 def assess_structured_requirement(
     requirement_id: str,
@@ -63,3 +63,16 @@ def assess_multiple_requirements(
         results.append(result)
 
     return assess_question(results)
+
+def generate_structured_assessment_report(
+    requirements: Sequence[tuple[str, str, int, str]],
+    evidence_items: Sequence[Evidence],
+) -> dict:
+    """Generate a JSON-compatible report for structured requirements."""
+
+    assessment = assess_multiple_requirements(
+        requirements=requirements,
+        evidence_items=evidence_items,
+    )
+
+    return build_assessment_report(assessment)
