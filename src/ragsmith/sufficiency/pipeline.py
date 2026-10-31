@@ -2,7 +2,7 @@
 from collections.abc import Sequence
 
 from ragsmith.evidence.models import Evidence
-
+from .traceability import validate_evidence_traceability
 from .structured_verifier import verify_metric_value
 from .aggregator import aggregate_judgments
 from .question_assessment import assess_question, QuestionAssessment
@@ -64,15 +64,24 @@ def assess_multiple_requirements(
 
     return assess_question(results)
 
+
 def generate_structured_assessment_report(
     requirements: Sequence[tuple[str, str, int, str]],
     evidence_items: Sequence[Evidence],
 ) -> dict:
-    """Generate a JSON-compatible report for structured requirements."""
+    """Generate a traceability-validated assessment report."""
 
     assessment = assess_multiple_requirements(
         requirements=requirements,
         evidence_items=evidence_items,
     )
 
-    return build_assessment_report(assessment)
+    report = build_assessment_report(assessment)
+
+    validate_evidence_traceability(
+        report=report,
+        evidence_items=evidence_items,
+    )
+
+    return report
+

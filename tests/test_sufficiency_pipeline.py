@@ -1,6 +1,6 @@
 
 import pytest
-
+import ragsmith.sufficiency.pipeline as pipeline
 from ragsmith.evidence.models import Evidence
 from ragsmith.sufficiency.pipeline import (
     assess_structured_requirement,
@@ -245,3 +245,30 @@ def test_structured_report_duplicate_ids():
             requirements,
             [make_evidence()],
         )
+
+def test_reporting_pipeline_invokes_traceability_validator(
+    monkeypatch,
+):
+    calls = []
+
+    def fake_validator(report, evidence_items):
+        calls.append((report, evidence_items))
+
+    monkeypatch.setattr(
+        pipeline,
+        "validate_evidence_traceability",
+        fake_validator,
+    )
+
+    evidence = [make_evidence()]
+
+    report = generate_structured_assessment_report(
+        requirements=[
+            ("req-001", "Revenue (million USD)", 2025, "145"),
+        ],
+        evidence_items=evidence,
+    )
+
+    assert len(calls) == 1
+    assert calls[0][0] is report
+    assert calls[0][1] is evidence
