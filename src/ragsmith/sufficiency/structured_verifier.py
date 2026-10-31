@@ -10,6 +10,7 @@ def verify_metric_value(
     metric: str,
     year: int,
     expected_value: str,
+    requirement_id: str | None = None,
 ) -> SupportJudgment:
     """Verify an exact metric-year-value assertion in a table row."""
 
@@ -43,8 +44,12 @@ def verify_metric_value(
                 reason = "Metric or year does not match the requirement"
 
     return SupportJudgment(
-        requirement_id=f"{metric.strip()}-{year}",
-        evidence_id=evidence.evidence_id,
-        verdict=verdict,
-        reason=reason,
-    )
+    requirement_id=(
+        requirement_id
+        if requirement_id is not None
+        else f"{metric.strip()}-{year}"
+    ),
+    evidence_id=evidence.evidence_id,
+    verdict=verdict,
+    reason=reason,
+)
