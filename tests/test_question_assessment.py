@@ -107,3 +107,53 @@ def test_single_unsupported_requirement(status):
     assert assessment.supported_requirements == 0
     assert assessment.coverage == 0.0
     assert assessment.answerability == "abstain"
+
+def test_duplicate_requirement_ids_rejected():
+    results = [
+        make_result("req-001", "supported"),
+        make_result("req-001", "supported"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate requirement IDs",
+    ):
+        assess_question(results)
+
+
+def test_conflicting_duplicate_requirements_rejected():
+    results = [
+        make_result("req-001", "supported"),
+        make_result("req-001", "contradicted"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate requirement IDs",
+    ):
+        assess_question(results)
+
+
+def test_unique_requirement_ids_accepted():
+    results = [
+        make_result("req-001", "supported"),
+        make_result("req-002", "unverified"),
+        make_result("req-003", "missing"),
+    ]
+
+    assessment = assess_question(results)
+
+    assert assessment.total_requirements == 3
+    assert assessment.supported_requirements == 1
+    assert assessment.coverage == pytest.approx(1 / 3)
+    assert assessment.answerability == "partial"
+
+
+def test_repeated_same_result_object_rejected():
+    result = make_result("req-001", "supported")
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate requirement IDs",
+    ):
+        assess_question([result, result])

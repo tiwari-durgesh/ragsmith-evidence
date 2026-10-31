@@ -19,6 +19,16 @@ def assess_question(
     results: Sequence[SufficiencyResult],
 ) -> QuestionAssessment:
     """Summarize requirement-level sufficiency for a question."""
+    
+    requirement_ids = [
+        result.requirement_id
+        for result in results
+    ]
+
+    if len(requirement_ids) != len(set(requirement_ids)):
+        raise ValueError(
+            "Duplicate requirement IDs are not allowed"
+        )
 
     total = len(results)
 
