@@ -7,6 +7,11 @@ from .structured_verifier import verify_metric_value
 from .aggregator import aggregate_judgments
 from .question_assessment import assess_question, QuestionAssessment
 from .reporting import build_assessment_report
+from .provenance import build_evidence_provenance
+from .provenance_validation import validate_provenance_integrity
+from .evidence_quality import build_evidence_quality_report
+from .requirement_quality import build_requirement_quality_report
+from .quality_summary import build_quality_summary
 
 def assess_structured_requirement(
     requirement_id: str,
@@ -82,6 +87,28 @@ def generate_structured_assessment_report(
         report=report,
         evidence_items=evidence_items,
     )
+
+    report["evidence_provenance"] = build_evidence_provenance(
+        report,
+        evidence_items,
+    )
+
+    validate_provenance_integrity(
+        report,
+        evidence_items,
+    )
+
+    report["evidence_quality"] = build_evidence_quality_report(
+        report,
+        evidence_items,
+    )
+
+    report["requirement_quality"] = build_requirement_quality_report(
+        report,
+        evidence_items,
+    )
+
+    report["quality_summary"] = build_quality_summary(report)
 
     return report
 
