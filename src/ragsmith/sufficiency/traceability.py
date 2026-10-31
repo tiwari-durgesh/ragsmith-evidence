@@ -10,6 +10,16 @@ def validate_evidence_traceability(
 ) -> None:
     """Reject report evidence IDs absent from supplied evidence."""
 
+    evidence_ids = [
+        evidence.evidence_id
+        for evidence in evidence_items
+    ]
+
+    if len(evidence_ids) != len(set(evidence_ids)):
+        raise ValueError(
+            "Duplicate evidence IDs are not allowed"
+        )
+
     available_ids = {
         evidence.evidence_id
         for evidence in evidence_items

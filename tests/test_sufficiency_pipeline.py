@@ -272,3 +272,19 @@ def test_reporting_pipeline_invokes_traceability_validator(
     assert len(calls) == 1
     assert calls[0][0] is report
     assert calls[0][1] is evidence
+
+def test_reporting_pipeline_rejects_duplicate_evidence_ids():
+    evidence = make_evidence("ev-001")
+
+    requirements = [
+        ("req-001", "Revenue (million USD)", 2025, "145"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate evidence IDs",
+    ):
+        generate_structured_assessment_report(
+            requirements=requirements,
+            evidence_items=[evidence, evidence],
+        )

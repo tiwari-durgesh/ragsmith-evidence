@@ -82,3 +82,67 @@ def test_empty_requirements_accepted():
     report = make_report([])
 
     assert validate_evidence_traceability(report, []) is None
+
+def test_duplicate_evidence_ids_rejected():
+    evidence = [
+        make_evidence("ev-001"),
+        make_evidence("ev-001"),
+    ]
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate evidence IDs",
+    ):
+        validate_evidence_traceability(
+            make_report([]),
+            evidence,
+        )
+
+
+def test_repeated_same_evidence_object_rejected():
+    evidence = make_evidence("ev-001")
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate evidence IDs",
+    ):
+        validate_evidence_traceability(
+            make_report([]),
+            [evidence, evidence],
+        )
+
+
+def test_unique_evidence_ids_accepted():
+    evidence = [
+        make_evidence("ev-001"),
+        make_evidence("ev-002"),
+    ]
+
+    report = make_report([
+        {"evidence_ids": ["ev-001", "ev-002"]},
+    ])
+
+    assert validate_evidence_traceability(
+        report,
+        evidence,
+    ) is None
+
+
+def test_duplicate_ids_rejected_even_without_references():
+    evidence = [
+        make_evidence("ev-001"),
+        make_evidence("ev-001"),
+    ]
+
+    report = make_report([
+        {"evidence_ids": []},
+    ])
+
+    with pytest.raises(
+        ValueError,
+        match="Duplicate evidence IDs",
+    ):
+        validate_evidence_traceability(
+            report,
+            evidence,
+        )
