@@ -116,6 +116,46 @@ def search(db_path: Path, query: str, limit: int = 5):
     expression = ' OR '.join('"'+token+'"' for token in tokens[:20])
     db = connect(db_path)
     try:
-        rows = db.execute('''SELECT e.evidence_id,e.document_id,e.kind,e.locator,e.content,bm25(evidence_fts) FROM evidence_fts JOIN evidence e ON e.evidence_id=evidence_fts.evidence_id WHERE evidence_fts MATCH ? ORDER BY bm25(evidence_fts) LIMIT ?''',(expression,max(1,min(limit,100)))).fetchall()
-        return [dict(zip(['evidence_id','document_id','kind','locator','content','score'],r)) for r in rows]
+        
+        rows = db.execute(
+            """
+            SELECT
+                e.evidence_id,
+                e.document_id,
+                e.document_version,
+                e.kind,
+                e.locator,
+                e.content,
+                e.page_number,
+                e.section_path,
+                e.table_id,
+                e.row_index,
+                e.extraction_method,
+                bm25(evidence_fts)
+            FROM evidence_fts
+            JOIN evidence e ON e.evidence_id = evidence_fts.evidence_id
+            WHERE evidence_fts MATCH ?
+            ORDER BY bm25(evidence_fts)
+            LIMIT ?
+            """,
+            (expression, max(1, min(limit, 100))),
+        ).fetchall()
+
+        fields = [
+            "evidence_id",
+            "document_id",
+            "document_version",
+            "kind",
+            "locator",
+            "content",
+            "page_number",
+            "section_path",
+            "table_id",
+            "row_index",
+            "extraction_method",
+            "score",
+        ]
+
+        return [dict(zip(fields, row)) for row in rows]
+
     finally: db.close()

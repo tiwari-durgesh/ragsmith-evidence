@@ -41,3 +41,32 @@ def test_valid_evidence():
 def test_invalid_evidence(field, value):
     with pytest.raises(ValueError):
         make_evidence(**{field: value})
+
+
+def test_search_returns_provenance_fields(tmp_path):
+    from ragsmith.core import ingest, search
+
+    source = tmp_path / "sample.txt"
+    source.write_text(
+        "The company reported revenue growth.",
+        encoding="utf-8",
+    )
+
+    db_path = tmp_path / "test.db"
+
+    ingest(source, db_path)
+    results = search(db_path, "revenue")
+
+    assert len(results) > 0
+
+    evidence = results[0]
+
+    assert evidence["document_version"]
+    assert len(evidence["document_version"]) == 64
+    assert evidence["kind"] == "text"
+    assert evidence["locator"]
+    assert "page_number" in evidence
+    assert "section_path" in evidence
+    assert "table_id" in evidence
+    assert "row_index" in evidence
+    assert "extraction_method" in evidence
