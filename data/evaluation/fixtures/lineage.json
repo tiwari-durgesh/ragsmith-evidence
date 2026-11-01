@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "source_id": "source-1",
+      "document_id": "synthetic-report",
+      "document_version": "synthetic-v1",
+      "group_id": "synthetic-family",
+      "source_uri": "fixture://synthetic-report",
+      "source_sha256": "3ecfacae9c7c2271374db9cf196ae7432bfca00abef9d5dbe65dc07292c03769",
+      "license": "original synthetic fixture; no upstream data",
+      "parent_source_ids": [],
+      "transformation": "original"
+    },
+    {
+      "source_id": "source-2",
+      "document_id": "synthetic-second-report",
+      "document_version": "synthetic-v1",
+      "group_id": "synthetic-family",
+      "source_uri": "fixture://synthetic-second-report",
+      "source_sha256": "23e002b5200bc09b1d4b71115943ff64733e5210f74b2a236e0a61666222f652",
+      "license": "original synthetic fixture; no upstream data",
+      "parent_source_ids": [
+        "source-1"
+      ],
+      "transformation": "synthetic_conflict"
+    }
+  ],
+  "evidence_links": [
+    {
+      "evidence_id": "ev-assets",
+      "source_id": "source-1",
+      "fingerprint": "098885a50d9607a9dd2f7ba45d187d0f0c85ffb1378f736739404a64babd0a5e"
+    },
+    {
+      "evidence_id": "ev-conflict",
+      "source_id": "source-2",
+      "fingerprint": "2e05ff60a4fb3e8c7db1af5541f85160668fe24f1eb699d4717fe972d8179624"
+    },
+    {
+      "evidence_id": "ev-profit",
+      "source_id": "source-1",
+      "fingerprint": "702ae5aa6a0499e2667332fd9467a7a28311f8be121564e13b49f36be62f342e"
+    },
+    {
+      "evidence_id": "ev-revenue",
+      "source_id": "source-1",
+      "fingerprint": "ade794050607561d5f7a70d2f9d3fb463716642c4feadfcc31672088112787ff"
+    },
+    {
+      "evidence_id": "ev-text",
+      "source_id": "source-1",
+      "fingerprint": "a133c5bd4f577e21a6fdccc23f3dd4ef9199cb004968980fc376976753cf5203"
+    }
+  ]
+}

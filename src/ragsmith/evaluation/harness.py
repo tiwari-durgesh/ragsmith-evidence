@@ -2,7 +2,6 @@
 
 import copy
 import hashlib
-import json
 from collections import Counter
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -12,16 +11,25 @@ from ragsmith.lookup_config import LookupConfig
 from ragsmith.lookup_pipeline import assess_lookup_question
 from ragsmith.sufficiency.provenance import build_evidence_provenance
 from ragsmith.value_lookup import LookupQuestion
+from ragsmith.evaluation.lineage import SourceManifest
+from ragsmith.evaluation.instrumentation import RunMeasurements, run_environment
+from ragsmith.evaluation.retrieval_metrics import (
+    RankingRecord, score_retrieval, summarize_retrieval, validate_cutoff,
+)
+from ragsmith.evaluation.uncertainty import (
+    BootstrapConfig, PairedRate, paired_cluster_interval,
+)
+from ragsmith.evaluation.records import (
+    PROVISIONAL, FrozenEvidenceRecord, GoldRecord, read_jsonl,
+)
 
 
-PROVISIONAL = "provisional, single-annotator"
 VARIANTS = ("extraction_only", "binary_sufficiency", "graded_sufficiency")
 CLASSES = ("full", "partial", "abstain")
 
 
 def _read_rows(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()
-            if line.strip()]
+    return read_jsonl(path)
 
 
 def predict(request: LookupQuestion, evidence: list[Evidence]) -> list[dict]:
@@ -81,48 +89,7 @@ def _equal_value(actual: str, expected: str) -> bool:
 
 def validate_gold(row: dict, request: LookupQuestion) -> str:
     """Validate provisional labels without generating them from system output."""
-    if set(row) != {"question_id", "group_id", "partition", "origin",
-                    "annotation_status", "annotator_id", "requirements"}:
-        raise ValueError("Invalid gold fields")
-    if row["annotation_status"] != PROVISIONAL:
-        raise ValueError("Pilot labels must remain provisional, single-annotator")
-    for name in ("group_id", "annotator_id"):
-        if not isinstance(row[name], str) or not row[name].strip():
-            raise ValueError(f"Gold {name} must be nonempty")
-    if row["origin"] not in {"synthetic", "tatqa-derived"}:
-        raise ValueError("Unknown label origin")
-    if row["partition"] not in {"diagnostic", "development", "held_out"}:
-        raise ValueError("Unknown partition")
-    facts = row["requirements"]
-    if not isinstance(facts, list) or not facts:
-        raise ValueError("Gold requirements must be a nonempty list")
-    ids = [fact["requirement_id"] for fact in facts]
-    if len(ids) != len(set(ids)) or set(ids) != {
-        item.requirement_id for item in request.requirements
-    }:
-        raise ValueError("Gold requirement IDs must match the system input")
-    for fact in facts:
-        if set(fact) != {"requirement_id", "status", "acceptable_values", "evidence_ids"}:
-            raise ValueError("Invalid gold requirement fields")
-        if fact["status"] not in {"supported", "missing", "conflicted", "not_adjudicable"}:
-            raise ValueError("Unknown gold requirement status")
-        for name in ("acceptable_values", "evidence_ids"):
-            values = fact[name]
-            if not isinstance(values, list) or any(
-                not isinstance(value, str) or not value.strip() for value in values
-            ) or len(values) != len(set(values)):
-                raise ValueError(f"Invalid gold {name}")
-        if fact["status"] == "supported":
-            if not fact["acceptable_values"] or not fact["evidence_ids"]:
-                raise ValueError("Supported gold facts need values and source evidence IDs")
-        elif fact["acceptable_values"]:
-            raise ValueError("Only unambiguous supported facts have acceptable values")
-    states = [fact["status"] for fact in facts]
-    if "not_adjudicable" in states:
-        return "not_adjudicable"
-    if "conflicted" in states or "supported" not in states:
-        return "abstain"
-    return "full" if all(state == "supported" for state in states) else "partial"
+    return GoldRecord.from_payload(row).validate_request(request)
 
 
 def score_variant(
@@ -141,7 +108,8 @@ def score_variant(
         seen.add(qid)
         request = requests[qid]
         row = gold[qid]
-        label = validate_gold(row, request)
+        record = row if isinstance(row, GoldRecord) else GoldRecord.from_payload(row)
+        label = record.validate_request(request)
         if label == "not_adjudicable":
             counts["excluded_not_adjudicable"] += 1
             continue
@@ -155,7 +123,7 @@ def score_variant(
         counts["correct_abstentions"] += label == predicted == "abstain"
         counts["answerable_questions"] += label != "abstain"
         counts["over_abstentions"] += predicted == "abstain" and label != "abstain"
-        facts = {item["requirement_id"]: item for item in row["requirements"]}
+        facts = {item.requirement_id: item for item in record.requirements}
         sources = {item.evidence_id: item for item in evidence_sets[qid]}
         requirements = {item.requirement_id: item for item in request.requirements}
         correct_ids = set()
@@ -168,11 +136,11 @@ def score_variant(
             fact = facts[rid]
             requirement = requirements[rid]
             correct = (
-                fact["status"] == "supported"
+                fact.status == "supported"
                 and answer["metric"] == requirement.metric
                 and answer["year"] == requirement.year
                 and any(_equal_value(answer["value"], value)
-                        for value in fact["acceptable_values"])
+                        for value in fact.acceptable_values)
             )
             if correct:
                 correct_ids.add(rid)
@@ -188,9 +156,9 @@ def score_variant(
                 )
                 counts["supported_citation_links"] += (
                     correct and consistent
-                    and citation["evidence_id"] in fact["evidence_ids"]
+                    and citation["evidence_id"] in fact.evidence_ids
                 )
-        denominator = sum(fact["status"] == "supported" for fact in facts.values())
+        denominator = sum(fact.status == "supported" for fact in facts.values())
         counts["gold_supported_requirements"] += denominator
         counts["correct_supported_requirements"] += len(correct_ids)
         if denominator:
@@ -233,15 +201,29 @@ def score_variant(
     }
 
 
-def run_suite(inputs_path: Path, evidence_path: Path, gold_path: Path) -> dict:
+def _run_suite(
+    inputs_path: Path, evidence_path: Path, gold_path: Path,
+    lineage_path: Path | None, rankings_path: Path | None, retrieval_k: int,
+    bootstrap: BootstrapConfig, measurements: RunMeasurements,
+) -> dict:
     """Load labels only after all inference; no model or real pilot is run here.
 
     Data files contain explicit frozen evidence sets (Track A). Retrieval
     metrics and source-derived annotation collection are later batches.
     """
+    lineage_path = lineage_path or evidence_path.parent / "lineage.json"
+    validate_cutoff(retrieval_k)
+    manifest = SourceManifest.from_file(lineage_path)
+    initial_hashes = {name: hashlib.sha256(path.read_bytes()).hexdigest()
+                      for name, path in [("inputs", inputs_path),
+                                         ("evidence", evidence_path),
+                                         ("lineage", lineage_path)]}
+    if rankings_path is not None:
+        initial_hashes["rankings"] = hashlib.sha256(rankings_path.read_bytes()).hexdigest()
     requests = {}
     for row in _read_rows(inputs_path):
         request = LookupQuestion.from_payload(row)
+        manifest.validate_request(request)
         if request.question_id in requests:
             raise ValueError("Duplicate input question ID")
         requests[request.question_id] = request
@@ -249,44 +231,139 @@ def run_suite(inputs_path: Path, evidence_path: Path, gold_path: Path) -> dict:
         raise ValueError("No evaluation inputs")
     evidence = {}
     for row in _read_rows(evidence_path):
-        if set(row) != {"question_id", "evidence"} or row["question_id"] in evidence:
+        frozen = FrozenEvidenceRecord.from_payload(row)
+        if frozen.question_id in evidence:
             raise ValueError("Invalid or duplicate frozen evidence record")
-        evidence[row["question_id"]] = [Evidence(**item) for item in row["evidence"]]
+        evidence[frozen.question_id] = list(frozen.evidence)
+        manifest.validate_evidence(evidence[frozen.question_id])
     if set(requests) != set(evidence):
         raise ValueError("Frozen evidence must cover exactly the input questions")
+    rankings = {}
+    selected_evidence = evidence
+    if rankings_path is not None:
+        for row in _read_rows(rankings_path):
+            ranking = RankingRecord.from_payload(row)
+            if ranking.question_id in rankings or ranking.question_id not in requests:
+                raise ValueError("Duplicate or unknown ranking question ID")
+            rankings[ranking.question_id] = ranking
+        if set(rankings) != set(requests):
+            raise ValueError("Rankings must cover exactly the input questions")
+        selected_evidence = {
+            qid: rankings[qid].select(request, evidence[qid], retrieval_k)
+            for qid, request in requests.items()
+        }
+    measurements.checkpoint("load_inputs_validate_lineage_and_rankings")
     predictions = [prediction for qid, request in requests.items()
-                   for prediction in predict(request, evidence[qid])]
+                   for prediction in predict(request, selected_evidence[qid])]
+    measurements.checkpoint("inference_all_variants")
+    for items in evidence.values():
+        manifest.validate_evidence(items)
+    immutable_files = [("inputs", inputs_path), ("evidence", evidence_path),
+                       ("lineage", lineage_path)]
+    if rankings_path is not None:
+        immutable_files.append(("rankings", rankings_path))
+    for name, path in immutable_files:
+        if hashlib.sha256(path.read_bytes()).hexdigest() != initial_hashes[name]:
+            raise ValueError("Evaluation input files changed during inference")
     # Intentionally do not open gold_path until every prediction exists.
     gold = {}
     groups = {}
     for row in _read_rows(gold_path):
-        qid = row["question_id"]
+        record = GoldRecord.from_payload(row)
+        qid = record.question_id
         if qid in gold or qid not in requests:
             raise ValueError("Duplicate or unknown gold question ID")
-        validate_gold(row, requests[qid])
-        group = row["group_id"]
-        if group in groups and groups[group] != row["partition"]:
+        record.validate_request(requests[qid])
+        manifest.validate_gold_links(record, requests[qid], evidence[qid])
+        group = record.group_id
+        if group in groups and groups[group] != record.partition:
             raise ValueError("Source family leaks across partitions")
-        groups[group] = row["partition"]
-        gold[qid] = row
+        groups[group] = record.partition
+        gold[qid] = record
     if set(gold) != set(requests):
         raise ValueError("Gold must cover exactly the input questions")
-    origins = sorted({row["origin"] for row in gold.values()})
+    origins = sorted({row.origin for row in gold.values()})
     if len(origins) != 1:
         raise ValueError("Synthetic and source-derived cases must be scored separately")
-    partitions = sorted({row["partition"] for row in gold.values()})
+    partitions = sorted({row.partition for row in gold.values()})
     if len(partitions) != 1:
         raise ValueError("Development and held-out results must be reported separately")
+    measurements.checkpoint("validate_after_inference_and_load_gold")
+    metrics = {variant: score_variant(
+        [row for row in predictions if row["variant"] == variant], gold, requests, evidence,
+    ) for variant in VARIANTS}
+    retrieval_rows = [row for qid, ranking in rankings.items()
+                      for row in score_retrieval(ranking, gold[qid], requests[qid],
+                                                 evidence[qid], retrieval_k)]
+    measurements.checkpoint("scoring")
+    paired_partial, paired_risk = [], []
+    by_question = {(row["question_id"], row["variant"]): row for row in predictions}
+    for qid, record in gold.items():
+        label = record.validate_request(requests[qid])
+        if label == "not_adjudicable":
+            continue
+        counts = {variant: score_variant(
+            [by_question[qid, variant]], {qid: record}, {qid: requests[qid]},
+            {qid: evidence[qid]},
+        )["counts"] for variant in VARIANTS}
+        graded, binary, raw = (counts[name] for name in (
+            "graded_sufficiency", "binary_sufficiency", "extraction_only"
+        ))
+        if label == "partial":
+            paired_partial.append(PairedRate(
+                qid, record.group_id, graded["correct_supported_requirements"],
+                graded["gold_supported_requirements"], binary["correct_supported_requirements"],
+                binary["gold_supported_requirements"],
+            ))
+        paired_risk.append(PairedRate(
+            qid, record.group_id, graded["unsupported_claims"], graded["emitted_claims"],
+            raw["unsupported_claims"], raw["emitted_claims"],
+        ))
+    uncertainty = {
+        "partial_coverage_graded_minus_binary": paired_cluster_interval(
+            paired_partial, estimand="paired_mean", config=bootstrap,
+        ),
+        "unsupported_rate_graded_minus_extraction": paired_cluster_interval(
+            paired_risk, estimand="ratio_of_sums", config=bootstrap,
+        ),
+    }
+    measurements.checkpoint("uncertainty")
     return {
-        "evaluation_version": "0.1", "annotation_status": PROVISIONAL,
+        "evaluation_version": "0.3", "annotation_status": PROVISIONAL,
+        "track": "B_frozen_rankings" if rankings else "A_fixed_evidence",
         "origin": origins[0], "partition": partitions[0],
         "research_evidence": False,
-        "file_hashes": {name: hashlib.sha256(path.read_bytes()).hexdigest()
-                        for name, path in [("inputs", inputs_path),
-                                           ("evidence", evidence_path), ("gold", gold_path)]},
+        "lineage_status": "validated_internal_consistency",
+        "file_hashes": {**initial_hashes,
+                        "gold": hashlib.sha256(gold_path.read_bytes()).hexdigest()},
         "predictions": predictions,
-        "metrics": {variant: score_variant(
-            [row for row in predictions if row["variant"] == variant], gold, requests,
-            evidence,
-        ) for variant in VARIANTS},
+        "metrics": metrics, "uncertainty": uncertainty,
+        "retrieval_metrics": {
+            "k_per_requirement": retrieval_k, "per_requirement": retrieval_rows,
+            "summary": summarize_retrieval(retrieval_rows),
+            "evidence_union_sizes": {qid: len(items) for qid, items in selected_evidence.items()},
+        } if rankings else None,
     }
+
+
+def run_suite(
+    inputs_path: Path, evidence_path: Path, gold_path: Path,
+    lineage_path: Path | None = None, *, rankings_path: Path | None = None,
+    retrieval_k: int = 10, bootstrap: BootstrapConfig = BootstrapConfig(),
+    profile_memory: bool = False,
+) -> dict:
+    """Run fixed-evidence or frozen-ranking evaluation, retaining full-scope gold.
+
+    Profiling records this in-process diagnostic run, not benchmark performance.
+    In Track B the evidence file is the full annotated universe; only top-k
+    ranked evidence reaches inference. No source label is opened beforehand.
+    """
+    if not isinstance(bootstrap, BootstrapConfig):
+        raise ValueError("bootstrap must be a BootstrapConfig")
+    with RunMeasurements(profile_memory) as measurements:
+        report = _run_suite(inputs_path, evidence_path, gold_path, lineage_path,
+                            rankings_path, retrieval_k, bootstrap, measurements)
+        report["environment"] = run_environment(Path(__file__).resolve().parents[3])
+        measurements.checkpoint("environment_metadata")
+    report["measurements"] = measurements.report()
+    return report

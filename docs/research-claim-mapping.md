@@ -22,7 +22,7 @@ extraction subset cannot establish all-domain, heterogeneous reasoning ability.
 | Extraction only vs graded sufficiency | Evidence-bounded generation reduces unsupported complete-looking answers; relevance alone is insufficient. | Requirements, evidence union, extracted candidates/order and available provenance. Only decision/verification policy changes. | Implemented for synthetic fixtures. |
 | Binary sufficiency vs graded sufficiency | Three-way sufficiency preserves useful supported information instead of discarding partial answers. | Same extraction and verifier judgments; binary responds only when all requirements are supported. | Implemented for synthetic fixtures. |
 | Controlled full/partial/absent/conflict evidence sets | Sufficiency depends on which required facts are present, not merely topic similarity. | Same base facts, question requirements and family; only a documented evidence condition changes. | Synthetic fixtures implemented; source-derived conditions pending annotation. |
-| Frozen retrieved evidence vs oracle source-linked evidence | Separate retrieval failure from sufficiency failure. | Same question/scope, requirements, verifier and response mechanism. | Track A harness implemented; paired Track B measurement pending. |
+| Frozen retrieved evidence vs oracle source-linked evidence | Separate retrieval failure from sufficiency failure. | Same question/scope, requirements, verifier and response mechanism. | Tracks A/B implemented with synthetic frozen rankings; real retrieval experiment pending. |
 | Dense; BM25+dense; BM25+dense+table; KG; full heterogeneous hybrid | The proposed retrieval combination improves evidence coverage and supports text/table/relationship questions. | Fixed question set, comparable candidate budget, generator and sufficiency policy. | Original proposal comparisons preserved; unimplemented and untested. |
 | Full hybrid with and without sufficiency | Integrated sufficiency improves reliability over the same hybrid RAG pipeline. | Exact retrieved set and generator, prompt and evidence budget. | Required for the full proposal; the small deterministic pilot does not substitute for it. |
 
@@ -46,7 +46,7 @@ the synthetic comparison proves the proposed contribution.
 
 | Metric | Specific proposal claim and interpretation | Implemented now? |
 | --- | --- | --- |
-| Recall@k, MRR, nDCG; support/conflict recall | Hybrid retrieval recovers decisive evidence, including facts whose omission can make an answer misleading. Evaluate retrieval separately from sufficiency. | No; next harness batch. |
+| Recall@k, MRR, nDCG; support/conflict recall | Hybrid retrieval recovers decisive evidence, including facts whose omission can make an answer misleading. Evaluate retrieval separately from sufficiency. | Yes for synthetic frozen ranking logs; full hybrid comparisons remain pending. |
 | Three-class accuracy, confusion matrix, macro-F1 | Evidence-Sufficiency Layer distinguishes complete, partial and insufficient/conflicted cases. | Yes, synthetic Track A. |
 | Supported requirement coverage, micro and macro | Objectives call for retaining information that can be supported, rather than unnecessarily discarding it. | Yes. |
 | Partial-answer completeness | Evidence-Bounded Generation should answer supported portions of partial questions. Primary comparison: graded vs binary. | Yes. |
@@ -57,9 +57,9 @@ the synthetic comparison proves the proposed contribution.
 | Answer EM/token-F1 | Answer Quality assesses returned content, but lexical similarity cannot establish correctness or support. Secondary only. | No. |
 | Faithfulness | Claims must have source support. In the atomic extraction pilot the operational measure is supported/unsupported claim accounting, not a general LLM judge score. | Restricted rubric only. |
 | Answer relevance | Responses should address requested facts. Initial rubric aligns emitted claim IDs/metric/year to requirements; broader semantic relevance is not established. | Field alignment enforced; no general relevance score. |
-| Coverage-risk analysis | Quantify the tradeoff between retaining useful answers and avoiding unsafe claims, across policy choices. | Component counts implemented; paired plots/intervals pending. |
+| Coverage-risk analysis | Quantify the tradeoff between retaining useful answers and avoiding unsafe claims, across policy choices. | Counts and paired source-cluster intervals for primary differences implemented; plots and real data pending. |
 | Confidence calibration | Proposal lists calibrated confidence evaluation. No confidence variable currently exists; metadata completeness is not one. | Deferred until a confidence model is explicitly defined. |
-| Stage latency and peak memory | Practicality of a local-first system on modest hardware is a constraint, not the central novelty claim. | Not measured by this batch. |
+| Stage latency and peak memory | Practicality of a local-first system on modest hardware is a constraint, not the central novelty claim. | Diagnostic harness timing and optional Python allocation peak implemented; live retrieval latency and process RSS remain unmeasured. |
 
 Null denominators remain null. Unsupported formats whose sources are human-
 answerable remain failures in overall scoring; do not recategorize them as

@@ -134,8 +134,14 @@ The initial offline harness compares extraction-only, binary sufficiency, and
 graded sufficiency on identical frozen evidence. It opens gold labels only after
 inference. All fixture/pilot labels remain `provisional, single-annotator` until
 independent review; synthetic results are not research findings. The foundation
-suite now has 402 passing tests under bundled Python 3.12.14. Python 3.11 remains
+suite now has 500 passing tests under bundled Python 3.12.14. Python 3.11 remains
 unverified.
+
+The [preparation guide](docs/evaluation-preparation.md) covers native SQLite
+ranking export and reviewer calibration packets. Exports use one frozen database
+snapshot, preserve retrieval audits and check evidence fingerprints. Reviewer
+templates contain blank labels; private identifier mappings stay with the
+coordinator. Neither preparation path reads gold or changes annotation status.
 
 With a working project Python and the package installed:
 
@@ -153,3 +159,21 @@ Raw upstream data stays in ignored local storage. See the
 [research claim mapping](docs/research-claim-mapping.md),
 [sampling plan](docs/pilot-sampling-plan.md), and
 [reviewer handout](docs/annotation-guidelines.md).
+
+Evaluation version 0.2 adds typed gold/frozen-evidence records and a required
+versioned source-lineage manifest. It rejects stale evidence fingerprints,
+malformed records, invalid parent graphs and out-of-scope gold links before
+scoring. See the [record schema and migration guide](docs/evaluation-records.md).
+These are internal consistency checks, not source authentication or annotation
+adjudication. Report version 0.3 additionally supports frozen-ranking Track B,
+retrieval metrics, paired source-cluster intervals, and optional Python-allocation
+profiling:
+
+```powershell
+python scripts/evaluate_synthetic.py --rankings data/evaluation/fixtures/rankings.jsonl --k 1 --profile-memory
+```
+
+Gold retains the full source scope when top-k evidence is missed. The one-family
+synthetic suite correctly reports null inferential intervals. See the
+[metrics and resource guide](docs/evaluation-metrics-and-resources.md) for
+estimands, exclusions, timing boundaries and profiling limits.

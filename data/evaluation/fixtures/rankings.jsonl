@@ -1,0 +1,6 @@
+{"question_id":"synthetic-full","rankings":[{"requirement_id":"revenue","evidence_ids":["ev-revenue","ev-profit"]},{"requirement_id":"profit","evidence_ids":["ev-revenue","ev-profit"]}]}
+{"question_id":"synthetic-partial","rankings":[{"requirement_id":"revenue","evidence_ids":["ev-revenue"]},{"requirement_id":"employees","evidence_ids":[]}]}
+{"question_id":"synthetic-missing","rankings":[{"requirement_id":"revenue","evidence_ids":[]}]}
+{"question_id":"synthetic-conflict","rankings":[{"requirement_id":"revenue","evidence_ids":["ev-revenue","ev-conflict"]}]}
+{"question_id":"synthetic-text","rankings":[{"requirement_id":"revenue","evidence_ids":["ev-text"]}]}
+{"question_id":"synthetic-distractor","rankings":[{"requirement_id":"revenue","evidence_ids":["ev-assets"]}]}

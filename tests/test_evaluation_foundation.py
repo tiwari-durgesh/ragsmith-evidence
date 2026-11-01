@@ -24,6 +24,9 @@ def copy_fixtures(tmp_path):
         (tmp_path / f"{name}.jsonl").write_text(
             (FIXTURES / f"{name}.jsonl").read_text(encoding="utf-8"), encoding="utf-8"
         )
+    (tmp_path / "lineage.json").write_text(
+        (FIXTURES / "lineage.json").read_text(encoding="utf-8"), encoding="utf-8"
+    )
 
 
 def rewrite(path, transform):

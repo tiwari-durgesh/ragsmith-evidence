@@ -102,7 +102,8 @@ remain targets; this batch retains the existing local pilot infrastructure.
   original synthetic fixtures, strict request/gold separation, frozen-evidence
   extraction/binary/graded comparisons, core scoring, validation and file hashes.
   Gold files are opened only after inference. Results are marked non-research.
-- The full software suite passes with 402 tests under bundled Python 3.12.14;
+- The initial Phase 5 foundation was committed locally at 807d70f and not pushed.
+- The full software suite passes with 500 tests under bundled Python 3.12.14;
   Python 3.11 remains unverified. Production Phase 4 source files are unchanged.
 - A separate agreement script measures unweighted Cohen's kappa from aligned,
   independent pre-adjudication labels and handles undefined cases explicitly.
@@ -121,8 +122,52 @@ remain targets; this batch retains the existing local pilot infrastructure.
   evidence that small risk differences can be detected. See pilot-sampling-plan.md.
 - research-claim-mapping.md ties metrics and controls to proposal sections and
   distinguishes prior-art refutation of originality from empirical benefit tests.
-- Next harness batch: strengthen typed schemas and source lineage; add retrieval
-  metrics, paired cluster uncertainty and resource/run manifests. Real pilot
+- The typed-record/lineage batch is implemented and tested but uncommitted: v0.2
+  uses frozen typed gold/evidence containers and a required source manifest,
+  including parent transformations, source versions, license/location declarations,
+  evidence fingerprints, scope checks and source-family consistency. Malformed
+  JSON, duplicate keys, nonfinite values and reserved gold metadata fail explicitly.
+- All gold labels are still opened after inference. Evidence and file hashes
+  are rechecked after prediction to detect mutation. Existing synthetic metrics
+  are unchanged; 43 new tests cover invalid shapes, stale or unknown links,
+  source graph errors, scope mismatches, label leakage and inference mutation.
+- Manifest validation is internal consistency only: it does not authenticate
+  sources, check legal rights, infer truth, or mark labels as independently reviewed.
+  Track A gold links must refer to the fixed supplied set. A future Track B scorer
+  must preserve full-corpus gold and count retrieval misses rather than reuse
+  that condition as an exclusion. See docs/evaluation-records.md.
+- The next measurement batch is also implemented and tested but uncommitted:
+  report v0.3 supports frozen-ranking Track B, Recall@k/MRR/binary nDCG and separate
+  support/conflict recall. Full source-scope gold remains intact when top-k misses
+  support or conflicts. All policy variants receive the same retrieved union.
+- Primary paired differences use whole source-cluster bootstrap sampling with
+  2,000 replicates/seed 1729 by default. Partial coverage uses paired question
+  means; unsupported rate uses pooled claim counts. Single-cluster or undefined
+  rate cases explicitly withhold intervals. The six-case fixture has one cluster.
+- Diagnostic measurements record named monotonic-clock stages, optional traced
+  Python allocation peak and environment/Git metadata. They do not measure live
+  retrieval, process RSS, isolated model latency or publication benchmark speed.
+- Thirty-nine new tests cover numerical metric examples, rank validation,
+  preserved full-scope gold, cluster sampling, undefined rates and profiling.
+  Production source and provisional annotation status are unchanged.
+- Native retrieval export and reviewer preparation are implemented and tested
+  but uncommitted. Export freezes a single SQLite online-backup snapshot for all
+  questions, logs query/rank/score/truncation metadata, validates returned evidence
+  against the registered universe and produces Track B-compatible ranking JSONL.
+  Source files are not authenticated and universe completeness is not established.
+- Calibration packets use neutral IDs and shuffled evidence order, omit labels,
+  predictions and source-transformation names, and provide separate blank
+  reviewer files plus a requirement worksheet. Private mappings remain local.
+  This hides labels/model outputs, not necessarily experimental conditions.
+  All outputs require a fresh directory to protect existing annotation work.
+- Sixteen new tests cover native SQLite export, stable snapshots during live
+  changes, empty rankings, evidence mismatches, packet mappings and overwrite
+  protection. A synthetic calibration packet was generated under ignored
+  data/evaluation/generated/calibration-001. No real reviewer labels were made.
+  See docs/evaluation-preparation.md for commands and the reviewer workflow.
+- Remaining work: source-derived corpus adapters and screening ledger,
+  repeated warm/cold resource trials, process RSS measurement and independent
+  source annotation. Real pilot
   annotations and confirmatory results await independent review. The next batch
   must explicitly add reviewed/adjudicated states rather than silently upgrading
   provisional labels. No real pilot benchmark has been run.

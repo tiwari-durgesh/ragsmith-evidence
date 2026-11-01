@@ -241,8 +241,11 @@ annotator. Until then, all labels are `provisional, single-annotator`. The
 synthetic harness validates input/gold separation, frozen-evidence policy
 comparisons, core answerability/coverage/claim/citation metrics, and label/group
 checks. The independent-annotation script calculates unweighted Cohen's kappa.
-Retrieval metrics, cluster intervals, corpus adapters, full schema/source lineage,
-and real held-out experiments remain later batches.
+Typed gold/evidence records, source lineage, frozen-ranking Track B retrieval
+metrics, primary paired cluster intervals, and diagnostic instrumentation are now
+implemented and tested on synthetic examples. Real source adapters, independent
+pilot annotation and held-out experiments remain later batches. Process RSS and
+live retrieval timing are not measured by the frozen-ranking harness.
 
 The corpus label gate is selected; final manual eligibility, annotation
 adjudication, practical margins and the full held-out statistical plan are not

@@ -92,10 +92,13 @@ Keep the original decisions in two separate UTF-8 JSONL files. Each row has
 exactly these fields (example only):
 
 ```json
-{"item_id":"family-001/partial","annotator_id":"reviewer-A","label":"partial"}
+{"item_id":"item-0001","annotator_id":"reviewer-A","label":"partial"}
 ```
 
 The second file must use a different annotator ID and the same item IDs.
+Use the masked IDs in generated calibration packets. The
+[preparation workflow](evaluation-preparation.md) explains which files to share
+and which coordinator mappings to keep private. Blank templates are not labels.
 Use `question_id/requirement_id` as item_id in separate requirement-level files;
 the current script's supported categories are question-level labels, so do not
 mix requirement statuses into those files. Requirement-level state kappa would
