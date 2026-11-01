@@ -84,9 +84,10 @@ replacing disagreements with a consensus. Templates and a successful script run
 are not evidence of independent review. No automatic import of these worksheets
 into gold or upgrade to reviewed status is implemented in this batch.
 
-## Remaining batch
+## Source preparation continuation
 
-Build the pinned TAT-QA extraction gate and source adapter, generate a screening
-ledger and draft the family-grouped sampling manifest. Measure eligibility from
-actual records without manufacturing semantic eligibility labels. Independent
-annotation and real resource trials remain separate prerequisites for results.
+The pinned label gate, source adapter, screening ledgers and draft grouped
+sampling queue are now implemented; see the [adapter guide](tatqa-source-adapter.md).
+Semantic eligibility remains unmeasured. Next add source-linked manual screening
+decisions and validated cell bindings before generating canonical evidence.
+Independent annotation and real resource trials remain prerequisites for results.
