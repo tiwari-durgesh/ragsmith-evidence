@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "recorded_utc": "2026-11-01T16:32:24.076556+00:00",
+  "purpose": "Public document-integrity snapshot before any evaluation-data selection",
+  "public_tag": "prereg-public-v1",
+  "document_source_commit": "66baf661f76ac4b2ea2f704a28b244e07228f318",
+  "hash_basis": "SHA-256 of exact Git blob bytes, not checkout files subject to CRLF conversion",
+  "documents": [
+    {
+      "path": "docs/first-real-evaluation-preregistration.md",
+      "git_blob": "6548e9d36a6d72b9d88033bfa02970bc1b100628",
+      "sha256": "ea37f67d415a00ab4ec0c3997429dd50988c0d78dfeb3a03355bbdca2457acd6",
+      "bytes": 20380
+    },
+    {
+      "path": "docs/first-real-evaluation-selection-amendment.md",
+      "git_blob": "cd7d391a4abc15dc51cc24e7f0de5df47702202a",
+      "sha256": "8344da17d4e4ed29bbafc71ca7f3e298c776eceeade9697f27e46ce727fdf629",
+      "bytes": 20234
+    },
+    {
+      "path": "docs/first-real-evaluation-feasibility-amendment.md",
+      "git_blob": "b39f8f08f3c2b5f921ad52dff24e4447f48fa438",
+      "sha256": "7f415456e8a5e311c25be5b5551d7cd92cab48b33a5bd87f127944acab8a7316",
+      "bytes": 17008
+    },
+    {
+      "path": "docs/first-real-evaluation-smaller-model-amendment.md",
+      "git_blob": "f8aa7d5a56eebf1312d82358c5a1054b0a8070ec",
+      "sha256": "982d85c29dc1c3e921d695ca5383c3e00314bc7c3d2b1bd6713cab45ea374c92",
+      "bytes": 8072
+    }
+  ],
+  "origin_refs_audited_before_publication": [
+    {
+      "ref": "refs/heads/main",
+      "object": "66baf661f76ac4b2ea2f704a28b244e07228f318",
+      "private_label_ancestry": false,
+      "known_private_blobs_reachable": false,
+      "private_paths_reachable": false,
+      "safe_original_pre_label_commits_retained": true
+    }
+  ],
+  "local_prereg_v1": {
+    "commit": "6b1d04eed42e159b73ea0ac9388786ec99803a79",
+    "public_equivalent_commit": "a871f3f7f760da783c34f2ebaa7a5e9fee8e0802",
+    "original_document_sha256": "5980c8c748cacc719c7409d3dc3c72516eb7dabb8a572d82d4b61511a4202ec2",
+    "original_tag_published": false,
+    "reason": "Original ancestry contains private labels"
+  },
+  "local_prereg_v2": {
+    "exists": false,
+    "note": "No such local tag was found; none created or inferred"
+  },
+  "tag_meaning": "First public integrity snapshot of current preregistration plus amendments; not a move/replacement of local prereg-v1 or an assertion that prereg-v2 exists",
+  "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+  "evaluation_data_selected": false
+}

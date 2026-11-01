@@ -30,3 +30,12 @@ Facts share nine contexts; statistical independence is not established. Labels r
 | `93e019af78d3beef4dbe139344b69be6188b8fe7` | `798664b5cc152e8b9ac01a127a1325418e702230` | private-free public history |
 | `d131caee6116f66f55c07b6d9c5bc17704357283` | `d999b828cb75eca0b3a287e1c34a9b30e1283a8f` | private-free public history |
 | `193baf82c4f61bb8d9b60db8824eb0e41c943a2e` | `e47eff704275d963f0d15cdfdd6c88e836674455` | private-free public history |
+
+## Public integrity snapshot
+
+Annotated tag `prereg-public-v1` identifies the current public preregistration and amendments.
+[The SHA-256 manifest](preregistration-public-manifest.json) records exact Git-blob hashes for the preregistration and selection documents, plus the earlier feasibility and model amendments.
+These hashes use committed bytes, avoiding checkout line-ending differences. The tag commit covers the manifest itself.
+Local `prereg-v1` remains unchanged and unpublished because its ancestry contains private labels. Its original document is byte-identical to the mapped public commit shown above.
+No local or remote `prereg-v2` tag existed at this audit; this public tag does not invent or replace one. This is a later public snapshot, not an external registry registration.
+No evaluation data was selected and production source was unchanged.
