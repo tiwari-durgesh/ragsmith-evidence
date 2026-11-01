@@ -1,0 +1,147 @@
+{
+  "purpose": "hardware smoke only; no answer quality or evaluation score",
+  "model": "Qwen2.5-1.5B-Instruct Q4_K_M",
+  "model_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "runtime": "llama.cpp b6096 Windows CPU x64",
+  "runtime_sha256": "09aa8455c58d479cdb929db7ffa8a932757d351a91c35add9214f391ae7c747d",
+  "cpu_identifier": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+  "logical_processors": 12,
+  "host_memory_before": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 2588528640
+  },
+  "ctx_size": 4096,
+  "threads": 6,
+  "batch_size": 128,
+  "maximum_generated_tokens": 64,
+  "temperature": 0,
+  "seed": 1729,
+  "planned_questions": 5,
+  "conditions": "planned five fresh processes; OS cache uncontrolled; short synthetic prompts, not full 3200-token workload",
+  "memory_method": "Win32 GetProcessMemoryInfo OS lifetime peak working set, sampled every 50 ms; child process only",
+  "paid_api_calls": 0,
+  "evaluation_questions_used": 0,
+  "quality_scored": false,
+  "trials": [
+    {
+      "question": "synthetic-1",
+      "wall_seconds_including_load": 8.50410819996614,
+      "exit_code": 0,
+      "aborted": null,
+      "peak_working_set_bytes": 1806557184,
+      "host_memory_before_trial": {
+        "total_ram_bytes": 7893950464,
+        "available_ram_bytes": 2588528640
+      },
+      "minimum_available_ram_bytes": 812339200,
+      "last_available_ram_bytes": 2656522240,
+      "prompt_eval": {
+        "milliseconds": 4886.86,
+        "tokens": 428,
+        "tokens_per_second": 87.58
+      },
+      "generation": {
+        "milliseconds": 1604.78,
+        "tokens": 17,
+        "tokens_per_second": 10.59
+      }
+    },
+    {
+      "question": "synthetic-2",
+      "wall_seconds_including_load": 8.273003999958746,
+      "exit_code": 0,
+      "aborted": null,
+      "peak_working_set_bytes": 1806422016,
+      "host_memory_before_trial": {
+        "total_ram_bytes": 7893950464,
+        "available_ram_bytes": 2695716864
+      },
+      "minimum_available_ram_bytes": 1027706880,
+      "last_available_ram_bytes": 2846429184,
+      "prompt_eval": {
+        "milliseconds": 5053.42,
+        "tokens": 429,
+        "tokens_per_second": 84.89
+      },
+      "generation": {
+        "milliseconds": 1455.36,
+        "tokens": 17,
+        "tokens_per_second": 11.68
+      }
+    },
+    {
+      "question": "synthetic-3",
+      "wall_seconds_including_load": 8.611605399986729,
+      "exit_code": 0,
+      "aborted": null,
+      "peak_working_set_bytes": 1806512128,
+      "host_memory_before_trial": {
+        "total_ram_bytes": 7893950464,
+        "available_ram_bytes": 2848350208
+      },
+      "minimum_available_ram_bytes": 1019248640,
+      "last_available_ram_bytes": 2783297536,
+      "prompt_eval": {
+        "milliseconds": 4691.48,
+        "tokens": 445,
+        "tokens_per_second": 94.85
+      },
+      "generation": {
+        "milliseconds": 2312.97,
+        "tokens": 25,
+        "tokens_per_second": 10.81
+      }
+    },
+    {
+      "question": "synthetic-4",
+      "wall_seconds_including_load": 8.32538040005602,
+      "exit_code": 0,
+      "aborted": null,
+      "peak_working_set_bytes": 1806528512,
+      "host_memory_before_trial": {
+        "total_ram_bytes": 7893950464,
+        "available_ram_bytes": 2826199040
+      },
+      "minimum_available_ram_bytes": 1004445696,
+      "last_available_ram_bytes": 2869407744,
+      "prompt_eval": {
+        "milliseconds": 4553.91,
+        "tokens": 426,
+        "tokens_per_second": 93.55
+      },
+      "generation": {
+        "milliseconds": 2114.15,
+        "tokens": 22,
+        "tokens_per_second": 10.41
+      }
+    },
+    {
+      "question": "synthetic-5",
+      "wall_seconds_including_load": 7.697691599954851,
+      "exit_code": 0,
+      "aborted": null,
+      "peak_working_set_bytes": 1806487552,
+      "host_memory_before_trial": {
+        "total_ram_bytes": 7893950464,
+        "available_ram_bytes": 2879078400
+      },
+      "minimum_available_ram_bytes": 1010417664,
+      "last_available_ram_bytes": 2871988224,
+      "prompt_eval": {
+        "milliseconds": 4748.61,
+        "tokens": 444,
+        "tokens_per_second": 93.5
+      },
+      "generation": {
+        "milliseconds": 1177.21,
+        "tokens": 16,
+        "tokens_per_second": 13.59
+      }
+    }
+  ],
+  "host_memory_after": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 2889449472
+  },
+  "completed_questions": 5
+}

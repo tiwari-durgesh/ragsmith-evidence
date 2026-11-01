@@ -1,7 +1,10 @@
 # Proposed smaller fixed answerer after the single authorized hardware retry
 
-Recorded November 1, 2026, before any evaluation data selection. **Proposal only,
-awaiting approval; the replacement has not been downloaded or run.** Preserve
+Recorded November 1, 2026, before any evaluation data selection. **Approved by
+the user for artifact verification, five synthetic hardware questions and one
+token-log-probability check.** The [result record](qwen15-runtime-checks.md)
+documents successful checksum verification, 5/5 completion and the capability
+check. Evaluation selection remains unauthorized. Preserve
 `prereg-v1` at `6b1d04e` and the existing feasibility/staging amendment. This
 document proposes changing only the fixed answerer because of measured host
 memory pressure. No further 4B retries were made after the requested retry stopped.
@@ -118,7 +121,8 @@ do not automatically try additional models. Report identity and genuine-conflict
 feasibility remain unresolved gates regardless of model size. A second human
 annotator for 30–50 questions remains required before any paper results.
 
-Production `src/` remains frozen at tree
+At proposal creation, production `src/` remained frozen at tree
 `3261c6087757b9f3d9aed1166e264de45ac4f479`. No evaluation data was selected,
-no paid API was called, and no model replacement was executed. Python 3.11
+no paid API was called, and no model replacement had been executed. The approved
+synthetic checks are recorded separately above. Python 3.11
 remains unverified. Nothing is authorized to push.

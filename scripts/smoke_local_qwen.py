@@ -13,8 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "data/evaluation/generated/local-smoke"
-MODEL = WORK / "Qwen_Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
-EXPECTED = "2fde00ce69dd4899c70d020845e2638353015bba0fdf161b3eb965f2bca4464e"
+MODEL = WORK / "qwen15-assets/qwen2.5-1.5b-instruct-q4_k_m.gguf"
+EXPECTED = "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e"
 
 
 class Counters(ctypes.Structure):
@@ -43,7 +43,7 @@ def main():
         if hashlib.file_digest(stream,"sha256").hexdigest()!=EXPECTED:
             raise ValueError("Fixed model checksum mismatch")
     runtime = WORK / "runtime/llama-cli.exe"
-    output = WORK / ("five-synthetic-questions-"+time.strftime("%Y%m%d-%H%M%S"))
+    output = WORK / ("qwen15-five-synthetic-questions-"+time.strftime("%Y%m%d-%H%M%S"))
     output.mkdir(exist_ok=False)
     kernel,psapi = ctypes.WinDLL("kernel32",use_last_error=True),ctypes.WinDLL("psapi",use_last_error=True)
     kernel.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD]
@@ -59,7 +59,7 @@ def main():
         ("What is synthetic Ember revenue for 2025?", "Ember | revenue | 2025 | 60 | USD million\nEmber | revenue | 2025 | 65 | USD million"),
     ]
     report = {"purpose":"hardware smoke only; no answer quality or evaluation score",
-              "model":"Qwen3-4B-Instruct-2507 Q4_K_M","model_sha256":EXPECTED,
+              "model":"Qwen2.5-1.5B-Instruct Q4_K_M","model_sha256":EXPECTED,
               "runtime":"llama.cpp b6096 Windows CPU x64","runtime_sha256":hashlib.sha256(runtime.read_bytes()).hexdigest(),
               "cpu_identifier":os.environ.get("PROCESSOR_IDENTIFIER"),"logical_processors":os.cpu_count(),
               "host_memory_before":physical_memory(),"ctx_size":4096,"threads":6,
@@ -80,6 +80,8 @@ def main():
                    "--no-conversation","--no-display-prompt","--simple-io","--no-warmup"]
         started = time.perf_counter()
         peak,current,last_available = 0,0,None
+        before_trial=physical_memory()
+        minimum_available=before_trial["available_ram_bytes"]
         aborted = None
         with (output/f"synthetic-{index}.stdout").open("wb") as stdout, (output/f"synthetic-{index}.stderr").open("wb") as stderr:
             process = subprocess.Popen(command,stdout=stdout,stderr=stderr,stdin=subprocess.DEVNULL,
@@ -93,6 +95,7 @@ def main():
                         current = int(counters.WorkingSetSize)
                         peak = max(peak,int(counters.PeakWorkingSetSize))
                     last_available = physical_memory()["available_ram_bytes"]
+                    minimum_available=min(minimum_available,last_available)
                     if time.perf_counter()-started > 240:
                         aborted="240-second per-question timeout"
                     if current > 6*1024**3:
@@ -121,13 +124,14 @@ def main():
             return {"milliseconds":float(match[1]),"tokens":int(match[2]),"tokens_per_second":float(match[3])} if match else None
         trial={"question":"synthetic-"+str(index),"wall_seconds_including_load":elapsed,
                "exit_code":process.returncode,"aborted":aborted,"peak_working_set_bytes":peak or None,
+               "host_memory_before_trial":before_trial,"minimum_available_ram_bytes":minimum_available,
                "last_available_ram_bytes":last_available,"prompt_eval":timing("prompt eval time"),
                "generation":timing(r"(?<!prompt )eval time")}
         report["trials"].append(trial)
         (output/"hardware-smoke.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
         print(json.dumps(trial),flush=True)
-        if aborted:
-            print("Stopped remaining synthetic questions to protect host resources.",flush=True)
+        if aborted or process.returncode != 0:
+            print("Stopped remaining synthetic questions after a failed trial; no inference retry.",flush=True)
             break
     report["host_memory_after"]=physical_memory()
     report["completed_questions"]=sum(row["exit_code"]==0 for row in report["trials"])

@@ -199,7 +199,10 @@ synthetic capability check is still required before evaluation selection.
 The initial attempt below is preserved as history. The user authorized one retry
 after closing applications; it completed 1/5 questions and then hit the RAM guard.
 See the [retry and smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md).
-No further 4B retries are authorized; the replacement proposal awaits approval.
+No further 4B retries are authorized. The replacement was subsequently approved
+for non-evaluation checks; [results](qwen15-runtime-checks.md) record 5/5 successful
+synthetic runs and one local token-likelihood computation. Evaluation selection
+remains unauthorized, with the feasibility gates unchanged.
 
 **Attempted, blocked by current host memory; 0/5 questions completed.** This is
 not a successful five-question benchmark. Measurements are preserved in

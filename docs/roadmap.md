@@ -37,8 +37,13 @@ and then hit the available-RAM guard. No further 4B retries were made. The
 [smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md)
 pins official Qwen2.5-1.5B-Instruct Q4_K_M provenance, checksum and Apache-2.0
 license, and limits interpretation to policies conditional on that fixed answerer.
-It awaits approval: no replacement was downloaded/run. Establish hardware and
-compatibility feasibility before evaluation selection; no API fallback is authorized.
+The user approved its synthetic checks. The [runtime check record](qwen15-runtime-checks.md)
+documents a matching downloaded checksum, 5/5 successful synthetic runs at about
+1.68 GiB peak resident memory, and one usable value-token likelihood calculation.
+Planning runtime for 50 questions plus 20 calibration questions and all three
+cached policy passes is about 2–2.5 CPU hours, subject to the documented extrapolation
+limits. No evaluation data has been selected. Full prompt/interface freezing and
+report-identity/conflict feasibility remain prerequisites; no API fallback is authorized.
 
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.

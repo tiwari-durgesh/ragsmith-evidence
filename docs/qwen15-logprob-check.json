@@ -1,0 +1,108 @@
+{
+  "purpose": "one non-evaluation synthetic token-likelihood capability check",
+  "model": "Qwen2.5-1.5B-Instruct Q4_K_M",
+  "model_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "server_sha256": "f914f66e4886d3eb6dba76c0285a26d07b3943ac93152d72b470fe3d87ece41c",
+  "host_memory_before": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 2936020992
+  },
+  "inference_requests": 1,
+  "remote_inference_requests": 0,
+  "evaluation_questions_used": 0,
+  "quality_scored": false,
+  "peak_working_set_bytes": 1799991296,
+  "aborted": null,
+  "minimum_available_ram_bytes": 1150709760,
+  "post_sampling_probs": false,
+  "success": true,
+  "response_sha256": "25ce87543523bae937387620358cbf14adb87d8a651172472eadf8f1d878a06a",
+  "value_likelihood": {
+    "probability_field": "completion_probabilities",
+    "generated_value": "2745.63",
+    "value_content_byte_span": [
+      18,
+      25
+    ],
+    "value_tokens": [
+      {
+        "id": 17,
+        "token": "2",
+        "bytes": [
+          50
+        ],
+        "byte_start": 18,
+        "byte_end": 19,
+        "logprob": -0.01819317229092121
+      },
+      {
+        "id": 22,
+        "token": "7",
+        "bytes": [
+          55
+        ],
+        "byte_start": 19,
+        "byte_end": 20,
+        "logprob": -0.0021967561915516853
+      },
+      {
+        "id": 19,
+        "token": "4",
+        "bytes": [
+          52
+        ],
+        "byte_start": 20,
+        "byte_end": 21,
+        "logprob": -0.00038601458072662354
+      },
+      {
+        "id": 20,
+        "token": "5",
+        "bytes": [
+          53
+        ],
+        "byte_start": 21,
+        "byte_end": 22,
+        "logprob": -6.544803909491748e-05
+      },
+      {
+        "id": 13,
+        "token": ".",
+        "bytes": [
+          46
+        ],
+        "byte_start": 22,
+        "byte_end": 23,
+        "logprob": -0.0003031951782759279
+      },
+      {
+        "id": 21,
+        "token": "6",
+        "bytes": [
+          54
+        ],
+        "byte_start": 23,
+        "byte_end": 24,
+        "logprob": -6.294448394328356e-05
+      },
+      {
+        "id": 18,
+        "token": "3",
+        "bytes": [
+          51
+        ],
+        "byte_start": 24,
+        "byte_end": 25,
+        "logprob": -0.00011635503324214369
+      }
+    ],
+    "mean_value_token_logprob": -0.003046269399679399,
+    "exp_mean_value_token_logprob": 0.9969583657710941,
+    "interpretation": "uncalibrated likelihood ranking signal, not probability of correctness"
+  },
+  "wall_seconds_including_load": 4.472503499942832,
+  "host_memory_after": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 2922881024
+  }
+}
