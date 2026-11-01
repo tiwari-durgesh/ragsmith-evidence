@@ -1,4 +1,4 @@
-# RAGSmith-Evidence — Phase 4, value lookup integration
+# RAGSmith-Evidence — Phase 4 structured QA integration
 
 A **local-only research prototype** with ingestion, lexical search, structured
 evidence-sufficiency assessment, an assertion interface, and optional verified
@@ -22,7 +22,7 @@ python -m ragsmith.cli search "revenue"
 If activation is blocked, run `.\.venv\Scripts\python.exe -m pip install -e ".[dev]"` and use that Python executable for subsequent commands.
 
 Python 3.11 is **unverified in this continuation**: the existing `.venv` refers
-to an unavailable Python installation. The 335-test suite passed under bundled
+to an unavailable Python installation. The 379-test suite passed under bundled
 Python 3.12.14 using the environment's existing packages. That does not establish
 Python 3.11 compatibility or verify a fresh dependency installation.
 
@@ -85,12 +85,45 @@ be interpreted or discovery was disabled. Missing evidence in a retrieved set
 does not prove the answer is absent from the corpus. Legacy assertion behavior
 remains unchanged for compatibility.
 
-## Next batches
+## Answer from ingested documents
 
-Connect existing document retrieval to assessment, expand response construction,
-then validate the complete workflow. Unknown-value lookup currently operates on
-caller-supplied evidence and explicit requirements; automatic natural-language
-decomposition and database retrieval integration are not implemented in this batch.
+The new `ask` command reads the existing SQLite evidence database without
+modifying it. It retrieves candidates for each explicit metric/year requirement,
+preserves structured metadata, deduplicates evidence IDs, and passes the evidence
+union to verified value lookup.
+
+With a working project Python, run the included synthetic report example:
+
+```powershell
+python -m ragsmith.cli ingest data/raw/sample_report.html
+python -m ragsmith.cli ask configs/database_question.json --lookup-config configs/lookup-enabled.json --top-k 10
+```
+
+Add `--format text` for a deterministic answer with numbered sources and explicit
+missing/unverified-information explanations. JSON remains the default and now
+includes the same presentation under `response`; `assessment` is unchanged.
+When the decision is to abstain, no factual values or supporting answer citations
+are rendered. Truncated retrieval is explicitly identified in the response.
+
+Answers and citations are under `answers`; scores, source paths, document scopes,
+and truncation flags are under `retrieval`. The example supports revenue and
+operating profit but does not support employee count. Depending on other indexed
+content, the employee requirement may be `missing` or `unverified`. Explicit
+document scopes can restrict queries to the intended documents before top-k.
+
+This is SQLite FTS5 lexical retrieval with BM25 ranking, not the full planned
+hybrid retriever. Truncation may hide supporting or conflicting evidence, and
+`full` describes retrieved-evidence sufficiency only. See the
+[retrieval guide](docs/retrieval-integration.md) for scope and integrity limits.
+
+## Phase 4 completion and remaining research
+
+The scoped structured QA flow is implemented and tested: ingestion, retrieval,
+value discovery, requirement verification, sufficiency assessment, and
+deterministic responses with supporting citations. See the
+[completion record](docs/phase4-validation.md) for validation and limitations.
+Lookup accepts either caller-supplied evidence or database retrieval results.
+Automatic natural-language decomposition is not implemented.
 Full hybrid retrieval, OCR, richer PDF tables, and research benchmarks remain
 future work. Current automated tests establish software behavior, not research
 superiority or novelty.

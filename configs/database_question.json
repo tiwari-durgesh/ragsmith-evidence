@@ -1,0 +1,21 @@
+{
+  "question_id": "q-sample-report-001",
+  "question": "What were revenue, operating profit, and employee count in 2025?",
+  "requirements": [
+    {
+      "requirement_id": "req-revenue",
+      "metric": "Revenue (million USD)",
+      "year": 2025
+    },
+    {
+      "requirement_id": "req-profit",
+      "metric": "Operating profit (million USD)",
+      "year": 2025
+    },
+    {
+      "requirement_id": "req-employees",
+      "metric": "Employees",
+      "year": 2025
+    }
+  ]
+}
