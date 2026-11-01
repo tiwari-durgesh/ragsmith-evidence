@@ -5,9 +5,9 @@ claims are made from this pilot.** The facts share nine source contexts; this
 wording counts distinct source facts, not statistical independence. Every label
 is **provisional, single-annotator**. There is no human second annotator.
 
-Completed run: labels were validated, separately committed at 52d0e1f, locked
+Completed run: labels were validated, separately committed locally at 52d0e1f, locked
 and used for one frozen pipeline/baseline run. See [results](pilot36-results.md)
-and [failure cases](pilot36-failures.md). **LLM cross-check was not run** because
+and [public failure summary](pilot36-failures.md). **LLM cross-check was not run** because
 the user has no API key and explicitly requested that it be skipped. No external
 API was called, no model substituted and no comparison command invoked. The
 labeling instructions below describe the completed preparation, not a rerun request.

@@ -1,5 +1,11 @@
 # Project state — November 1, 2026
 
+Publication update: the user authorized publishing current progress with private
+files excluded. This public history omits private pilot labels and case-level
+human annotations; original local history and the preregistration tag stay local.
+See [publication provenance](docs/public-publication-history.md). No new evaluation
+data selection is authorized by this publication.
+
 The supplied November 1 handoff governs prior research and architecture decisions
 except where the user explicitly superseded it. Phase 3 is complete at `36232e9`.
 Phase 4 structured QA integration is complete. Batch 1 is committed separately
@@ -38,7 +44,8 @@ remain targets; this batch retains the existing local pilot infrastructure.
   case-label matches 18/36 extraction, 27/36 binary, 36/36 graded. Partial cases
   returning values: 9/9, 0/9, 9/9. These are controlled-case counts, not claims.
 - docs/pilot36-results.md is the one-page results table; docs/pilot36-failures.md
-  lists all 27 baseline/case label mismatches (18 distinct cases). Raw outputs are
+  summarizes 27 baseline/case label mismatches (18 distinct cases), without
+  private case IDs or labels in this public copy. Raw outputs are
   local/ignored under pilot36/results. Dataset-reference scores were omitted.
   A second human annotator for 30–50 questions is required before paper results.
 

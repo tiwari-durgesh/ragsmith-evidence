@@ -1,5 +1,8 @@
 # RAGSmith-Evidence — Phase 4 structured QA integration
 
+Public history excludes private pilot labels and case-level annotations. See
+[publication provenance](docs/public-publication-history.md) for local/public commit correspondence.
+
 A **local-only research prototype** with ingestion, lexical search, structured
 evidence-sufficiency assessment, an assertion interface, and optional verified
 value lookup with supporting citations.
@@ -140,7 +143,7 @@ labels are complete; construction determines the other 18. Pipeline/baselines ar
 One human-only pilot run completed: case-label matches were 18/36 extraction-only,
 27/36 binary and 36/36 graded. No tuning or dataset-derived reference scores were
 used. The LLM cross-check and comparison were explicitly skipped; no external API
-was called and no alternative model substituted. See the [failure list](docs/pilot36-failures.md).
+was called and no alternative model substituted. See the [public failure summary](docs/pilot36-failures.md).
 A [human second annotator](docs/roadmap.md) for 30–50 questions is required before
 paper results; the auxiliary LLM is not human inter-annotator agreement.
 

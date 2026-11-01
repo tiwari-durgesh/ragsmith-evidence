@@ -6,7 +6,7 @@ asserted statistically independent. Labels: **provisional, single-annotator**.
 
 Frozen pipeline/baselines: `1b0df45c5e5fe443c5dd8be463ccf26dd9463de3`.
 The src tree remained `3261c6087757b9f3d9aed1166e264de45ac4f479` before and
-after the single run. Separate labels commit:
+after the single run. Separate local-only labels commit:
 `52d0e1f5ac38270eb62a78824ebc921a5fa15842` (`locked provisional labels`).
 Label SHA-256: `b027cb335ca582acccf672f6d25ad23406439ba56f3d20259630efe7407dd8e6`.
 No dataset-derived reference scores, tuning, reruns, statistical intervals or speed claims.
@@ -26,8 +26,8 @@ result on these constructed cases does not establish novelty, superiority,
 generalization or real-world reliability.
 
 **Failure cases:** 27 baseline/case label mismatches across 18 distinct cases.
-The [complete case failure list](pilot36-failures.md) groups every affected case;
-raw answers/citations are in data/evaluation/pilot36/results/failure-cases.json.
+The [public failure summary](pilot36-failures.md) contains aggregate counts only.
+Per-case human labels and raw answer/citation records remain private/local.
 
 **LLM cross-check was not run.** The user has no OPENAI_API_KEY and explicitly
 requested human-only evaluation. Neither label_pilot36_llm.py nor pilot36.py
