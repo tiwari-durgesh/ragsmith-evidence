@@ -1,0 +1,15 @@
+{
+  "packet_id": "synthetic-practice-v1",
+  "reviewer_id": "",
+  "label_status": "provisional, single-annotator",
+  "elapsed_minutes": "",
+  "cases": [
+    {"case_id": "practice-A17", "requirements": [
+      {"requirement_id": "r1", "status": "", "raw_values": [], "cells": [], "unit": "", "notes": "", "absence_scan": ""},
+      {"requirement_id": "r2", "status": "", "raw_values": [], "cells": [], "unit": "", "notes": "", "absence_scan": ""}
+    ]},
+    {"case_id": "practice-K42", "requirements": [
+      {"requirement_id": "r1", "status": "", "raw_values": [], "cells": [], "unit": "", "notes": "", "absence_scan": ""}
+    ]}
+  ]
+}

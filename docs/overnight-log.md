@@ -57,3 +57,20 @@ deterministic lookup stub: 2 complete, 4 incomplete/generation-failed; the latte
 remain failures, not successful abstentions. Fabricated zero stub confidence is
 not a model result. No model execution, inference endpoint or threshold was used.
 No unresolved failures, tuning, reverts or scope cuts.
+
+## Item 3 — reviewer kit
+
+Completed: 422-word one-page guide, engineering-student glossary, five worked
+synthetic examples, two opaque-ID synthetic practice cases, blank JSON return
+and return instructions. The missing-label procedure records keywords and a
+complete row/paragraph scan; ambiguous content stays unverified.
+
+Autonomous interpretation: worked examples necessarily explain their answers;
+these are visibly separate training keys. The blinded practice source packet
+and blank return contain no expected answers, assigned conditions, primary
+labels, model outputs or confidence. No actual pilot/private label file was read.
+Completed returns must stay private/uncommitted. Practice is not human agreement.
+
+Checks: JSON parsed; case/requirement IDs match; practice keys are source-only;
+all return labels/values/cells blank. Full suite: 720 passed in 16.93s, with one
+existing Starlette/AnyIO warning. No failures, reverts or cuts.

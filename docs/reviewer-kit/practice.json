@@ -1,0 +1,25 @@
+{
+  "packet_id": "synthetic-practice-v1",
+  "source_scope": "Invented training snapshots only; no real company or research data",
+  "cases": [
+    {
+      "case_id": "practice-A17",
+      "question": "Give Revenue and Cash in 2025 from this table.",
+      "requested_facts": [
+        {"requirement_id": "r1", "metric": "Revenue", "year": 2025},
+        {"requirement_id": "r2", "metric": "Cash", "year": 2025}
+      ],
+      "unit": "USD millions",
+      "table": [["Metric", "2025"], ["Revenue", "27"], ["Cash", "6"]],
+      "paragraphs": []
+    },
+    {
+      "case_id": "practice-K42",
+      "question": "Give Cash in 2024 from this table.",
+      "requested_facts": [{"requirement_id": "r1", "metric": "Cash", "year": 2024}],
+      "unit": "USD millions",
+      "table": [["Metric", "2024"], ["Revenue", "18"], ["Cash", "—"]],
+      "paragraphs": []
+    }
+  ]
+}
