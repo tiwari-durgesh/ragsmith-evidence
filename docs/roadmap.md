@@ -31,10 +31,14 @@ genuine conflicts. Do not select evaluation data until source identities and
 stratum quotas are verified and the revised plan is approved. If the declared
 four-hour recovery budget cannot establish the quotas, request a corpus/scope
 amendment before selection; do not manufacture or silently replace conflicts.
-The fixed local model passed its artifact checksum, but the requested five-
-question hardware smoke remains incomplete: the first loading attempt hit the
-available-RAM guard, and no generation completed. Establish hardware feasibility
-before evaluation selection; no smaller model or API fallback is authorized.
+The fixed local model passed its artifact checksum. The initial attempt completed
+0/5; the single authorized retry after applications were closed completed 1/5
+and then hit the available-RAM guard. No further 4B retries were made. The
+[smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md)
+pins official Qwen2.5-1.5B-Instruct Q4_K_M provenance, checksum and Apache-2.0
+license, and limits interpretation to policies conditional on that fixed answerer.
+It awaits approval: no replacement was downloaded/run. Establish hardware and
+compatibility feasibility before evaluation selection; no API fallback is authorized.
 
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.

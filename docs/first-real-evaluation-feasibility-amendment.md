@@ -196,6 +196,11 @@ synthetic capability check is still required before evaluation selection.
 
 ## E. Requested local hardware smoke
 
+The initial attempt below is preserved as history. The user authorized one retry
+after closing applications; it completed 1/5 questions and then hit the RAM guard.
+See the [retry and smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md).
+No further 4B retries are authorized; the replacement proposal awaits approval.
+
 **Attempted, blocked by current host memory; 0/5 questions completed.** This is
 not a successful five-question benchmark. Measurements are preserved in
 [local-model-hardware-smoke.json](local-model-hardware-smoke.json); the standalone
@@ -237,8 +242,9 @@ buffer descriptions, not measurements of simultaneous resident physical memory.
 
 The requested five-question speed/memory test **remains incomplete**. The current
 host state does not establish model feasibility or any inference-time estimate.
-Free sufficient RAM and repeat the same non-evaluation smoke before approval of
-a runtime manifest or selection of evaluation data. Do not infer that this model
+The subsequent authorized retry is documented separately above. Reliable hardware
+feasibility is still required before a runtime manifest or evaluation selection.
+Do not infer that this model
 can never run on this machine. Do not substitute a smaller model, reduce the
 evaluation context, change policy code, or use a remote service to bypass this
 failure. Any broader model/scope change needs a pre-selection amendment and user

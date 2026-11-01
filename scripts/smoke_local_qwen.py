@@ -117,7 +117,7 @@ def main():
         elapsed = time.perf_counter()-started
         log = (output/f"synthetic-{index}.stderr").read_text(encoding="utf-8",errors="replace")
         def timing(name):
-            match = re.search(name+r"\s*=\s*([\d.]+) ms\s*/\s*(\d+) tokens.*?([\d.]+) tokens per second",log)
+            match = re.search(name+r"\s*=\s*([\d.]+) ms\s*/\s*(\d+) (?:tokens|runs).*?([\d.]+) tokens per second",log)
             return {"milliseconds":float(match[1]),"tokens":int(match[2]),"tokens_per_second":float(match[3])} if match else None
         trial={"question":"synthetic-"+str(index),"wall_seconds_including_load":elapsed,
                "exit_code":process.returncode,"aborted":aborted,"peak_working_set_bytes":peak or None,

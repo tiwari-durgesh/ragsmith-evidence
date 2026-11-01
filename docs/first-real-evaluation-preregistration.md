@@ -1,5 +1,10 @@
 # First retrieval evaluation — preregistration proposal v1
 
+Hardware follow-up: the [smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md)
+records the single authorized retry (1/5 completed, then RAM guard) and proposes
+an official fixed 1.54B answerer. It awaits approval; no replacement was run and
+no evaluation data was selected. Do not keep retrying the 4B model.
+
 Version history: the original document is preserved by local tag **prereg-v1**
 at `6b1d04e`. The [feasibility/staged-plan amendment](first-real-evaluation-feasibility-amendment.md)
 records the requested pre-approval scan, explicit shortage rule, proposed first
