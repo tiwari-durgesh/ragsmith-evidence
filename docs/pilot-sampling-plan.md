@@ -6,6 +6,15 @@ the earlier tentative 120-question draft; it is not a collected sample or a
 claim of statistical power. Preserve the approximately 50-source-document
 pilot objective where original source identities can be recovered.
 
+The [source adapter](tatqa-source-adapter.md) now generates an offline screening
+queue: 355 candidate training contexts in 354 conservative duplicate-table
+groups. This is preparation only; accepted families, semantic eligibility and
+original report identities have not been established. The aggregate counts
+are recorded in [the screening audit](tatqa-screening-audit.json).
+The [family builder](pilot-family-construction.md) now implements provisional
+report grouping and controlled condition drafts. Real declarations remain pending;
+the approved target and independent-review requirements are unchanged.
+
 ## Why 240
 
 Four paired conditions directly test the research question: full support,

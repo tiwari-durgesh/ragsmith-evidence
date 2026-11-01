@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+    "split": "train",
+    "file": "tatqa_dataset_train.json",
+    "sha256": "2df6e722cdbaaa37efcbfb280f5c9a15be29a6ec18f618ef936fe63cc6d07c69",
+    "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_train.json",
+    "trusted_audit_sha256": "bd64cd519339593a854d5c05aa97e8bfa1bda6303719a4388e2c45ba5efcebca"
+  },
+  "attribution": {
+    "dataset": "TAT-QA",
+    "creators": "NExTplusplus/TAT-QA contributors",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "changes": "Cell locators, source hashes, screening templates and draft duplicate groups added; no canonicalization"
+  },
+  "contexts": 2201,
+  "questions": 13215,
+  "label_gate_pass": 1462,
+  "label_gate_excluded": 11753,
+  "label_gate_fraction": 0.1106318577374196,
+  "candidate_contexts_with_two_spans": 355,
+  "duplicate_table_groups": 354,
+  "semantic_accepted": null,
+  "semantic_accepted_fraction": null,
+  "report_identities_verified": 0,
+  "annotation_status": "provisional, single-annotator",
+  "research_evidence": false
+}
