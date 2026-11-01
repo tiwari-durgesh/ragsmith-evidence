@@ -196,10 +196,59 @@ synthetic capability check is still required before evaluation selection.
 
 ## E. Requested local hardware smoke
 
-Results will be recorded here after the fixed model is fully downloaded and
-checksum-verified. Downloaded files and raw synthetic logs remain in ignored
-local storage; no evaluation data is involved. An incomplete or checksum-failing
-model is never executed, and no smaller or remote model is substituted.
+**Attempted, blocked by current host memory; 0/5 questions completed.** This is
+not a successful five-question benchmark. Measurements are preserved in
+[local-model-hardware-smoke.json](local-model-hardware-smoke.json); the standalone
+[smoke script](../scripts/smoke_local_qwen.py) imports no production code.
+
+The fixed Qwen3-4B-Instruct-2507 Q4_K_M artifact was fully downloaded (2,497,280,736
+bytes) and its preregistered SHA-256 verified:
+`2fde00ce69dd4899c70d020845e2638353015bba0fdf161b3eb965f2bca4464e`.
+Model [artifact source](https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/main/Qwen_Qwen3-4B-Instruct-2507-Q4_K_M.gguf).
+Runtime: [official llama.cpp b6096 Windows CPU release](https://github.com/ggml-org/llama.cpp/releases/tag/b6096),
+`llama-cli.exe` SHA-256
+`09aa8455c58d479cdb929db7ffa8a932757d351a91c35add9214f391ae7c747d`.
+
+Hardware: AMD Ryzen 5 5500U, 12 logical processors; 7,893,950,464 bytes physical
+RAM (7.35 GiB). Settings: CPU only, six threads, concurrency one, context 4,096,
+batch/microbatch 128, greedy decoding, seed 1729, maximum 64 generated tokens,
+no warmup. The five prepared prompts contain invented entities/values and 20
+synthetic distractor rows each. No corpus/pilot/evaluation questions or labels
+were provided. Five fresh processes were planned; the remaining four were not
+started after the first resource-guard failure.
+
+| Requested measurement | Observed |
+| --- | --- |
+| Questions completed | 0/5; one loading attempt, four not attempted |
+| Time until first attempt was stopped | 2.391 seconds; **not answer latency** |
+| Child peak resident working set before stop | 1,106,268,160 bytes (1.03 GiB); **not full-model peak memory** |
+| Host available physical RAM before start | 1,173,929,984 bytes (1.09 GiB) |
+| Host available physical RAM at guard | 66,584,576 bytes (63.5 MiB) |
+| Prompt evaluation / generation speed | Not available; neither completed |
+| Answer quality or evaluation scores | Not measured |
+| Paid inference API calls | 0 |
+
+Memory was sampled every 50 ms using Win32 process counters and physical-memory
+status. The guard terminates the child below 64 MiB available host RAM, above
+6 GiB child working set, or after 240 seconds per question. The first guard
+triggered while loading tensors, before prompt evaluation. Loader logs advertised
+a 1,683.28 MiB CPU_REPACK buffer and 2,362.55 MiB CPU-mapped buffer; these are
+buffer descriptions, not measurements of simultaneous resident physical memory.
+
+The requested five-question speed/memory test **remains incomplete**. The current
+host state does not establish model feasibility or any inference-time estimate.
+Free sufficient RAM and repeat the same non-evaluation smoke before approval of
+a runtime manifest or selection of evaluation data. Do not infer that this model
+can never run on this machine. Do not substitute a smaller model, reduce the
+evaluation context, change policy code, or use a remote service to bypass this
+failure. Any broader model/scope change needs a pre-selection amendment and user
+approval. Even a successful retry on these short prompts would not establish
+throughput for the eventual 3,200-token input / 384-token output workload.
+
+Downloaded files and raw synthetic logs remain in ignored local storage.
+The smoke is separate from the skipped pilot LLM cross-check, which remains
+**not run**. Production tests: **589 passed**, using bundled Python 3.12.14;
+Python 3.11 remains unverified.
 
 Current frozen production src tree:
 `3261c6087757b9f3d9aed1166e264de45ac4f479`. All work in this amendment is

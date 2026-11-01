@@ -178,8 +178,10 @@ Fixed artifact: bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF,
 Qwen_Qwen3-4B-Instruct-2507-Q4_K_M.gguf; published size approximately 2.50 GB,
 SHA-256 `2fde00ce69dd4899c70d020845e2638353015bba0fdf161b3eb965f2bca4464e`.
 The [quantizer's file page](https://huggingface.co/bartowski/Qwen_Qwen3-4B-Instruct-2507-GGUF/blob/main/Qwen_Qwen3-4B-Instruct-2507-Q4_K_M.gguf)
-is the artifact source, distinct from the original model publisher. No file has
-been downloaded or checksum-verified locally. Pin the runtime binary/commit,
+is the artifact source, distinct from the original model publisher. At v1 no file
+had been downloaded or checksum-verified locally; the linked amendment now
+records successful checksum verification and a memory-blocked hardware attempt.
+Pin the runtime binary/commit,
 chat template, tokenizer, full prompt and packing rules in a committed runtime
 manifest after non-evaluation compatibility checks and before evaluation
 selection. Runtime source: [llama.cpp](https://github.com/ggml-org/llama.cpp).

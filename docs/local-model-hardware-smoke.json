@@ -1,0 +1,41 @@
+{
+  "purpose": "hardware smoke only; no answer quality or evaluation score",
+  "model": "Qwen3-4B-Instruct-2507 Q4_K_M",
+  "model_sha256": "2fde00ce69dd4899c70d020845e2638353015bba0fdf161b3eb965f2bca4464e",
+  "runtime": "llama.cpp b6096 Windows CPU x64",
+  "runtime_sha256": "09aa8455c58d479cdb929db7ffa8a932757d351a91c35add9214f391ae7c747d",
+  "cpu_identifier": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+  "logical_processors": 12,
+  "host_memory_before": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 1173929984
+  },
+  "ctx_size": 4096,
+  "threads": 6,
+  "batch_size": 128,
+  "maximum_generated_tokens": 64,
+  "temperature": 0,
+  "seed": 1729,
+  "conditions": "five fresh processes; OS cache uncontrolled; short synthetic prompts, not full 3200-token workload",
+  "memory_method": "Win32 GetProcessMemoryInfo OS lifetime peak working set, sampled every 50 ms; child process only",
+  "paid_api_calls": 0,
+  "evaluation_questions_used": 0,
+  "quality_scored": false,
+  "trials": [
+    {
+      "question": "synthetic-1",
+      "wall_seconds_including_load": 2.3910501999780536,
+      "exit_code": 1,
+      "aborted": "host available RAM below 64 MiB",
+      "peak_working_set_bytes": 1106268160,
+      "last_available_ram_bytes": 66584576,
+      "prompt_eval": null,
+      "generation": null
+    }
+  ],
+  "host_memory_after": {
+    "total_ram_bytes": 7893950464,
+    "available_ram_bytes": 1134116864
+  },
+  "completed_questions": 0
+}
