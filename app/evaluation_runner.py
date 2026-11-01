@@ -109,7 +109,13 @@ def verify_candidates(request: LookupQuestion, evidence: list[Evidence], candida
 def run_case(payload: AskRequest, answerer: Answerer, *, threshold: float | None = None) -> dict:
     if threshold is not None and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
         raise ValueError("Threshold must be None or a finite value in [0, 1]")
-    prepared = prepare(payload, answerer)
+    return run_prepared(prepare(payload, answerer), answerer, threshold=threshold)
+
+
+def run_prepared(prepared: Prepared, answerer: Answerer, *, threshold: float | None = None) -> dict:
+    """Apply identical policies to one prepared corpus retrieval and candidate list."""
+    if threshold is not None and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
+        raise ValueError("Threshold must be None or a finite value in [0, 1]")
     request, packed = prepared.request, prepared.packed
     common = {"question_id": request.question_id, "research_ready": False,
               "confidence_threshold": threshold, "confidence_calibrated": False,
