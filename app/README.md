@@ -31,7 +31,10 @@ $pilotDemoBody = $demoSamples.cases[0].request | ConvertTo-Json -Depth 20
 Invoke-RestMethod -Uri 'http://127.0.0.1:8000/ask' -Method Post -ContentType 'application/json; charset=utf-8' -Body ([System.Text.Encoding]::UTF8.GetBytes($pilotDemoBody)) | ConvertTo-Json -Depth 30
 ```
 
-Stop servers with Ctrl+C. No frontend is built in this batch.
+Stop servers with Ctrl+C. The later [Streamlit frontend](frontend/README.md)
+imports the shared checked service directly; it requires neither this API server
+nor the optional model server. Its local model remains off. The shared outer
+request/response schema is in `app/contracts.py`; the frozen assessment is unchanged.
 
 ## Two explicitly different baseline modes
 

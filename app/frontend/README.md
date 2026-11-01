@@ -16,7 +16,7 @@ Set-Location 'C:\Users\YOUR_USERNAME\Desktop\ragsmith-evidence'
 Open <http://127.0.0.1:8501>. Stop with Ctrl+C. Telemetry is disabled in this
 command. Do not start the optional local model for this demonstration.
 
-Choose one of six pilot cases, inspect the question and explicit requested facts,
+Choose one of six pilot cases in the sidebar, inspect the question and explicit requested facts,
 then click **Run**. Numbered citations focus source cells, outlined in blue.
 Green cells support the graded answer; amber cells are baseline references and
 are not verified support. The three cards compare the frozen extraction-only,
@@ -67,6 +67,10 @@ performance claims are made from it**. Labels are **provisional,
 single-annotator**. Question independence is not established. The conflict is
 a **controlled test case** using an existing artificial alternative value.
 No evaluation/development data is selected or loaded, and no tuning is performed.
+The sidebar's **Projector text** setting affects display only. The source/result
+workspace sits above the three baseline cards. **How it works**, **Limitations**
+and **About the research** tabs explain the implemented path and unproven claims.
+The API and UI share `app.contracts` and the checked-service error/logging bridge.
 
 Checks use synthetic inputs. Run the complete regression suite from the root:
 
@@ -77,7 +81,7 @@ git diff --stat 1b0df45 HEAD -- src
 
 The source-diff command must print nothing.
 
-Validation on November 2: **695 tests passed**, with the existing Starlette/AnyIO
+Validation after overnight work on November 2: **720 tests passed**, with the existing Starlette/AnyIO
 deprecation warning. The 26 frontend checks cover synthetic six-case interactions,
 source-cell mapping, escaped HTML, stale-result hiding, parse errors and forced
 model-off behavior. All six actual prepared pilot cases also ran through the UI

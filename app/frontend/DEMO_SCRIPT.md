@@ -4,12 +4,17 @@ Launch using the [Windows command](README.md), open localhost:8501 and keep
 **Prepared pilot cases** selected. Read the visible banner aloud:
 “Prototype. Provisional pilot only. No performance claims.” The model is off.
 Do not edit inputs, thresholds or policies to improve an example.
+Use **Choose a prepared case** in the left sidebar. **Projector text** enlarges
+the display only. The source table and graded result appear beside each other;
+scroll down to the three comparison cards. Use the source/table pane's horizontal
+scroll for wider tables. Settings never enable the model or change evidence.
 
 ## 1. Full support — Q01
 
-**Click:** Choose **Q01 · Full**, inspect the question, requested facts and source
+**Click:** In the sidebar choose **Q01 · Full**, inspect the question, requested facts and source
 table, then **Run**. Click answer citation **[1]**; the linked cell receives a
-blue outline inside its green highlight. Compare the three baseline cards.
+blue outline inside its green highlight. Cell chips show the primary number and
+E/B/G baseline references. Compare the three baseline cards below the workspace.
 
 **Say:** “Every requested fact in this supplied table is supported by the
 retained evidence. Each returned value links to its source cell. Full refers to
@@ -42,7 +47,8 @@ is a baseline reference, not verified support.”
 ## 4. Abstention — Q03
 
 **Click:** Choose **Q03 · Abstain**, then **Run**. Inspect the empty answer and
-missing-fact explanations. Open **Limitations** before ending.
+missing-fact explanations. Open **How it works** for the six-stage diagram, then
+**Limitations** and **About the research** before ending.
 
 **Say:** “The supplied evidence scope contains no matching answer values.
 Missing means missing from evidence used for this run, not absent from the real
@@ -54,3 +60,8 @@ If samples are unavailable, stop this prepared demonstration and use the setup
 guide. Do not substitute evaluation/development questions. The optional paste
 tab's synthetic default can illustrate input handling separately; malformed
 JSON produces a clear error and header repair is unsupported.
+On **How it works**, explain that requirements are supplied before retrieval and
+carried unchanged, rather than inferred by a model. On **About the research**,
+state that the real evaluation, calibration, novelty and generalization remain
+unproven. Do not call baseline cards a performance result or reviewer practice
+human agreement.

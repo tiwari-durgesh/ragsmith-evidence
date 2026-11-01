@@ -74,3 +74,23 @@ Completed returns must stay private/uncommitted. Practice is not human agreement
 Checks: JSON parsed; case/requirement IDs match; practice keys are source-only;
 all return labels/values/cells blank. Full suite: 720 passed in 16.93s, with one
 existing Starlette/AnyIO warning. No failures, reverts or cuts.
+
+## Item 4 — documentation
+
+Completed: current root README with exact Windows setup/launch/API commands,
+`docs/architecture.md` with Mermaid, `docs/project-status.md` separating built,
+tested/unproven and every remaining research gate, one-page professor summary,
+and updated sidebar/tabs demonstration script and app guides. Historical
+research/roadmap documents remain preserved, not rewritten as current evidence.
+
+Decisions: list calibration after authorized development selection and locked
+labels because those are dependencies, not a new preregistration order. Explicitly
+distinguish the runner's unset threshold from the older API's optional demo
+constant. Preserve the 30–50 second-human gate and current all-30 evaluation
+review requirement. Do not imply that a working UI establishes novelty, hybrid
+retrieval effectiveness, risk guarantees or real-data compatibility.
+
+Checks: full suite 720 passed, one existing Starlette/AnyIO warning; relative
+links in current docs verified. No failures, cuts or modifications to protected
+documents. Setup/install commands were documented, not executed; no registry or
+external API access occurred in this session.
