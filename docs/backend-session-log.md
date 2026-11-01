@@ -42,3 +42,34 @@ corruption/interruption, changed source/runtime, stable ordering and denominator
 Six existing pilot source inputs passed a deterministic lookup-stub compatibility
 probe; repeated output hash identical and six cache hits. Stub scores are not model
 confidence. No real pool access, inference, failed tests, reversions or scope cuts.
+
+## Item 2 — selection tooling
+
+Completed and tested only on invented candidates. Fixed seed 1729 and registered
+stream names; source-only table/context/row/5-shingle and verified-name graph;
+eight-family/name/pilot-table/retained-UID exclusions and transitive quarantine.
+A sparse connectivity proof records links/rules/scores for exclusion auditing;
+skipping already-connected pairs preserves the exact connected components and
+reduces work without clearing flags. Tests compare components with the existing
+pairwise implementation.
+
+Exact lazy enumeration orders development group tuple, development case tuple,
+evaluation group tuple then evaluation case tuple. It enforces 4/6 separate groups,
+exactly five cases per group, 8/6/3/3 and 12/9/5/4 aggregate mixes, certified source
+eligibility and no reused underlying facts. Case IDs derive from frozen anchors,
+question-only requirements and final question. Pool hashes bind metadata as well
+as IDs and the frozen source inventory. Pilot 3-shingle question screens accept
+explicit input only; no actual pilot/new candidate questions were loaded for
+selection tests. Real-pool selection was not run.
+
+Decisions: a deterministic search-node cap fails as uncertified, never returns an
+approximate draw or relaxes quotas. Reservation contains evaluation IDs privately
+in memory; its development export omits them. Evaluation materialization requires
+a matching locked development threshold, with None still unset. Source-certified
+names must be explicitly supplied; generic names cannot create issuer edges.
+
+Checks: full suite 738 passed in 13.98s, 738 passed in 13.90s after strict pool/lock
+checks, and 738 passed after connectivity-proof audit changes. One existing
+Starlette/AnyIO warning. Exact-order oracle and cap/uniqueness/quarantine/lock/
+infeasibility tests passed. No real source pool access or selected IDs, no test
+failures, reversions or scope cuts.

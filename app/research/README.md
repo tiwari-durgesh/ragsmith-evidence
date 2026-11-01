@@ -31,3 +31,19 @@ The earlier pilot has **18 independent source facts and 36 derived cases; no
 statistical or performance claims are made from it**. Labels remain **provisional,
 single-annotator**; independence is not established. Pilot compatibility checks
 use a deterministic lookup stub, not model confidence or a new research evaluation.
+
+## Selection (not run on real data)
+
+`selection.source_groups` performs fixed source-only graph/exclusion screens.
+It requires all eight excluded family IDs and explicit pilot source snapshots.
+The exclusion ledger carries representative connectivity proof edges with scores.
+`reserve_joint` reads a frozen source-certified case pool and its source SHA-256;
+it implements the registered exact lexicographic 20-development/30-evaluation
+assignment, disjoint 4/6 groups and five cases per group. Source-based fact IDs
+must already identify the same underlying requested fact consistently; software
+cannot establish semantic identity from an arbitrary ID.
+
+Only a development export is exposed without a matching threshold lock. The
+reservation is private, not a public selection manifest. Search exhaustion is
+uncertified rather than evidence that a different allocation rule is allowed.
+No real-data defaults or selection CLI are supplied. No real pool has been used.
