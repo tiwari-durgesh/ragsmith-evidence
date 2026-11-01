@@ -126,3 +126,11 @@ def test_duplicate_cases_rejected_before_generation(tmp_path):
     corpus=build_corpus([excerpt()],tmp_path/'corpus')
     with pytest.raises(ValueError,match='Duplicate'):
         run_batch(corpus,[question(),question()],Stub(),GenerationCache(tmp_path/'cache',{'model':'stub'}))
+
+
+def test_registered_fallback_runs_without_changing_other_policies(tmp_path):
+    corpus=build_corpus([excerpt()],tmp_path/'corpus')
+    result=run_batch(corpus,[question()],Stub(),GenerationCache(tmp_path/'cache',{'model':'stub'}),threshold='always_abstain')['results'][0]
+    assert result['policies'][0]['decision']=='full'
+    assert result['policies'][1]['decision']=='abstain'
+    assert result['policies'][2]['decision']=='full'

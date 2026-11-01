@@ -8,7 +8,7 @@ No score calculation or paper-result export is implemented here.
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Protocol
+from typing import Literal, Protocol
 from subprocess import SubprocessError
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -106,15 +106,15 @@ def verify_candidates(request: LookupQuestion, evidence: list[Evidence], candida
     return present("graded_sufficiency", assessment["answerability"], verified, gaps=gaps), assessment
 
 
-def run_case(payload: AskRequest, answerer: Answerer, *, threshold: float | None = None) -> dict:
-    if threshold is not None and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
+def run_case(payload: AskRequest, answerer: Answerer, *, threshold: float | Literal["always_abstain"] | None = None) -> dict:
+    if threshold is not None and threshold != "always_abstain" and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
         raise ValueError("Threshold must be None or a finite value in [0, 1]")
     return run_prepared(prepare(payload, answerer), answerer, threshold=threshold)
 
 
-def run_prepared(prepared: Prepared, answerer: Answerer, *, threshold: float | None = None) -> dict:
+def run_prepared(prepared: Prepared, answerer: Answerer, *, threshold: float | Literal["always_abstain"] | None = None) -> dict:
     """Apply identical policies to one prepared corpus retrieval and candidate list."""
-    if threshold is not None and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
+    if threshold is not None and threshold != "always_abstain" and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
         raise ValueError("Threshold must be None or a finite value in [0, 1]")
     request, packed = prepared.request, prepared.packed
     common = {"question_id": request.question_id, "research_ready": False,
@@ -153,7 +153,7 @@ def run_prepared(prepared: Prepared, answerer: Answerer, *, threshold: float | N
         confident = {"variant": "confidence_threshold_abstainer", "status": "not_run_uncalibrated",
                      "decision": None, "values": [], "citations": [], "gaps": []}
     else:
-        kept = [a for a in raw_answers if a["confidence"] >= threshold]
+        kept = [] if threshold == "always_abstain" else [a for a in raw_answers if a["confidence"] >= threshold]
         confident = present("confidence_threshold_abstainer", decision(kept), kept)
         confident.update(status="synthetic_threshold_only", citations_verified=False)
     graded, assessment = verify_candidates(request, list(packed.evidence), candidates)

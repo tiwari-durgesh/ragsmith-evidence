@@ -47,3 +47,29 @@ Only a development export is exposed without a matching threshold lock. The
 reservation is private, not a public selection manifest. Search exhaustion is
 uncertified rather than evidence that a different allocation rule is allowed.
 No real-data defaults or selection CLI are supplied. No real pool has been used.
+
+## Label tools and calibration (no real run)
+
+Create a blinded source-only template with `labels.make_sheet(corpus, requests,
+partition=..., data_origin=...)` after authorized selection. Save privately. Fill
+only annotation fields. The old two-case practice form is training, not this
+versioned real-study schema. Every completed return remains provisional.
+
+```powershell
+.\.venv-api\Scripts\python.exe -m app.research.labels validate <private-template.json> <private-filled.json>
+.\.venv-api\Scripts\python.exe -m app.research.labels lock <private-template.json> <private-filled.json> <new-private-lock.json>
+.\.venv-api\Scripts\python.exe -m app.research.labels agreement <private-lock-A.json> <private-lock-B.json>
+```
+
+Replace angle-bracket placeholders; these commands were not run on real returns.
+Locks hash contents and refuse overwrite, but do not prevent deliberate file/hash
+replacement. Preserve independent originals and bind receipts in the research
+freeze. Agreement over synthetic stubs is not human inter-annotator agreement.
+
+`calibration.calibrate` accepts exactly 20 locked development cases (never pilot
+or evaluation), complete cached predictions and their matching selection hash.
+It implements the registered fixed grid and tie breaks. It returns an unlocked
+proposal; `lock_calibration` explicitly writes a new immutable receipt. Neither
+function is invoked on real data in this session. The project threshold remains
+unset. The always-abstain fallback is a sentinel distinct from None; it is not a
+claim of calibrated probability or safety. All research gates remain in force.

@@ -12,6 +12,7 @@ import logging
 from dataclasses import dataclass
 from pathlib import Path
 from subprocess import SubprocessError
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -197,11 +198,11 @@ class GenerationCache:
 
 
 def run_batch(corpus: Corpus, requests: list[StudyRequest], answerer: Answerer,
-              cache: GenerationCache, *, threshold: float | None = None) -> dict:
+              cache: GenerationCache, *, threshold: float | Literal["always_abstain"] | None = None) -> dict:
     """Stable case order; every preparation/generation failure stays in results."""
     if len({r.case_id for r in requests}) != len(requests):
         raise ValueError("Duplicate case IDs")
-    if threshold is not None and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
+    if threshold is not None and threshold != "always_abstain" and (type(threshold) not in (int, float) or not 0 <= threshold <= 1):
         raise ValueError("Invalid threshold")
     before = (cache.hits, cache.misses)
     results = []

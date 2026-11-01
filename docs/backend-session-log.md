@@ -73,3 +73,39 @@ checks, and 738 passed after connectivity-proof audit changes. One existing
 Starlette/AnyIO warning. Exact-order oracle and cap/uniqueness/quarantine/lock/
 infeasibility tests passed. No real source pool access or selected IDs, no test
 failures, reversions or scope cuts.
+
+## Item 3 — labeling, locking, agreement and calibration tooling
+
+Completed. Versioned source-only sheets contain question/requirements/context
+snapshots, no assigned strata, system outputs or other annotator labels. Validators
+check schema/allowed values/no nulls, unchanged inputs, raw cited cells/units,
+provisional status and exhaustive absence-scan declarations. They validate format
+and provenance, not semantic correctness of a human label. Locks refuse overwrite
+and bind content/template/input/selection hashes; they are receipts, not signatures
+or proof of independent annotation. Old pilot labels and reviewer-practice formats
+were not rewritten or imported.
+
+New explicit-file CLI supports validate/lock/agreement. Agreement reports raw
+agreement and categorical Cohen's kappa before adjudication; degenerate kappa is
+undefined, not a perfect-score claim. Synthetic annotators are never called human
+IAA; independence is declared and must be established outside software.
+
+The development-only routine requires 20 locked, non-pilot development cases and
+matching selection hash; rejects unresolved source gold, missing cases, bad scores
+and hidden generation failures. Fixed grid 0,0.1,...,1 plus always-abstain fallback;
+<=1 unsafe question; maximize macro supported-requirement coverage, then fewer
+unsafe questions, then higher threshold. Correctness requires reviewed value and
+supporting cell/version/unit. Fractions implement exact coverage tie comparisons.
+Generation failures stay in the 20-question denominator. No evaluation or pilot
+calibration, global threshold setting or real threshold artifact was run/written.
+
+Decision: macro per-question supported coverage follows the registered coverage
+metric; uncertainty blocks calibration, rather than dropping cases. Added the
+registered always-abstain sentinel to the outer runner so a future fallback can
+be represented without infinity/NaN or changing the frozen policies. Default None
+is still unset. All calibration calls in tests use fabricated twenty-case inputs;
+no threshold chosen there applies to the project.
+
+Checks: full suite 755 passed in 14.79s, then 756 passed in 14.91s including fallback
+integration, then 756 passed after public interface type annotations. One existing
+Starlette/AnyIO warning. No failed tests, reversions, real labels or scope cuts.
