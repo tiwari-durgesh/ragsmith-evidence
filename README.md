@@ -227,3 +227,11 @@ OS cache state is uncontrolled; synthetic diagnostics are not pilot benchmarks.
 ```powershell
 python scripts/measure_resources.py --output data/evaluation/generated/resource-diagnostic-001
 ```
+
+## Local API demo (November 2026)
+
+The [FastAPI guide](app/README.md) gives Windows startup/test commands and six
+local pilot-only sample inputs. It wraps the frozen QA pipeline without changing
+`src/`; local-model research comparisons explicitly use an **uncalibrated demo
+threshold**. This is not a new evaluation or corpus lock. See the [engineering
+handoff](docs/tonight-engineering-handoff.md) for validation and remaining scope.

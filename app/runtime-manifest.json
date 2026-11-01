@@ -1,0 +1,78 @@
+{
+  "purpose": "local engineering/demo integrity record, not a research corpus/runtime lock or calibration",
+  "recorded_utc": "2026-11-01T18:58:38.914172+00:00",
+  "public_amendment_commit": "b5ffc6fdbb7b444148887f714e7fec7a8d6ae442",
+  "frozen_src_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+  "model": "Qwen2.5-1.5B-Instruct Q4_K_M",
+  "model_sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "server_build": "b6096-fd1234cb",
+  "server_sha256": "f914f66e4886d3eb6dba76c0285a26d07b3943ac93152d72b470fe3d87ece41c",
+  "tokenizer_sha256": "5126b4ed092a216b398d1487cbb3ae2a430bbce9e785f092b917719fcc06aa94",
+  "seed": 1729,
+  "input_budget": 3200,
+  "output_cap": 384,
+  "context": 4096,
+  "threads": 6,
+  "batch": 128,
+  "microbatch": 128,
+  "slots": 1,
+  "confidence": "exp(mean raw value-token log probability), byte-overlap spans",
+  "demo_threshold": 0.5,
+  "threshold_calibrated": false,
+  "evaluation_data_selected": false,
+  "development_data_selected": false,
+  "research_corpus_locked": false,
+  "files": [
+    {
+      "path": "scripts/tatqa_excerpt_ingestion.py",
+      "sha256": "194c38817c27cf58053f92d9d47cb61b0450d05a7c2ec0f95f5ca010b9f30e12",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/models.py",
+      "sha256": "965b8569ff858f0d7954c308b30c3ec3d29ed0012ea6c006770d2a9bde8cc88d",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "3db0d24c9bc8fc4c50f91cd6190cf608411d6dde23eeea740b3c4192a9501c2f",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/service.py",
+      "sha256": "ac45096973640b2ee3e769bf0105ff7c05da3f9bf2b91616c8ab0e178290aee5",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/runtime.py",
+      "sha256": "dc9c6c3a643562e78e0640030318334972fa104542148dec72f647f6308c535c",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/start_runtime.py",
+      "sha256": "ae6c65ccf02e65e8cecf159cc8bef15b0482ba058e8f7b82398939fda2aa5392",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/prepare_samples.py",
+      "sha256": "d1b429a5206685d83dee2e2a81116e408884fe7fb99b0603744792929a196e41",
+      "hash_basis": "exact Git blob bytes"
+    },
+    {
+      "path": "app/requirements-lock.txt",
+      "sha256": "587baf237e5a973258987418f0cc9501adb8bc393485aed78127432a60c43281",
+      "hash_basis": "exact Git blob bytes"
+    }
+  ],
+  "validation": {
+    "tests_passed": 669,
+    "dependency_deprecation_warnings": 1,
+    "synthetic_model_requests": 1,
+    "synthetic_model_input_tokens": 563,
+    "synthetic_model_wall_seconds": 22.64,
+    "pilot_lookup_samples": 6,
+    "human_label_files_read": 0,
+    "external_model_calls": 0
+  },
+  "publication": "local building commits only; not pushed"
+}

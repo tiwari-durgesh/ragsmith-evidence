@@ -1,0 +1,15 @@
+{
+  "question": "Give synthetic Revenue and Cash in 2025.",
+  "requested_facts": [
+    {"requirement_id": "revenue", "metric": "Revenue", "year": 2025},
+    {"requirement_id": "cash", "metric": "Cash", "year": 2025}
+  ],
+  "table": [
+    ["Metric", "2025"],
+    ["Revenue", "10"],
+    ["Cash", "4"]
+  ],
+  "source_reference": "Invented API example, not study data",
+  "source_unit": "USD millions",
+  "answerer": "lookup"
+}

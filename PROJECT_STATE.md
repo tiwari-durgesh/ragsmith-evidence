@@ -315,3 +315,24 @@ remain targets; this batch retains the existing local pilot infrastructure.
   sufficiency verification, which needs separate controlled baselines later.
 - No empirical benchmark claims have been established. Python 3.11 remains
   unverified; the old environment was not repaired or replaced.
+
+## November 2 local engineering update
+
+The Option C amendment was published through public commit `b5ffc6f` before
+building. Subsequent building work stays local on `codex/public-progress`.
+Separate source-only ingestion, packing/runtime adapters and a thin FastAPI demo
+now wrap the frozen pipeline. The new `.venv-api` uses Python 3.12.14; Python 3.11
+is still unverified. **669 tests pass**; one synthetic model integration and six
+existing pilot lookup examples were checked without tuning or private-label reads.
+The prior pilot has **18 independent source facts and 36 derived cases; no
+statistical or performance claims are made from it**. Labels remain **provisional,
+single-annotator**, and independence is not established.
+
+No evaluation/development data selected, no corpus lock, no real calibration or
+research run. Default API comparisons are the frozen pilot baselines; optional
+local Qwen mode compares the three research policies with an explicitly
+uncalibrated demo threshold. Genuine-quota feasibility and independent human
+review remain prerequisites for paper results. See [API commands](app/README.md)
+and the [engineering handoff](docs/tonight-engineering-handoff.md). Frontend work
+awaits the user's next request. Frozen `src/` tree remains
+`3261c6087757b9f3d9aed1166e264de45ac4f479`.

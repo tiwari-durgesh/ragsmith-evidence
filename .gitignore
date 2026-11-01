@@ -8,6 +8,7 @@ __pycache__/
 
 # Virtual environments
 .venv/
+.venv-api/
 venv/
 
 # Local configuration and secrets

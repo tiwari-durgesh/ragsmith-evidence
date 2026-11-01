@@ -69,6 +69,17 @@ def test_source_unit_rows_and_full_header_lineage_preserved():
     assert c.evidence[0].metadata["header_rows"] == [["Metric", "2025"], ["(In millions)", ""]]
 
 
+def test_qualifier_below_year_header_is_not_silently_bound():
+    c = adapt_table("x", [["Metric", "2025", "2024"], ["", "Domestic", "International"],
+                          ["Revenue", "10", "20"]])
+    assert not any(e.kind == "table_row" for e in c.evidence)
+
+
+def test_caller_unit_cannot_override_an_explicit_source_unit():
+    c = adapt_table("x", [["Metric", "2025"], ["(In millions)", ""], ["Revenue", "10"]], unit="in thousands")
+    assert not any(e.kind == "table_row" for e in c.evidence)
+
+
 def test_duplicate_rows_preserve_real_disagreement_without_edits():
     c = adapt_table("x", [["Metric", "2025"], ["Revenue", "10"], ["Revenue", "20"]])
     assert [e.content for e in c.evidence] == ["Metric: Revenue; 2025: 10", "Metric: Revenue; 2025: 20"]

@@ -264,6 +264,12 @@ def adapt_table(context_id: str, table: list[list[str]], *, paragraphs: list[str
             audit.append({"row": ri, "status": "structural", "section": section})
             continue
         metric = row[0].strip()
+        if headers and not metric and any(
+                cell.strip() and numeric_value(cell) is None
+                and not re.search(r"year|ended|fiscal|as of|in (?:thousands|millions|billions)|dollars", cell, re.I)
+                for cell in row[1:]):
+            ambiguous_qualifiers = True
+            structural_rows.append(ri)
         for ci in range(1, len(row)):
             raw = row[ci]
             value = numeric_value(raw)
@@ -279,8 +285,10 @@ def adapt_table(context_id: str, table: list[list[str]], *, paragraphs: list[str
                 reason = "no unambiguous explicit year for column"
             elif value is None:
                 reason = "non-numeric/blank-marker cell; not assumed zero or absent"
-            elif len(source_units) > 1 and not unit:
+            elif len(source_units) > 1:
                 reason = "multiple source unit declarations need explicit source binding"
+            elif unit and source_units and normalize(unit) != normalize(source_units[0]):
+                reason = "caller unit and source unit differ; no unit alias or conversion inferred"
             # Reject a column if a preceding header qualifier denotes a percentage/change.
             if year and any(re.search(r"change|percent|%", table[hr][ci], re.I)
                             for hr in header_rows if ci < len(table[hr])):
