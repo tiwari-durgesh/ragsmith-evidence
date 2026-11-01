@@ -134,7 +134,7 @@ The initial offline harness compares extraction-only, binary sufficiency, and
 graded sufficiency on identical frozen evidence. It opens gold labels only after
 inference. All fixture/pilot labels remain `provisional, single-annotator` until
 independent review; synthetic results are not research findings. The foundation
-suite now has 500 passing tests under bundled Python 3.12.14. Python 3.11 remains
+suite now has 581 passing tests under bundled Python 3.12.14. Python 3.11 remains
 unverified.
 
 The [preparation guide](docs/evaluation-preparation.md) covers native SQLite
@@ -177,3 +177,34 @@ Gold retains the full source scope when top-k evidence is missed. The one-family
 synthetic suite correctly reports null inferential intervals. See the
 [metrics and resource guide](docs/evaluation-metrics-and-resources.md) for
 estimands, exclusions, timing boundaries and profiling limits.
+
+The [TAT-QA source adapter](docs/tatqa-source-adapter.md) prepares source cells,
+separate coordinator annotation aids, complete screening ledgers and a draft
+grouped review queue offline. The pinned training split has 1,462 label-gate
+questions and 355 candidate paired contexts. Semantic eligibility and original
+report identities remain pending; no real pilot has been selected or scored.
+
+```powershell
+python scripts/screen_tatqa.py --output data/evaluation/generated/tatqa-screening-001
+```
+
+[Manual cell binding](docs/manual-cell-bindings.md) adds strict provisional
+accept/reject/pending decisions, source/question hash checks and explicit
+metric/year/unit/value cell provenance. Accepted bindings generate canonical
+candidate evidence for the existing lookup verifier. Templates remain pending;
+no real acceptance labels, complete retrieval corpus or final pilot are created.
+
+[Pilot family construction](docs/pilot-family-construction.md) adds provisional
+report declarations, transitive duplicate/report grouping and four controlled
+evidence conditions per draft family. Connected report groups share a proposed
+partition. Synthetic cases are tested; real templates remain pending and no
+pilot gold or model scores are generated.
+
+The [resource trial runner](docs/resource-trials.md) measures fresh-process first
+passes and warmed repetitions, with OS process RSS, raw timings and descriptive
+summaries. Optional SQLite retrieval is measured against one fixed snapshot.
+OS cache state is uncontrolled; synthetic diagnostics are not pilot benchmarks.
+
+```powershell
+python scripts/measure_resources.py --output data/evaluation/generated/resource-diagnostic-001
+```

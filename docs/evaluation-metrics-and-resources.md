@@ -118,8 +118,11 @@ python scripts/evaluate_synthetic.py --rankings data/evaluation/fixtures/ranking
 python -m pytest -q
 ```
 
-The current suite has 484 passing software tests. These check formulas, grouping,
+The current suite has 581 passing software tests. These check formulas, grouping,
 leakage prevention, cutoff behavior and measurement contracts. No real held-out
-pilot or resource benchmark was run. Native retrieval-log export, real source
-screening, independent annotation, process RSS collection, repeated warm/cold
-latency trials, and confirmatory study design remain subsequent work.
+pilot or publication resource benchmark was run. Native ranking export, source
+screening infrastructure and the separate [process resource runner](resource-trials.md)
+are implemented. The latter adds OS RSS and fresh/warmed process diagnostics;
+this section's original in-process measurements retain their narrower scope.
+Completed real source screening, independent annotation, representative resource
+trials and confirmatory study design remain outstanding.

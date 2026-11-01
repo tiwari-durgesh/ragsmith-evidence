@@ -103,7 +103,10 @@ remain targets; this batch retains the existing local pilot infrastructure.
   extraction/binary/graded comparisons, core scoring, validation and file hashes.
   Gold files are opened only after inference. Results are marked non-research.
 - The initial Phase 5 foundation was committed locally at 807d70f and not pushed.
-- The full software suite passes with 500 tests under bundled Python 3.12.14;
+- Completed typed-lineage, measurement and reviewer-preparation batches were
+  committed locally at 1ab2d92 (feat: add audited evaluation metrics and reviewer
+  preparation). The user requested no push until Phase 5 is complete.
+- The full software suite passes with 581 tests under bundled Python 3.12.14;
   Python 3.11 remains unverified. Production Phase 4 source files are unchanged.
 - A separate agreement script measures unweighted Cohen's kappa from aligned,
   independent pre-adjudication labels and handles undefined cases explicitly.
@@ -122,7 +125,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
   evidence that small risk differences can be detected. See pilot-sampling-plan.md.
 - research-claim-mapping.md ties metrics and controls to proposal sections and
   distinguishes prior-art refutation of originality from empirical benefit tests.
-- The typed-record/lineage batch is implemented and tested but uncommitted: v0.2
+- The typed-record/lineage batch is implemented, tested and committed: v0.2
   uses frozen typed gold/evidence containers and a required source manifest,
   including parent transformations, source versions, license/location declarations,
   evidence fingerprints, scope checks and source-family consistency. Malformed
@@ -133,10 +136,10 @@ remain targets; this batch retains the existing local pilot infrastructure.
   source graph errors, scope mismatches, label leakage and inference mutation.
 - Manifest validation is internal consistency only: it does not authenticate
   sources, check legal rights, infer truth, or mark labels as independently reviewed.
-  Track A gold links must refer to the fixed supplied set. A future Track B scorer
-  must preserve full-corpus gold and count retrieval misses rather than reuse
+  Track A gold links must refer to the fixed supplied set. The Track B scorer
+  preserves full-scope gold and counts retrieval misses instead of reusing
   that condition as an exclusion. See docs/evaluation-records.md.
-- The next measurement batch is also implemented and tested but uncommitted:
+- The measurement batch is implemented, tested and committed:
   report v0.3 supports frozen-ranking Track B, Recall@k/MRR/binary nDCG and separate
   support/conflict recall. Full source-scope gold remains intact when top-k misses
   support or conflicts. All policy variants receive the same retrieved union.
@@ -150,8 +153,8 @@ remain targets; this batch retains the existing local pilot infrastructure.
 - Thirty-nine new tests cover numerical metric examples, rank validation,
   preserved full-scope gold, cluster sampling, undefined rates and profiling.
   Production source and provisional annotation status are unchanged.
-- Native retrieval export and reviewer preparation are implemented and tested
-  but uncommitted. Export freezes a single SQLite online-backup snapshot for all
+- Native retrieval export and reviewer preparation are implemented, tested
+  and committed. Export freezes a single SQLite online-backup snapshot for all
   questions, logs query/rank/score/truncation metadata, validates returned evidence
   against the registered universe and produces Track B-compatible ranking JSONL.
   Source files are not authenticated and universe completeness is not established.
@@ -165,10 +168,74 @@ remain targets; this batch retains the existing local pilot infrastructure.
   protection. A synthetic calibration packet was generated under ignored
   data/evaluation/generated/calibration-001. No real reviewer labels were made.
   See docs/evaluation-preparation.md for commands and the reviewer workflow.
-- Remaining work: source-derived corpus adapters and screening ledger,
-  repeated warm/cold resource trials, process RSS measurement and independent
-  source annotation. Real pilot
-  annotations and confirmatory results await independent review. The next batch
+- The TAT-QA source-adapter batch is implemented and tested but uncommitted:
+  offline byte/hash checks anchor training data to the committed audit. Source
+  cells/paragraphs and locators are separated from coordinator-only upstream
+  answers. Every question/context has a screening disposition. The training gate
+  has 1,462/13,215 questions (11.06%), 355 paired candidate contexts and 354
+  conservative table-duplicate groups. Semantic acceptance remains unmeasured.
+- A deterministic draft queue keeps normalized duplicate tables together, with
+  pending semantic eligibility, report identities and partitions. Targets remain
+  60 families, 12 development/48 held-out, four conditions each; no pilot families
+  have been selected. Original report identity and near-duplicate review are still
+  required. Generated upstream content stays ignored in tatqa-screening-001;
+  docs/tatqa-screening-audit.json contains only aggregates and provenance.
+- Seventeen new synthetic tests cover source preservation, answer separation,
+  trusted-byte checks, deterministic grouping, malformed inputs and no automatic
+  semantic acceptance. No production verifier or assessment schema was changed.
+- The manual-binding batch is implemented and tested but uncommitted. Strict
+  provisional decisions pin question/source hashes and require source-backed
+  reviewer notes; only accepted decisions bind metric/year/unit/value cells.
+  Cell geometry and canonical delimiters are validated. Values come from source
+  cells with edge whitespace trimming only. No upstream answers are used by
+  the binding compiler, and no verifier/schema/policy was changed.
+- Canonical output has original/derived source declarations, parent links,
+  evidence fingerprints, explicit document scopes and cell transformation maps.
+  It contains accepted bound cells only, not a full retrieval corpus. Provisional
+  context groups do not establish report identity; no gold or pilot is created.
+  Unit semantics remain a manual responsibility; inconsistent same-key bound
+  units are rejected because the verifier does not validate units.
+- Twenty-seven new synthetic tests cover strict decisions, stale hashes, cell
+  errors, answer separation, deterministic transforms and the unchanged verifier's
+  full-support/conflict-abstention behavior. Real-data smoke checks generated
+  1,462 pending templates and compiled only pending decisions into empty evidence.
+  Real semantic eligibility remains unmeasured. See docs/manual-cell-bindings.md.
+- The report/family construction batch is implemented and tested but uncommitted.
+  Strict source-hash-bound manual declarations require report references and
+  reviewer notes; they remain provisional assertions, not verified identities.
+  Duplicate-table and declared report/version links merge transitively. Any
+  unresolved member blocks drafts for its connected group. Grouping overrides
+  partition quotas, with actual development/held-out counts reported.
+- Two distinct accepted source facts form each draft family. Question text and
+  scoped requirements stay fixed across full/partial/missing/synthetic-conflict
+  cases. Removal and synthetic before/after changes are logged with parent links,
+  artifact versions and evidence fingerprints. The scope is controlled bound
+  facts, not a complete report or retrieval corpus. No gold is generated.
+- Sixteen synthetic tests cover four-condition verifier behavior, shared-report
+  partition integrity, transitive grouping, unresolved identities, stale records,
+  invalid conflicts and deterministic construction. Real smoke checks generated
+  355 pending declaration pairs and compiled them into zero drafts. Semantic
+  eligibility and original report recovery remain pending. The guide is
+  docs/pilot-family-construction.md; all upstream content stays ignored/local.
+- The resource-trial batch is implemented and tested but uncommitted. Separate
+  child processes measure fresh first passes and warmed repetitions. Optional
+  SQLite runs query one read-only backup snapshot; fixed-evidence runs report
+  retrieval time as null. Timings cover retrieval/validation/assessment/rendering,
+  with separate parent launch-to-result time, raw samples, descriptive medians
+  and nearest-rank p95. No per-policy speedup comparison is implemented.
+- OS memory reports current/lifetime-peak Windows working-set bytes; Linux has
+  an implemented but host-unverified getrusage/proc path. Unavailable counters
+  remain null. Worker lifetime peak includes loading/warmups and excludes the
+  parent, so this is not total deployment RAM or query-only memory. OS cache state
+  is uncontrolled; fresh process does not establish cold disk/cache performance.
+- Twenty-one new tests cover worker isolation, memory APIs, timing arithmetic,
+  failure/timeout handling, input mutation and synthetic SQLite retrieval. A
+  five-repeat six-question synthetic run completed with non-null Windows memory
+  counters and five samples per condition. No real pilot performance was measured.
+  See docs/resource-trials.md. Production code and annotation status are unchanged.
+- Remaining work: Phase 5 readiness/reviewer handoff, completed source declarations,
+  bindings, representative resource workloads and independent source annotation. Real pilot
+  annotations and confirmatory results await independent review. A future schema
   must explicitly add reviewed/adjudicated states rather than silently upgrading
   provisional labels. No real pilot benchmark has been run.
 - Entity/document scope, automatic decomposition, wider table formats, fusion,
