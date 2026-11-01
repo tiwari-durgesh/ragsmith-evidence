@@ -1,5 +1,12 @@
 # First retrieval evaluation — preregistration proposal v1
 
+Version history: the original document is preserved by local tag **prereg-v1**
+at `6b1d04e`. The [feasibility/staged-plan amendment](first-real-evaluation-feasibility-amendment.md)
+records the requested pre-approval scan, explicit shortage rule, proposed first
+50 questions, shared decomposition, confidence calibration and hardware smoke.
+Read that amendment for current proposed staging; evaluation selection remains
+blocked until feasibility and user approval. No policy implementation is approved.
+
 Status: **plan only, awaiting user approval**. Commit this specification before
 selecting any new evaluation reports/questions. No evaluation sample, new labels,
 model download, model run or implementation is authorized by this document.

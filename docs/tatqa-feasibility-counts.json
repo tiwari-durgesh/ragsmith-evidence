@@ -1,0 +1,27 @@
+{
+  "status": "feasibility_count_only_no_evaluation_selection",
+  "source": {
+    "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+    "split": "train",
+    "file": "tatqa_dataset_train.json",
+    "sha256": "2df6e722cdbaaa37efcbfb280f5c9a15be29a6ec18f618ef936fe63cc6d07c69",
+    "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_train.json",
+    "trusted_audit_sha256": "bd64cd519339593a854d5c05aa97e8bfa1bda6303719a4388e2c45ba5efcebca"
+  },
+  "pilot_contexts": 9,
+  "source_contexts": 2201,
+  "excluded_contexts": {
+    "pilot_context_uid": 9,
+    "pilot_table_duplicate_or_similarity_flag": 2
+  },
+  "remaining_contexts_unverified_report_identity": 2190,
+  "remaining_noncomparison_table_span_questions": 895,
+  "context_level_partial_leads": 167,
+  "within_context_discrepancy_lead_contexts": 166,
+  "within_context_discrepancy_keys": 932,
+  "matching_layout_and_paragraphs_discrepant_table_groups": 0,
+  "verified_report_disjoint_partial_questions": 0,
+  "verified_report_disjoint_genuine_conflict_questions": 0,
+  "actual_report_disjoint_yield": "unknown; raw split has no report/entity/source URL fields and pilot report identities unresolved",
+  "interpretation": "Partial leads are contexts with a labeled extraction fact and explicit year/unit, not verified absent facts. Discrepancies are not verified same-scope conflicts. No question authored, sampled, selected or scored."
+}

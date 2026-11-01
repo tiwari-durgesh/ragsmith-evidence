@@ -22,6 +22,16 @@ no fresh evaluation sample has been selected. Commit and approve the specificati
 before selection or implementation. Approximately 100 clustered questions are
 an estimation study, not adequate evidence for a tight comparable-risk claim.
 
+The original specification is preserved by local tag `prereg-v1` at `6b1d04e`.
+The [feasibility and staged-plan amendment](first-real-evaluation-feasibility-amendment.md)
+proposes 50 questions first, shared question-only decomposition, and a confidence
+threshold calibrated only on separate development data. Feasibility remains
+unestablished: context-level leads cannot certify exclusion of pilot reports or
+genuine conflicts. Do not select evaluation data until source identities and
+stratum quotas are verified and the revised plan is approved. If the declared
+four-hour recovery budget cannot establish the quotas, request a corpus/scope
+amendment before selection; do not manufacture or silently replace conflicts.
+
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.
 2. The auxiliary LLM labeler and comparison were skipped by explicit instruction.
