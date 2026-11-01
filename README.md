@@ -127,3 +127,29 @@ Automatic natural-language decomposition is not implemented.
 Full hybrid retrieval, OCR, richer PDF tables, and research benchmarks remain
 future work. Current automated tests establish software behavior, not research
 superiority or novelty.
+
+## Phase 5 synthetic evaluation foundation
+
+The initial offline harness compares extraction-only, binary sufficiency, and
+graded sufficiency on identical frozen evidence. It opens gold labels only after
+inference. All fixture/pilot labels remain `provisional, single-annotator` until
+independent review; synthetic results are not research findings. The foundation
+suite now has 402 passing tests under bundled Python 3.12.14. Python 3.11 remains
+unverified.
+
+With a working project Python and the package installed:
+
+```powershell
+python scripts/evaluate_synthetic.py
+python scripts/annotation_agreement.py reviewer_A.jsonl reviewer_B.jsonl
+python scripts/audit_tatqa.py --fetch --output docs/tatqa-scope-audit.json
+```
+
+The agreement command requires actual independent label files; no real reviewer
+labels are provided. Only the audit's `--fetch` option accesses the network.
+Raw upstream data stays in ignored local storage. See the
+[evaluation protocol](docs/phase5-evaluation-proposal.md),
+[source/license audit](docs/corpus-selection.md),
+[research claim mapping](docs/research-claim-mapping.md),
+[sampling plan](docs/pilot-sampling-plan.md), and
+[reviewer handout](docs/annotation-guidelines.md).

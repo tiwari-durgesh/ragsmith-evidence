@@ -1,0 +1,6 @@
+{"question_id":"synthetic-full","question":"What were revenue and profit in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025},{"requirement_id":"profit","metric":"Profit","year":2025}]}
+{"question_id":"synthetic-partial","question":"What were revenue and employees in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025},{"requirement_id":"employees","metric":"Employees","year":2025}]}
+{"question_id":"synthetic-missing","question":"What was revenue in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025}]}
+{"question_id":"synthetic-conflict","question":"What was revenue in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025}]}
+{"question_id":"synthetic-text","question":"What was revenue in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025}]}
+{"question_id":"synthetic-distractor","question":"What was revenue in 2025?","requirements":[{"requirement_id":"revenue","metric":"Revenue","year":2025}]}

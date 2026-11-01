@@ -83,6 +83,6 @@ an employee count.
 - Literature verification, corpus licensing/collection, independent annotation,
   evaluation definitions, baseline/ablation design, measured latency/memory, and
   empirical reliability comparisons remain research tasks for the next phase.
-- Preserve the explicit no-push instruction. The earlier two local commits
-  remain separate; remaining retrieval/response work belongs in one consolidated
-  local Phase 4 completion commit.
+- Git outcome: the earlier two commits remain separate, and retrieval/response
+  work was consolidated in f652213. The user later explicitly authorized the
+  Phase 4 push; all three commits were pushed to origin/main successfully.

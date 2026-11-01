@@ -5,10 +5,11 @@ except where the user explicitly superseded it. Phase 3 is complete at `36232e9`
 Phase 4 structured QA integration is complete. Batch 1 is committed separately
 at `29843fc`; Option A is committed at `5bca849`. Retrieval integration,
 deterministic responses, and end-to-end validation form the consolidated local
-phase-completion change. No push is authorized or performed.
-The user authorized a second local commit for Option A and explicitly instructed
-**do not push**; that instruction supersedes the earlier phase-only commit/push
-workflow. Phase 4 completion concerns the scoped structured QA integration,
+phase-completion commit f652213. The user subsequently explicitly authorized
+pushing Phase 4; all three commits were pushed successfully to origin/main.
+The working tree was clean and main synchronized at that point. That request
+authorized the Phase 4 push; it does not automatically authorize future pushes.
+Phase 4 completion concerns the scoped structured QA integration,
 not the full proposed hybrid RAG system or empirical research validation.
 
 The user confirmed the supplied research-proposal DOCX is the intended source.
@@ -93,7 +94,38 @@ remain targets; this batch retains the existing local pilot infrastructure.
   deterministic response construction are implemented. Model-based generation
   remains planned. Aggregate evidence IDs remain audit references, not citations.
 - Phase 4 end-to-end validation is complete; see docs/phase4-validation.md.
-  The next research/implementation phase requires agreement before beginning.
+- Phase 5 direction is approved in principle with the user's extraction-only,
+  source-verification, synthetic-first, reviewer, sampling and local-commit
+  conditions. The user will arrange a second annotator; none has reviewed labels
+  in this session. All current labels are `provisional, single-annotator`.
+- The initial offline harness is implemented in ragsmith.evaluation, with six
+  original synthetic fixtures, strict request/gold separation, frozen-evidence
+  extraction/binary/graded comparisons, core scoring, validation and file hashes.
+  Gold files are opened only after inference. Results are marked non-research.
+- The full software suite passes with 402 tests under bundled Python 3.12.14;
+  Python 3.11 remains unverified. Production Phase 4 source files are unchanged.
+- A separate agreement script measures unweighted Cohen's kappa from aligned,
+  independent pre-adjudication labels and handles undefined cases explicitly.
+  The reviewer handout includes examples and source-based decision rules.
+- TAT-QA raw labeled splits and upstream notices were downloaded into ignored
+  audit storage at 870accc41953dcde885aabeb963d94aabdc0fbc3. Hashes/aggregates are
+  documented. Its dataset is CC BY 4.0; its code is MIT. This corrects the earlier
+  incomplete repository-license shorthand. FinQA was inspected and deferred.
+- The audited extraction labels span/multi-span cover 9,209/16,546 (55.66%).
+  The chosen narrower table-only span gate covers 1,804/16,546 (10.90%); final
+  manually engine-compatible eligibility is unmeasured. The labeled release
+  differs from the README headline count, so measured denominators are explicit.
+- The revised proposed pilot is 240 derived conditions across 60 context families,
+  targeting 48 development/192 held-out cases with source grouping taking
+  precedence. This is a diagnostic sample-size proposal, not collected data or
+  evidence that small risk differences can be detected. See pilot-sampling-plan.md.
+- research-claim-mapping.md ties metrics and controls to proposal sections and
+  distinguishes prior-art refutation of originality from empirical benefit tests.
+- Next harness batch: strengthen typed schemas and source lineage; add retrieval
+  metrics, paired cluster uncertainty and resource/run manifests. Real pilot
+  annotations and confirmatory results await independent review. The next batch
+  must explicitly add reviewed/adjudicated states rather than silently upgrading
+  provisional labels. No real pilot benchmark has been run.
 - Entity/document scope, automatic decomposition, wider table formats, fusion,
   dense/KG retrieval, and free-text verification remain open or planned.
 - Verify the named literature, choose a licensed pilot corpus, define independent

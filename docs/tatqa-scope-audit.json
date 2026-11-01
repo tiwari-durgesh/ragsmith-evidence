@@ -1,0 +1,178 @@
+{
+  "source_revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+  "source_manifest": {
+    "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+    "files": [
+      {
+        "path": "tatqa_dataset_train.json",
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_train.json",
+        "sha256": "2df6e722cdbaaa37efcbfb280f5c9a15be29a6ec18f618ef936fe63cc6d07c69",
+        "bytes": 12845647
+      },
+      {
+        "path": "tatqa_dataset_dev.json",
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_dev.json",
+        "sha256": "8da095a819af6db3c14877c6df2d4d29960e41d1a63dd1fa853507bd2a616af5",
+        "bytes": 1637431
+      },
+      {
+        "path": "tatqa_dataset_test_gold.json",
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/dataset_raw/tatqa_dataset_test_gold.json",
+        "sha256": "c4d08418359c1d76468dec420ee748a37f48c06b63cb8ec2766f19d5d314b597",
+        "bytes": 2167546
+      },
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/README.md",
+        "sha256": "85c398173d771a2531abea5b81f3696914296642da2af78c2c34545715c14d5f",
+        "bytes": 4689
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/LICENSE",
+        "sha256": "46e27ffbc49c3fd44a9595c2213f8a5f4319a81b53238e49ce1eec39e7e25662",
+        "bytes": 1068
+      }
+    ]
+  },
+  "scope_definition": "answer_type=span AND answer_from=table; manual screen pending",
+  "scope_status": "label-based eligibility upper bound, not verified engine compatibility",
+  "splits": {
+    "train": {
+      "contexts": 2201,
+      "questions": 13215,
+      "contexts_with_two_table_spans": 355,
+      "answer_types": {
+        "arithmetic": 5543,
+        "count": 305,
+        "multi-span": 1645,
+        "span": 5722
+      },
+      "answer_sources": {
+        "table": 5920,
+        "table-text": 4170,
+        "text": 3125
+      },
+      "question_fields": [
+        "answer",
+        "answer_from",
+        "answer_type",
+        "derivation",
+        "order",
+        "question",
+        "rel_paragraphs",
+        "req_comparison",
+        "scale",
+        "uid"
+      ],
+      "extraction_labels": 7367,
+      "extraction_fraction": 0.5574725690503216,
+      "table_span_screen": 1462,
+      "table_span_fraction": 0.1106318577374196
+    },
+    "dev": {
+      "contexts": 278,
+      "questions": 1668,
+      "contexts_with_two_table_spans": 39,
+      "answer_types": {
+        "arithmetic": 718,
+        "count": 32,
+        "multi-span": 217,
+        "span": 701
+      },
+      "answer_sources": {
+        "table": 772,
+        "table-text": 507,
+        "text": 389
+      },
+      "question_fields": [
+        "answer",
+        "answer_from",
+        "answer_type",
+        "derivation",
+        "order",
+        "question",
+        "rel_paragraphs",
+        "req_comparison",
+        "scale",
+        "uid"
+      ],
+      "extraction_labels": 918,
+      "extraction_fraction": 0.5503597122302158,
+      "table_span_screen": 171,
+      "table_span_fraction": 0.10251798561151079
+    },
+    "test_gold": {
+      "contexts": 277,
+      "questions": 1663,
+      "contexts_with_two_table_spans": 36,
+      "answer_types": {
+        "arithmetic": 699,
+        "count": 40,
+        "multi-span": 210,
+        "span": 714
+      },
+      "answer_sources": {
+        "table": 736,
+        "table-text": 546,
+        "text": 381
+      },
+      "question_fields": [
+        "answer",
+        "answer_from",
+        "answer_type",
+        "consts",
+        "derivation",
+        "facts",
+        "mappings",
+        "order",
+        "question",
+        "rel_paragraphs",
+        "req_comparison",
+        "scale",
+        "tree_derivation",
+        "uid"
+      ],
+      "extraction_labels": 924,
+      "extraction_fraction": 0.555622369212267,
+      "table_span_screen": 171,
+      "table_span_fraction": 0.10282621767889356
+    }
+  },
+  "all_labelled": {
+    "contexts": 2756,
+    "questions": 16546,
+    "contexts_with_two_table_spans": 430,
+    "answer_types": {
+      "arithmetic": 6960,
+      "count": 377,
+      "multi-span": 2072,
+      "span": 7137
+    },
+    "answer_sources": {
+      "table": 7428,
+      "table-text": 5223,
+      "text": 3895
+    },
+    "question_fields": [
+      "answer",
+      "answer_from",
+      "answer_type",
+      "consts",
+      "derivation",
+      "facts",
+      "mappings",
+      "order",
+      "question",
+      "rel_paragraphs",
+      "req_comparison",
+      "scale",
+      "tree_derivation",
+      "uid"
+    ],
+    "extraction_labels": 9209,
+    "extraction_fraction": 0.556569563640759,
+    "table_span_screen": 1804,
+    "table_span_fraction": 0.10902937265804424
+  }
+}
