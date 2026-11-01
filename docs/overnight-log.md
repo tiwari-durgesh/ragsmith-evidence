@@ -27,9 +27,33 @@ accessible decision icons/colors; citation chips; comparison cards; explanatory
 tabs. No policy or source changes.
 
 Item 1 checks: full suite passed twice, 695 tests each run (26.65s and the
-subsequent run recorded in terminal output); one existing Starlette/AnyIO
+subsequent 24.62s run); one existing Starlette/AnyIO
 deprecation warning. Browser inspected all five tabs, lookup results, citation
 chips, light and manually selected dark theme. Fixed a clipped header and dark
 panel contrast. No unresolved failures, reverts, tuning or scope cuts.
 The previous demo process held port 8501; identified its exact Python command
 and restarted only that local demo. No system/network settings changed.
+
+## Item 2 — engineering finish
+
+Completed in new `app/contracts.py`, `app/checked_service.py` and
+`app/evaluation_runner.py` modules. Minimal wiring changes in existing `app/main.py`
+and frontend `view.py` use the shared checked bridge. This is the recorded safe
+interpretation of "new modules only": new logic lives in separate modules;
+existing entry points need imports/decorators to actually share that logic.
+`src/`, policy behavior, threshold calibration and research schemas are unchanged.
+
+The runner explicitly requires an answerer; it has no file/corpus loader or CLI.
+The confidence threshold defaults to None, with `not_run_uncalibrated` and no
+confidence decision. No calibration routine was built. Synthetic numeric thresholds
+are interface test values only. Preparation failures still raise; a future batch
+executor must preserve their denominators. This is a skeleton, not research-ready.
+
+Checks: full suite 720 passed (19.24s), then 720 passed after failure-handling
+hardening; one existing Starlette/AnyIO warning. New tests cover schema parity,
+broken references, malformed grids, request overflow, truncation logging, candidate
+validation and shared generation. Six existing pilot sources were probed using a
+deterministic lookup stub: 2 complete, 4 incomplete/generation-failed; the latter
+remain failures, not successful abstentions. Fabricated zero stub confidence is
+not a model result. No model execution, inference endpoint or threshold was used.
+No unresolved failures, tuning, reverts or scope cuts.

@@ -10,8 +10,8 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from app.models import AskRequest
-from app.service import answer
+from app.contracts import AskRequest
+from app.checked_service import checked_answer as answer
 
 
 ROOT = Path(__file__).resolve().parents[2]

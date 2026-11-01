@@ -7,9 +7,9 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 
-from app.models import AskRequest
+from app.contracts import AskRequest, AskResponse
 from app.runtime import LocalRuntime
-from app.service import answer
+from app.checked_service import checked_answer as answer
 
 
 app = FastAPI(title="RAGSmith Evidence — local demo", version="0.1.0")
@@ -30,7 +30,7 @@ def samples():
     return json.loads(SAMPLES.read_text(encoding="utf-8"))
 
 
-@app.post("/ask")
+@app.post("/ask", response_model=AskResponse, response_model_exclude_unset=True)
 def ask(payload: AskRequest):
     try:
         return answer(payload, runtime)
