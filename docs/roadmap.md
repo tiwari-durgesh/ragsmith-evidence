@@ -10,11 +10,23 @@ complete, without tuning. **LLM cross-check was not run**; the user explicitly
 skipped the labeler and comparison because no API key is available. No external
 API call or model substitution occurred. See [results](pilot36-results.md).
 
+**Paper-results gate: a human second annotator must independently label a
+30–50-question subset before any paper results.** Preserve independent labels,
+measure human agreement before adjudication, and retain source-backed resolution
+notes. An LLM cross-check cannot replace this requirement.
+
+The [first real evaluation preregistration proposal](first-real-evaluation-preregistration.md)
+defines the primary endpoint, risk gates, sample-size limits, local model budget,
+annotation effort and report-exclusion rules. It is plan only, awaiting approval;
+no fresh evaluation sample has been selected. Commit and approve the specification
+before selection or implementation. Approximately 100 clustered questions are
+an estimation study, not adequate evidence for a tight comparable-risk claim.
+
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.
-2. Obtain auxiliary LLM labels only after that lock, without exposing human
-   labels. Review disagreements separately. This is **not human inter-annotator
-   agreement** and does not supply a second human annotator.
+2. The auxiliary LLM labeler and comparison were skipped by explicit instruction.
+   No external API or replacement model is authorized for the completed pilot.
+   An LLM comparison would not be human inter-annotator agreement.
 3. Run the frozen pipeline and baselines once without tuning. Publish only the
    small descriptive case table and failure list as provisional internal findings;
    omit dataset-derived reference scores and all statistical/performance claims.
