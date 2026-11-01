@@ -128,13 +128,26 @@ Full hybrid retrieval, OCR, richer PDF tables, and research benchmarks remain
 future work. Current automated tests establish software behavior, not research
 superiority or novelty.
 
+## Current minimal pilot
+
+The revised pilot has **18 independent source facts and 36 derived cases; no
+statistical or performance claims are made from this pilot**. The facts share nine
+contexts and are not asserted statistically independent. All labels remain
+**provisional, single-annotator**. See the [short labeling guide](docs/minimal-pilot.md)
+and [pending results table](docs/pilot36-results.md). Only 18 labels need the user's
+judgment. Pipeline/baselines are frozen at
+`1b0df45c5e5fe443c5dd8be463ccf26dd9463de3`; src must remain unchanged through results.
+No pilot inference or API labeling has run. No dataset-derived scores will be used.
+A [human second annotator](docs/roadmap.md) for 30–50 questions is required before
+paper results; the auxiliary LLM is not human inter-annotator agreement.
+
 ## Phase 5 synthetic evaluation foundation
 
 The initial offline harness compares extraction-only, binary sufficiency, and
 graded sufficiency on identical frozen evidence. It opens gold labels only after
 inference. All fixture/pilot labels remain `provisional, single-annotator` until
 independent review; synthetic results are not research findings. The foundation
-suite now has 581 passing tests under bundled Python 3.12.14. Python 3.11 remains
+suite now has 589 passing tests under bundled Python 3.12.14. Python 3.11 remains
 unverified.
 
 The [preparation guide](docs/evaluation-preparation.md) covers native SQLite

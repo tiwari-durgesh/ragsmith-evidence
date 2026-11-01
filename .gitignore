@@ -26,6 +26,7 @@ venv/
 # Generated data
 data/processed/
 data/evaluation/generated/
+data/evaluation/pilot36/
 data/manifests/local/
 data/raw/*
 !data/raw/sample_policy.txt

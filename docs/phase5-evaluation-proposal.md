@@ -1,5 +1,12 @@
 # Phase 5 evaluation foundation proposal
 
+Current scope supersedes the larger plan below: **18 independent source facts
+and 36 derived cases; no statistical or performance claims are made from this
+pilot.** Distinct facts share nine contexts and are not asserted statistically
+independent. Labels remain provisional, single-annotator. Follow the
+[minimal pilot guide](minimal-pilot.md); no second human annotator is available.
+LLM review is not human inter-annotator agreement.
+
 Status: direction approved in principle with the user's extraction-only,
 independent-review, source-verification and synthetic-first conditions. The
 initial synthetic harness is implemented; no real pilot is evaluated. Practical

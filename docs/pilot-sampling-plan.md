@@ -1,5 +1,11 @@
 # Pilot sample size and selection plan
 
+Superseded for the current pilot by [the minimal plan](minimal-pilot.md):
+**18 independent source facts and 36 derived cases; no statistical or performance
+claims are made from this pilot.** Facts share nine contexts and are not asserted
+statistically independent. Labels remain provisional, single-annotator. The larger
+plan below is historical; no further partition/harness expansion is authorized.
+
 Proposal: 240 derived evaluation questions from 60 screened source-context
 families, with four documented evidence conditions per family. This replaces
 the earlier tentative 120-question draft; it is not a collected sample or a

@@ -20,6 +20,35 @@ remain targets; this batch retains the existing local pilot infrastructure.
 
 ## Verified in this continuation
 
+- Revised user-approved scope: 18 independent source facts and 36 derived cases;
+  no statistical or performance claims are made from this pilot. Distinct facts
+  share nine source contexts; statistical independence is not established.
+- All 581 existing tests passed before logical local commits c27d60f (adapter),
+  18798ba (bindings), 0bf10e3 (families), and 1b0df45 (resource trials). Git status
+  was clean before minimal pilot preparation. No push occurred.
+- Pipeline/baselines frozen at 1b0df45c5e5fe443c5dd8be463ccf26dd9463de3, src tree
+  3261c6087757b9f3d9aed1166e264de45ac4f479. No src changes are permitted between
+  labeling and results. New helpers exist only under scripts; source remains frozen.
+- Minimal pilot artifacts are local/ignored at data/evaluation/pilot36: 18 original
+  extraction-span questions/facts from nine explicitly selected contexts become
+  36 paired condition cases. Values come from source cells, not dataset answers.
+  18 empty/conflict labels are construction-determined; 18 full/partial labels
+  await the user's judgment. All labels are provisional, single-annotator.
+- Official pinned README/JSON were checked for CC BY 4.0 and raw format; URLs and
+  source SHA-256 are in docs/minimal-pilot.md. Dataset-derived scores are omitted.
+- Standalone helpers lock completed human labels, gate auxiliary LLM labeling,
+  list human/LLM disagreements separately, and run the existing frozen baselines
+  once after the lock. Model gpt-4.1-mini-2025-04-14 / OPENAI_API_KEY was disclosed
+  before script creation; official docs mark it deprecated. No real API call,
+  human label lock or pilot prediction/results run has occurred.
+- Stop infrastructure expansion. The short guide has five synthetic examples.
+  docs/roadmap.md requires a second human annotator for 30–50 questions before
+  paper results. An LLM is not human inter-annotator agreement. Earlier 60-family
+  plans and reviewer availability assumptions are superseded for this pilot.
+- Eight new offline helper guard tests bring the complete suite to 589 passing
+  tests. They test missing locks, immutable construction labels, one-shot guards
+  and mocked API payload isolation; no pilot inference or real API call occurs.
+
 - The starting working tree was clean on `main`, tracking `origin/main`.
 - Ingestion supports native-text PDF, DOCX, XLSX, HTML/HTM, and TXT, with format
   limitations documented in README. SQLite FTS lexical search already exists.
@@ -106,7 +135,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
 - Completed typed-lineage, measurement and reviewer-preparation batches were
   committed locally at 1ab2d92 (feat: add audited evaluation metrics and reviewer
   preparation). The user requested no push until Phase 5 is complete.
-- The full software suite passes with 581 tests under bundled Python 3.12.14;
+- The full software suite passes with 589 tests under bundled Python 3.12.14;
   Python 3.11 remains unverified. Production Phase 4 source files are unchanged.
 - A separate agreement script measures unweighted Cohen's kappa from aligned,
   independent pre-adjudication labels and handles undefined cases explicitly.
@@ -168,7 +197,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
   protection. A synthetic calibration packet was generated under ignored
   data/evaluation/generated/calibration-001. No real reviewer labels were made.
   See docs/evaluation-preparation.md for commands and the reviewer workflow.
-- The TAT-QA source-adapter batch is implemented and tested but uncommitted:
+- The TAT-QA source-adapter batch is committed at c27d60f:
   offline byte/hash checks anchor training data to the committed audit. Source
   cells/paragraphs and locators are separated from coordinator-only upstream
   answers. Every question/context has a screening disposition. The training gate
@@ -183,7 +212,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
 - Seventeen new synthetic tests cover source preservation, answer separation,
   trusted-byte checks, deterministic grouping, malformed inputs and no automatic
   semantic acceptance. No production verifier or assessment schema was changed.
-- The manual-binding batch is implemented and tested but uncommitted. Strict
+- The manual-binding batch is committed at 18798ba. Strict
   provisional decisions pin question/source hashes and require source-backed
   reviewer notes; only accepted decisions bind metric/year/unit/value cells.
   Cell geometry and canonical delimiters are validated. Values come from source
@@ -200,7 +229,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
   full-support/conflict-abstention behavior. Real-data smoke checks generated
   1,462 pending templates and compiled only pending decisions into empty evidence.
   Real semantic eligibility remains unmeasured. See docs/manual-cell-bindings.md.
-- The report/family construction batch is implemented and tested but uncommitted.
+- The report/family construction batch is committed at 0bf10e3.
   Strict source-hash-bound manual declarations require report references and
   reviewer notes; they remain provisional assertions, not verified identities.
   Duplicate-table and declared report/version links merge transitively. Any
@@ -217,7 +246,7 @@ remain targets; this batch retains the existing local pilot infrastructure.
   355 pending declaration pairs and compiled them into zero drafts. Semantic
   eligibility and original report recovery remain pending. The guide is
   docs/pilot-family-construction.md; all upstream content stays ignored/local.
-- The resource-trial batch is implemented and tested but uncommitted. Separate
+- The resource-trial batch is committed at 1b0df45. Separate
   child processes measure fresh first passes and warmed repetitions. Optional
   SQLite runs query one read-only backup snapshot; fixed-evidence runs report
   retrieval time as null. Timings cover retrieval/validation/assessment/rendering,
