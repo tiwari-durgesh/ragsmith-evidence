@@ -105,3 +105,15 @@ plus 30 evaluation questions, estimate 7–9 user hours and 7–9 reviewer hours
 usable packets, potentially 10–12 each for poor layouts. A second human must
 independently label at least all 30 evaluation cases before any paper results.
 No new evaluation data or labels, model inference, src changes or push occurred.
+
+The subsequent [HTML probe and B/C comparison](corpus-options-after-html-probe.md)
+is plan only. One Apple FY2023 HTML filing outside the eight excluded pilot
+families emitted 671 native table rows but zero canonical verifier rows. Its
+eight-unit transport envelope measured 3,018 tokens, with only 182 tokens left
+before final prompt/chat-template overhead; full compatibility remains unproven.
+The filing is reserved for engineering, not selected for evaluation. No PDF parser
+will be built. Option C is recommended for a smaller descriptive excerpt study,
+conditional on an explicit amendment accepting unresolved report identity and
+changing family-based allocation/claims; content hashes cannot prove report
+disjointness. Option B retains stronger provenance but needs more engineering.
+No option, adapter implementation, corpus lock or evaluation selection is adopted.

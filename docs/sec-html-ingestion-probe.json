@@ -1,0 +1,86 @@
+{
+  "purpose": "one HTML filing ingestion/interface/token-footprint probe only, not evaluation",
+  "recorded_utc": "2026-11-01T18:00:45.670049+00:00",
+  "filing": {
+    "issuer": "Apple Inc.",
+    "cik": "320193",
+    "period": "2023-09-30",
+    "form": "10-K",
+    "accession": "0000320193-23-000106",
+    "filing_date": "2023-11-03",
+    "official_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+    "index_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/0000320193-23-000106-index.html",
+    "download_url": "https://cdn.yahoofinance.com/prod/sec-filings/0000320193/000032019323000106/aapl-20230930.htm",
+    "archive_is_direct_sec_download": false,
+    "source_sha256": "bda1f34435199672c16ecdf2034c650872d2cac8399ed0d179fc25450b080b90",
+    "bytes": 1558924,
+    "official_index_bytes": 1558924,
+    "official_byte_equality_proven": false,
+    "identity_check": "issuer and fiscal date plus independent multi-year financial-table fingerprints corroborated against official SEC HTML; archive hash identifies mirror bytes only"
+  },
+  "download_failures": [
+    "SEC primary URL HTTP403",
+    "SEC zero-padded CIK URL HTTP403"
+  ],
+  "outside_eight_excluded_pilot_families": true,
+  "future_use": "reserve this inspected filing family as engineering-only; not an evaluation/development source selection",
+  "raw_html_tables": 66,
+  "native_ingested_evidence_count": 672,
+  "native_evidence_kinds": {
+    "table_row": 671,
+    "text": 1
+  },
+  "canonical_rows_matching_frozen_grammar": 0,
+  "source_integrity": "valid",
+  "requirement_interface_roundtrip": true,
+  "retrieval_per_requirement_limit": 8,
+  "retrieved_union_units": 16,
+  "prototype_top_eight_units": 8,
+  "prototype_kinds": [
+    "table_row",
+    "table_row",
+    "table_row",
+    "table_row",
+    "table_row",
+    "table_row",
+    "table_row",
+    "table_row"
+  ],
+  "packed_envelope_tokens": 3018,
+  "packing_order": "minimum per-requirement rank then evidence ID; first eight intact units; transport prototype only",
+  "input_budget_tokens": 3200,
+  "envelope_within_budget": true,
+  "input_budget_headroom_before_final_prompt": 182,
+  "final_prompt_chat_template_tested": false,
+  "generation_reserve": 384,
+  "context_limit": 4096,
+  "discovered_candidates_by_technical_requirement": [
+    0,
+    0
+  ],
+  "unsupported_units_by_technical_requirement": [
+    16,
+    16
+  ],
+  "tokenization_wall_seconds": 0.6938045000424609,
+  "probe_execution_wall_seconds": 2.4302714000223204,
+  "model_inference_calls": 0,
+  "evaluation_cases_selected": 0,
+  "corpus_locked": false,
+  "production_changes": false,
+  "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+  "python": "bundled 3.12.14; Python3.11 remains unverified",
+  "parser": "beautifulsoup4 4.14.2; isolated ignored probe dependencies; frozen core.parse unchanged",
+  "tables_with_span_attributes": 66,
+  "tables_with_span_greater_than_one": 66,
+  "effort": {
+    "probe_scope_start_utc": "2026-11-01T17:28:01+00:00",
+    "recorded_utc": "2026-11-01T18:01:52.718741+00:00",
+    "elapsed_wall_minutes_to_checkpoint": 33.861979016666666,
+    "interpretation": "elapsed lookup/download/setup/probe/document-preparation time, not ingestion runtime or a forecast for other filings; source inspection began shortly before this recorded checkpoint",
+    "initial_sec_direct_fetch_succeeded": false,
+    "production_implementation_hours": 0,
+    "final_record_checkpoint_utc": "2026-11-01T18:04:46.447694+00:00",
+    "elapsed_wall_minutes_including_comparison_document": 36.75746156666666
+  }
+}
