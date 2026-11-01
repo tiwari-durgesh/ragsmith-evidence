@@ -1,0 +1,53 @@
+{
+  "purpose": "one excluded pilot report; identity/ingestion/retrieval/packing/interface only; not evaluation or scoring",
+  "source_sha256": "07a8b90b17e6a79fd46a0a87a094d02b67fe88cfde79d89ad0b8b93fbf301d3d",
+  "source_family": "17843-2019-06-30",
+  "source_is_excluded_pilot": true,
+  "source_archive_url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NYSE_CRS_2019.pdf",
+  "parser": "PyMuPDF 1.26.5 installed in ignored probe-only directory",
+  "ingestion_evidence_count": 98,
+  "kinds": {
+    "text": 98
+  },
+  "integrity_status": "valid",
+  "fts_queries": 2,
+  "fts_unique_evidence_count": 14,
+  "prototype_packed_chunks": 8,
+  "json_evidence_roundtrip": true,
+  "transport_envelope_tokens": 7194,
+  "tokenizer_exit_code": 0,
+  "input_budget": 3200,
+  "generation_reserve": 384,
+  "context_limit": 4096,
+  "full_prompt_chat_template_tested": false,
+  "canonical_table_rows": 0,
+  "discovery_candidates": [
+    0,
+    0
+  ],
+  "unsupported_evidence_counts": [
+    14,
+    14
+  ],
+  "engineering_blockers": [
+    "Native PDF parser emits page text only, not canonical Metric/year/value table rows required by frozen discovery/verifier.",
+    "Eight whole pages can exceed 3200-token input budget; table-preserving chunker/packer and fixed candidate-model-to-verifier interface are not implemented/validated by this transport probe.",
+    "Current document IDs derive from absolute paths; portable corpus family/byte identity mapping must be external and hash-locked."
+  ],
+  "technical_query_strings_not_evaluation_questions": true,
+  "model_inference_calls": 0,
+  "new_evaluation_cases": 0,
+  "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+  "elapsed_seconds": 2.407164299977012,
+  "probe_recorded_utc": "2026-11-01T17:13:12.643519+00:00",
+  "initial_sandbox_attempt": "module access failed (fitz.open unavailable); rerun with installed-parser access succeeded, without source changes",
+  "work_checkpoint": {
+    "utc": "2026-11-01T17:18:48.100521+00:00",
+    "prior_active_minutes": 21.15,
+    "turn_resumed_utc": "2026-11-01T17:08:39+00:00",
+    "turn_minutes": 10.15167535,
+    "clock_rule": "active-work four-hour cap; approval-wait interval excluded; no reset",
+    "total_active_minutes": 31.301675349999996,
+    "remaining_minutes": 208.69832465000002
+  }
+}

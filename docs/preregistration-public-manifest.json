@@ -54,5 +54,20 @@
   },
   "tag_meaning": "First public integrity snapshot of current preregistration plus amendments; not a move/replacement of local prereg-v1 or an assertion that prereg-v2 exists",
   "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
-  "evaluation_data_selected": false
+  "evaluation_data_selected": false,
+  "subsequent_amendments": [
+    {
+      "path": "docs/thirty-question-reduced-scope-amendment.md",
+      "git_blob": "82854997d3d7e68ab1280f12e9e7109cd3ff90f5",
+      "sha256": "2e13cf2db8e8270c2830ea524b1e430f5b3b968d2b98ee48beed3651cc70807d",
+      "bytes": 19457,
+      "recorded_utc": "2026-11-01T17:19:16.697344+00:00",
+      "parent_commit": "297d26050dd1a3fd58c06ef64cbaaa5872973307",
+      "status": "user-approved direction with conditions; engineering gate failed; no corpus lock or evaluation selection",
+      "publication": "local commit only; not yet pushed or tagged",
+      "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+      "evaluation_data_selected": false
+    }
+  ],
+  "subsequent_amendments_note": "Append-only records after prereg-public-v1; original tag/snapshot fields above are historical, unchanged and do not cover later amendments. Hashes use exact Git blob bytes."
 }

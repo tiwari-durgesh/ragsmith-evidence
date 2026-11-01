@@ -84,3 +84,24 @@ No evaluation questions were inspected, selected, labeled or run in the trial.
 
 Stop additional harness infrastructure work. Add tooling only when this pilot
 needs it. No push until Phase 5 is complete and the user's push instruction applies.
+
+November 1 follow-up: the [conditional reduced-scope amendment](thirty-question-reduced-scope-amendment.md)
+records the approved direction and the user's additional gates. All nine pilot
+contexts now have identities across eight report families; the remaining-four
+lookup took 2.83 minutes inside its 15-minute cap. One source's byte archive is
+still pending after HTTP503; exclusions remain conservative. Source-only template
+authorship and a reproducible keyword/table/narrative absence scan are fixed.
+Fewer than nine genuine partial or four genuine conflict evaluation opportunities
+(or the development quotas) means stop for another amendment, not automatic
+actual-count evaluation. Eligible yields remain unknown.
+
+The one-excluded-report ingestion probe passed source integrity and evidence
+transport but failed readiness: 98 page-text units, no canonical table rows, and
+an eight-chunk transport envelope of 7,194 tokens versus the 3,200-token input
+budget. Full prompt/answerer/verifier compatibility is not certified. Stop before
+corpus lock, source selection or more infrastructure; estimated additional
+engineering is 8–16 hours and needs separate authorization. For the 20 development
+plus 30 evaluation questions, estimate 7–9 user hours and 7–9 reviewer hours with
+usable packets, potentially 10–12 each for poor layouts. A second human must
+independently label at least all 30 evaluation cases before any paper results.
+No new evaluation data or labels, model inference, src changes or push occurred.

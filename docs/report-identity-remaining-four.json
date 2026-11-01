@@ -1,0 +1,98 @@
+{
+  "purpose": "remaining pilot identities only; no question fields, evaluation selection or system inference",
+  "start_utc": "2026-11-01T17:08:39+00:00",
+  "completed_utc": "2026-11-01T17:11:28.844228+00:00",
+  "cap_minutes": 15,
+  "elapsed_minutes": 2.8307371333333333,
+  "resolved_contexts": 4,
+  "total_pilot_contexts_resolved": 9,
+  "distinct_pilot_report_families": 8,
+  "rows": [
+    {
+      "context_id": "71649e80-12e2-4c60-8177-2825f9b4e375",
+      "issuer": "Teradyne, Inc.",
+      "cik": "97210",
+      "period": "2019-12-31",
+      "family_id": "97210-2019-12-31",
+      "official_source_url": "https://investors.teradyne.com/sec-filings/all-sec-filings/content/0001193125-20-058676/d860886d10k.htm",
+      "accession": "0001193125-20-058676",
+      "identity_evidence": "Note P postretirement expense; printed page 91; three-year table and surrounding named-issuer sentence match",
+      "identity_status": "report family resolved",
+      "decision": "exclude pilot family, all versions and overlapping excerpts",
+      "archive": {
+        "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/t/NASDAQ_TER_2019.pdf",
+        "sha256": "9a7932e9ec16ce5f531317c7fb75374204eebaee28916b533af88a7f21e89ab9",
+        "bytes": 472116,
+        "pdf_page_indices": [
+          94
+        ],
+        "is_official_download": false
+      },
+      "archive_status": "local mirror table fingerprint corroborated after whitespace normalization"
+    },
+    {
+      "context_id": "b79cd05c-76c5-41ae-9bf9-3bf399507b46",
+      "issuer": "Rogers Communications Inc.",
+      "cik": "733099",
+      "period": "2019-12-31",
+      "family_id": "733099-2019-12-31",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/733099/000119312520063454/d822661dex991.htm",
+      "accession": "0001193125-20-063454",
+      "identity_evidence": "MD&A depreciation table and separate IFRS16 adoption discussion; annual report printed44, archive PDF index43; annual-report copy also accession0001193125-20-063471",
+      "identity_status": "report family resolved",
+      "decision": "exclude pilot family, all versions and overlapping excerpts"
+    },
+    {
+      "context_id": "a5283e18-51a8-4d2a-a6be-cba392b1f375",
+      "issuer": "Cornerstone OnDemand, Inc.",
+      "cik": "1401680",
+      "period": "2019-12-31",
+      "family_id": "1401680-2019-12-31",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1401680/000140168020000004/a10-k20191231q4.htm",
+      "accession": "0001401680-20-000004",
+      "identity_evidence": "MD&A Other Income (Expense); three-year table and independent convertible-note repayment / foreign-exchange prose match",
+      "identity_status": "report family resolved",
+      "decision": "exclude pilot family, all versions and overlapping excerpts",
+      "archive": {
+        "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/c/NASDAQ_CSOD_2019.pdf",
+        "sha256": "9ad3d19e6c3f331e81b246b11aff9906939ce7a066806252cd784d82259871d0",
+        "bytes": 730814,
+        "pdf_page_indices": [
+          40,
+          44,
+          54
+        ],
+        "is_official_download": false
+      },
+      "archive_status": "local mirror PDF fingerprint corroborated"
+    },
+    {
+      "context_id": "e3462c1a-1e69-4a4a-b9e1-b65898926335",
+      "issuer": "Consolidated Communications Holdings, Inc.",
+      "cik": "1304421",
+      "period": "2019-12-31",
+      "family_id": "1304421-2019-12-31",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1304421/000155837020001763/cnsl-20191231x10k829a6e.htm",
+      "accession": "0001558370-20-001763",
+      "identity_evidence": "MD&A Liquidity and Capital Resources; printed43 overview and44 cash-flow table match all three years and independent funding prose",
+      "identity_status": "report family resolved",
+      "decision": "exclude pilot family, all versions and overlapping excerpts",
+      "archive_status": "mirror download unavailable HTTP503; original official HTML inspected; byte archive pending"
+    }
+  ],
+  "exact_extractor_filing_copy": "not always uniquely established; family exclusion covers every copy/version",
+  "new_evaluation_questions_selected": 0,
+  "rogers_archive": {
+    "url": "https://www.annualreports.com/HostedData/AnnualReportArchive/r/NYSE_RCI_2019.pdf",
+    "sha256": "2f34f1ea8725a1bd975f61e6d8cd786b09e93cb50ef7347e9f3374159f2f0799",
+    "bytes": 15888947,
+    "pdf_page_index": 43,
+    "is_official_download": false,
+    "note": "Official issuer PDF URL redirected in browsing to this mirror. Large annual SEC exhibit exceeded browser fetch limit; smaller official MD&A exhibit matched directly."
+  },
+  "archive_followup_checkpoint_utc": "2026-11-01T17:17:54.622543+00:00",
+  "wall_minutes_including_archive_followup": 9.260375716666665,
+  "archive_download_failures": [
+    "Python urllib mirror request HTTP503; curl alternative archived Teradyne and Cornerstone; Consolidated mirror HTTP503 on both transports, no further retry"
+  ]
+}

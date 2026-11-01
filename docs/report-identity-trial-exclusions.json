@@ -4,9 +4,9 @@
   "source_contexts": 2201,
   "pilot_contexts": 9,
   "timed_contexts": 5,
-  "matched_contexts": 5,
-  "matched_distinct_report_families": 4,
-  "pilot_contexts_deferred": 4,
+  "matched_contexts": 9,
+  "matched_distinct_report_families": 8,
+  "pilot_contexts_deferred": 0,
   "context_exclusions": [
     {
       "context_id": "12550948-0d8e-40bb-b643-da2d8e2ab6f0",
@@ -19,8 +19,8 @@
       "context_id": "a5283e18-51a8-4d2a-a6be-cba392b1f375",
       "decision": "exclude",
       "reason": "exact pilot context UID",
-      "report_family": null,
-      "identity_status": "lookup deferred after trial limit"
+      "report_family": "1401680-2019-12-31",
+      "identity_status": "matched in remaining-four identity recovery"
     },
     {
       "context_id": "ed8b53ea-a594-4380-bafd-5fa8d9ee3c0a",
@@ -33,15 +33,15 @@
       "context_id": "e3462c1a-1e69-4a4a-b9e1-b65898926335",
       "decision": "exclude",
       "reason": "exact pilot context UID",
-      "report_family": null,
-      "identity_status": "lookup deferred after trial limit"
+      "report_family": "1304421-2019-12-31",
+      "identity_status": "matched in remaining-four identity recovery"
     },
     {
       "context_id": "71649e80-12e2-4c60-8177-2825f9b4e375",
       "decision": "exclude",
       "reason": "exact pilot context UID",
-      "report_family": null,
-      "identity_status": "lookup deferred after trial limit"
+      "report_family": "97210-2019-12-31",
+      "identity_status": "matched in remaining-four identity recovery"
     },
     {
       "context_id": "0ff0244d-7a27-4650-94ab-9cd26268e656",
@@ -67,8 +67,8 @@
       "context_id": "b79cd05c-76c5-41ae-9bf9-3bf399507b46",
       "decision": "exclude",
       "reason": "exact pilot context UID",
-      "report_family": null,
-      "identity_status": "lookup deferred after trial limit"
+      "report_family": "733099-2019-12-31",
+      "identity_status": "matched in remaining-four identity recovery"
     },
     {
       "context_id": "0763f40c-4de1-417b-b3b0-7080ce64ba5b",
@@ -134,6 +134,42 @@
       "reason": "source report family used by existing pilot",
       "official_source_url": "https://www.sec.gov/Archives/edgar/data/1594805/000159480520000010/exhibit13mda2019.htm",
       "accession": "0001594805-20-000010"
+    },
+    {
+      "family_id": "97210-2019-12-31",
+      "issuer": "Teradyne, Inc.",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://investors.teradyne.com/sec-filings/all-sec-filings/content/0001193125-20-058676/d860886d10k.htm",
+      "accession": "0001193125-20-058676"
+    },
+    {
+      "family_id": "733099-2019-12-31",
+      "issuer": "Rogers Communications Inc.",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/733099/000119312520063454/d822661dex991.htm",
+      "accession": "0001193125-20-063454"
+    },
+    {
+      "family_id": "1401680-2019-12-31",
+      "issuer": "Cornerstone OnDemand, Inc.",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1401680/000140168020000004/a10-k20191231q4.htm",
+      "accession": "0001401680-20-000004"
+    },
+    {
+      "family_id": "1304421-2019-12-31",
+      "issuer": "Consolidated Communications Holdings, Inc.",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1304421/000155837020001763/cnsl-20191231x10k829a6e.htm",
+      "accession": "0001558370-20-001763"
     }
   ],
   "excluded_context_count": 11,
@@ -143,5 +179,5 @@
   "genuine_partial_eligible_established": 0,
   "genuine_conflict_eligible_established": 0,
   "actual_genuine_partial_conflict_survivors": "unknown; source/answerability eligibility not established; zero verified does not mean zero exist",
-  "evaluation_selection_status": "blocked: four pilot identities and report-wide membership/exclusions remain unresolved"
+  "evaluation_selection_status": "not started; all pilot source families identified, future corpus exclusion screening and ingestion compatibility still required"
 }
