@@ -109,3 +109,23 @@ no threshold chosen there applies to the project.
 Checks: full suite 755 passed in 14.79s, then 756 passed in 14.91s including fallback
 integration, then 756 passed after public interface type annotations. One existing
 Starlette/AnyIO warning. No failed tests, reversions, real labels or scope cuts.
+
+## Item 4 — freeze checklist
+
+Completed docs/backend-freeze-checklist.md with exact committed-blob SHA-256 for
+155 code/config/dependency/test/specification files, fixed model/server/tokenizer
+pins, required private artifact inventory and pre-run checks. Checklist byte SHA-256
+at this item: `601c8caf75cd58f0962b3f5e89e9215f508127544806fb1e3f12a75784828a82`. No existing public manifest changed.
+
+Decisions: preserve two existing freezes (code/source pool before development
+selection; threshold/runtime parents after locked development labels and calibration,
+before evaluation materialization). Actual study source scopes, source-certified
+question pool, labels and threshold are not created or falsely marked locked.
+The final source-only feasibility tool has not yet been built; its code hash must
+be appended as the final item before any future selection. Inventory uses Git blob
+bytes and requires deployed-file hashes separately, avoiding CRLF ambiguity.
+Historical demo runtime metadata is not upgraded to a research lock.
+
+Checks: full suite 756 passed, one existing Starlette/AnyIO warning. No failures,
+reversions, real pool access or scope cuts. The next and LAST queue item is the
+source-only feasibility count; no later selection, calibration or model run follows.
