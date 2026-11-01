@@ -1,5 +1,11 @@
 # First retrieval evaluation — preregistration proposal v1
 
+Pre-selection follow-up: the [report-identity, selection and reviewer-packet
+amendment](first-real-evaluation-selection-amendment.md) fixes the proposed
+identity failure rule, seed-1729 source-only quota selection, annotation sessions
+and blinded second-human packet. It is plan only, awaiting execution approval;
+no new candidates were inspected or selected for that amendment.
+
 Hardware follow-up: the [smaller-answerer amendment proposal](first-real-evaluation-smaller-model-amendment.md)
 records the single authorized retry (1/5 completed, then RAM guard) and proposes
 an official fixed 1.54B answerer. The user approved its non-evaluation checks;

@@ -45,6 +45,15 @@ cached policy passes is about 2–2.5 CPU hours, subject to the documented extra
 limits. No evaluation data has been selected. Full prompt/interface freezing and
 report-identity/conflict feasibility remain prerequisites; no API fallback is authorized.
 
+The user accepted the runtime checks. The next [pre-selection amendment](first-real-evaluation-selection-amendment.md)
+is plan only: recover and verify every pilot report family, exclude unidentified
+or overlapping candidate families, and stop for a corpus/scope amendment if the
+existing four-hour identity/feasibility budget cannot establish eligibility and
+quotas. Seed 1729 fixes a source-only quota-constrained selection procedure for
+20 development and 50 Stage-1 questions. Budget about 8–9 user hours in five
+sessions, plus 2–4 hours of identity work; prepare a blinded 30-case second-human
+packet. No selection or implementation was performed; execution awaits approval.
+
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.
 2. The auxiliary LLM labeler and comparison were skipped by explicit instruction.
