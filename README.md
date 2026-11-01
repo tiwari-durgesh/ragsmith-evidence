@@ -134,10 +134,13 @@ The revised pilot has **18 independent source facts and 36 derived cases; no
 statistical or performance claims are made from this pilot**. The facts share nine
 contexts and are not asserted statistically independent. All labels remain
 **provisional, single-annotator**. See the [short labeling guide](docs/minimal-pilot.md)
-and [pending results table](docs/pilot36-results.md). Only 18 labels need the user's
-judgment. Pipeline/baselines are frozen at
+and [provisional results table](docs/pilot36-results.md). The user's 18 judgment
+labels are complete; construction determines the other 18. Pipeline/baselines are frozen at
 `1b0df45c5e5fe443c5dd8be463ccf26dd9463de3`; src must remain unchanged through results.
-No pilot inference or API labeling has run. No dataset-derived scores will be used.
+One human-only pilot run completed: case-label matches were 18/36 extraction-only,
+27/36 binary and 36/36 graded. No tuning or dataset-derived reference scores were
+used. The LLM cross-check and comparison were explicitly skipped; no external API
+was called and no alternative model substituted. See the [failure list](docs/pilot36-failures.md).
 A [human second annotator](docs/roadmap.md) for 30–50 questions is required before
 paper results; the auxiliary LLM is not human inter-annotator agreement.
 

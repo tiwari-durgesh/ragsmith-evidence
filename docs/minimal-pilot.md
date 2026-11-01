@@ -5,6 +5,13 @@ claims are made from this pilot.** The facts share nine source contexts; this
 wording counts distinct source facts, not statistical independence. Every label
 is **provisional, single-annotator**. There is no human second annotator.
 
+Completed run: labels were validated, separately committed at 52d0e1f, locked
+and used for one frozen pipeline/baseline run. See [results](pilot36-results.md)
+and [failure cases](pilot36-failures.md). **LLM cross-check was not run** because
+the user has no API key and explicitly requested that it be skipped. No external
+API was called, no model substituted and no comparison command invoked. The
+labeling instructions below describe the completed preparation, not a rerun request.
+
 ## Your task: fill 18 labels
 
 Open `data/evaluation/pilot36/review.html` beside
@@ -84,8 +91,6 @@ project Python, these commands implement the required order:
 
 ```powershell
 python scripts/pilot36.py lock
-python scripts/label_pilot36_llm.py --packet data/evaluation/pilot36/public/cases.json --lock data/evaluation/pilot36/public/labels.lock.json --output data/evaluation/pilot36/llm
-python scripts/pilot36.py compare --llm data/evaluation/pilot36/llm/labels.json
 python scripts/pilot36.py run
 ```
 
@@ -94,7 +99,7 @@ read-only and writes a public hash receipt. This is an accidental-edit guard plu
 hash validation, not tamper-proof storage. Original labels are preserved; review
 LLM disagreements separately rather than editing labels to improve results.
 
-The optional auxiliary labeler uses **gpt-4.1-mini-2025-04-14**, via the OpenAI
+The unused optional auxiliary labeler targets **gpt-4.1-mini-2025-04-14**, via the OpenAI
 Chat Completions API, and needs an API-enabled `OPENAI_API_KEY` environment
 variable. Do not put the key in files or chat. The model was disclosed before
 the script was written. Official [model documentation](https://developers.openai.com/api/docs/models/gpt-4.1-mini)
@@ -116,7 +121,7 @@ and preserve prompt, model, request IDs and usage. Model output is provisional.
 second-human validation or independent reliability claim is reported. Do not
 replace the planned human second annotator with this model.
 
-The single pipeline run is blocked until labels are locked. It performs native
+The single pipeline run was performed after labels were locked. It performs native
 HTML ingestion's prepared per-case SQLite FTS retrieval, followed by the frozen
 extraction-only/binary/graded baseline function. Source-cell extraction and
 decomposition are manually supplied, not automatic parsing of arbitrary reports.

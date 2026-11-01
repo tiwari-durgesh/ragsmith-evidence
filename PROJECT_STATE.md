@@ -20,6 +20,28 @@ remain targets; this batch retains the existing local pilot infrastructure.
 
 ## Verified in this continuation
 
+- Human-only minimal pilot completed once, per revised user instructions. It has
+  18 independent source facts and 36 derived cases; no statistical or performance
+  claims are made. Facts share nine contexts; statistical independence is unproven.
+- The user's sheet passed strict schema/value/ID/null checks, with 18 construction
+  labels unchanged. Distribution: 9 full, 9 partial, 18 abstain; no exclusions.
+  Separate commit 52d0e1f5ac38270eb62a78824ebc921a5fa15842 is "locked provisional
+  labels". The sheet and locked copy have SHA-256
+  b027cb335ca582acccf672f6d25ad23406439ba56f3d20259630efe7407dd8e6.
+- Ran only pilot36.py lock then pilot36.py run. Neither the LLM labeler nor compare
+  was invoked: the user has no API key and explicitly skipped them. No external
+  API call, alternative model, tuning or rerun occurred. No LLM cross-check or
+  human inter-annotator agreement is reported. All labels remain provisional,
+  single-annotator. The prior pending status entries below are historical.
+- Frozen src tree remains 3261c6087757b9f3d9aed1166e264de45ac4f479, at pipeline
+  commit 1b0df45c5e5fe443c5dd8be463ccf26dd9463de3. There are 108 predictions:
+  case-label matches 18/36 extraction, 27/36 binary, 36/36 graded. Partial cases
+  returning values: 9/9, 0/9, 9/9. These are controlled-case counts, not claims.
+- docs/pilot36-results.md is the one-page results table; docs/pilot36-failures.md
+  lists all 27 baseline/case label mismatches (18 distinct cases). Raw outputs are
+  local/ignored under pilot36/results. Dataset-reference scores were omitted.
+  A second human annotator for 30–50 questions is required before paper results.
+
 - Revised user-approved scope: 18 independent source facts and 36 derived cases;
   no statistical or performance claims are made from this pilot. Distinct facts
   share nine source contexts; statistical independence is not established.

@@ -5,6 +5,11 @@ no statistical or performance claims are made from this pilot.** Distinct facts
 share nine source contexts and are not asserted statistically independent. All
 labels remain **provisional, single-annotator**.
 
+Current status: human labels were locked and one frozen pilot/baseline run is
+complete, without tuning. **LLM cross-check was not run**; the user explicitly
+skipped the labeler and comparison because no API key is available. No external
+API call or model substitution occurred. See [results](pilot36-results.md).
+
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.
 2. Obtain auxiliary LLM labels only after that lock, without exposing human
