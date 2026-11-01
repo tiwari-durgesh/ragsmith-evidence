@@ -129,3 +129,89 @@ Historical demo runtime metadata is not upgraded to a research lock.
 Checks: full suite 756 passed, one existing Starlette/AnyIO warning. No failures,
 reversions, real pool access or scope cuts. The next and LAST queue item is the
 source-only feasibility count; no later selection, calibration or model run follows.
+
+## Item 5 — LAST: source-only feasibility count
+
+Completed one pinned-training source-only count. Selective parser never decoded
+upstream question/answer values. No official dev/test file, real question, upstream
+gold, completed private label, selection function, model or calibration was used.
+Before opening the training source, all synthetic parser tests and full suite
+passed: 763 tests, 14.88s, one existing Starlette/AnyIO warning. Staged count-tool
+and test blob hashes were appended to the engineering checklist before execution.
+
+Count: 2,201 source contexts, 1,992 components, 124 contexts/42 components excluded,
+2,077 contexts/1,950 groups surviving. Fixed name matches affected 41 contexts;
+75 contexts were quarantined transitively only. Rule counts overlap.
+Mechanical leads: 550 groups with at least two canonical fact leads; 202 with two
+explicit-unit-bound fact leads; 15 within-context discrepancy groups, 16 groupwide
+(overlapping). No exclusions were cleared, no case was authored or chosen.
+
+Decision: do not turn leads into genuine question counts. No fixed partial absence
+question/scope or genuine-conflict entity/period/unit/version adjudication was
+performed under this count-only instruction. Thus zero opportunities are certified,
+not proof that no opportunities exist. 9/4 evaluation and 6/3 development genuine
+quotas, unique facts and joint allocation remain unverified: STOP, no selection.
+If genuine shortage is later established, another amendment is required. See
+backend-feasibility-count.md for counts and hashes. Its limitation is recorded,
+not hidden by calling numeric discrepancies genuine conflicts.
+
+No engineering queue item was cut. Genuine question-level yield certification
+remains unresolved under the source-only count; it is not falsely marked complete.
+No research work follows this count: only the mandated final regression, source/
+protected-file checks, privacy scan, local commit and log finalization remain.
+
+## End checks and disposition
+
+No work continued past feasibility except mandated tests, privacy/source checks,
+report/log finalization and the final local commit. No source/tool code changed
+after the count. The real data was opened only by the source-only projection;
+source bytes were checksum-verified, not loaded through the old gold/question
+adapter. The numeric/group leads are not genuine-question labels. No additional
+non-pilot issuer identities were certified, so later verified-name edges could
+merge groups or expand quarantine. Current graph IDs are not a selection lock.
+
+Full pytest record (every queue item checked):
+
+| Item/run | Passed | Seconds |
+|---|---:|---:|
+| 1 corpus runner | 729 | 14.73 |
+| 2 allocation | 738 | 13.98 |
+| 2 strict metadata/lock | 738 | 13.90 |
+| 2 connectivity audit | 738 | 14.06 |
+| 3 label/calibration tools | 755 | 14.79 |
+| 3 always-abstain integration | 756 | 14.91 |
+| 3 interface types | 756 | 14.93 |
+| 4 freeze checklist | 756 | 14.89 |
+| 5 synthetic source-projection tests | 763 | 14.88 |
+| 5 final regression after actual count | 763 | 14.92 |
+
+Every run has the same one pre-existing Starlette/AnyIO deprecation warning.
+No failed tests, test deletions or item reversions. Source diff from 1b0df45 is
+empty; current src tree remains 3261c6087757b9f3d9aed1166e264de45ac4f479. All seven
+protected document hashes still match. No original public manifest or amendments
+were changed. The separate engineering checklist now includes the two final tool
+files; its final byte SHA-256 is `d62f12bf24223e3fffc8a3a41dfe397fc9f2f620d9dd68c2a459caf140b29f70`.
+
+Privacy scan: 222 tracked public text files, no credential-pattern
+matches and no tracked private-label/model/.env file candidates. Three matching
+local sensitive filenames remain ignored; contents were not opened. Old ignored
+third-party dependency directories denied enumeration, so the ignored-file
+inventory is explicitly incomplete; no permission bypass was attempted to inspect
+those files. Raw source, corpus/cache snapshots, generated labels and the private
+exclusion ledger remain uncommitted under ignored local storage. A final staged
+filename/credential recheck follows before the local commit.
+
+Local item commits: b854d8b (runner), 470900c (selection tools), 5d4c1a6
+(label/calibration tools), 6fc6242 (freeze checklist), followed by the final count/
+checks commit. Branch remains codex/public-progress; no push, force, ref deletion,
+money, external API, model startup or project threshold write occurred.
+
+Finished: all engineering tools and checklist, plus a mechanical source-only
+feasibility inventory. Cut/unfinished: genuine question-level yield is **not
+certified**; no claim that 9/4 or 6/3 exist or do not exist. The current research
+feasibility gate remains blocked, and the session stops rather than selecting
+questions, treating discrepancy leads as conflicts or changing the plan.
+
+Final checks recorded at 2026-11-01 21:03:53 UTC (November 2, 02:33:53 IST),
+31m50s after start; final bookkeeping/commit only thereafter, well within the
+six-hour cap. Queue finished early; no new tasks or retries are started.

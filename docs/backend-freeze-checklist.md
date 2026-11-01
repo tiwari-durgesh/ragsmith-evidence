@@ -250,3 +250,13 @@ provenance; presentation files are included so the demonstrated contract is fixe
 | `tests/test_support_judgments.py` | `1f1309dc84df3b2f0b2471bbd4af083cda82d8b0370347f9ced60b00208b2a91` |
 | `tests/test_tatqa_adapter.py` | `a2fc272891995b67dd78479d7dd023ea8fff96b39417443559d56610e3d73128` |
 | `tests/test_value_lookup.py` | `b72e44c4f6daf8a908c69cca0ef4019262ea40ab5a53d20d2ce97e0d205bdca4` |
+
+## Final source-only count tooling supplement
+
+These files were staged, tested on synthetic inputs and hashed before the actual
+source-only count. They add no selection/calibration authorization.
+
+| File | SHA-256 of staged Git blob |
+|---|---|
+| `app/research/source_feasibility.py` | `ce4c7db35e3fdab4a4b4e5f21e3baeddeb1fcca0deeae5f7ea0972e1e5424ffa` |
+| `tests/test_source_feasibility.py` | `893694a783e63720b16b31daced85761e4d1343b7626204a232ad1d12eb11407` |
