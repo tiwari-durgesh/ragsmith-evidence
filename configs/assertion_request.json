@@ -1,0 +1,12 @@
+{
+  "question_id": "q-001",
+  "question": "Verify that revenue in 2025 was 145 million USD.",
+  "requirements": [
+    {
+      "requirement_id": "req-revenue",
+      "metric": "Revenue (million USD)",
+      "year": 2025,
+      "expected_value": "145"
+    }
+  ]
+}
