@@ -114,8 +114,9 @@ def main():
         st.caption("Presentation setting only. Policies and evidence are fixed.")
         st.markdown("**Local model: OFF**")
         st.caption("No external inference · No calibration")
-    if projector:
-        st.markdown('<style>.stMarkdown p,.stText,.source-table,.fact-list li {font-size:19px!important;}.answer-value strong {font-size:30px;}</style>', unsafe_allow_html=True)
+    projector_css = '.stMarkdown p,.stText,.source-table,.fact-list li {font-size:19px!important;}.answer-value strong {font-size:30px;}' if projector else ''
+    # Keep the same element order so a display toggle does not reset active tabs.
+    st.markdown('<style>' + projector_css + '</style>', unsafe_allow_html=True)
     prepared, custom, how, limitations, about = st.tabs(["Prepared pilot cases", "Paste your own table", "How it works", "Limitations", "About the research"])
     with prepared:
         try:

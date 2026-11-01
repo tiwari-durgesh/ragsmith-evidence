@@ -67,3 +67,7 @@ Logs contain error codes, types and counts, not raw questions, cells, labels,
 prompts or generated values. Temporary request databases are removed after use.
 Local model assets and prepared samples remain ignored/uncommitted. No completed
 labels, corpus or model files belong in the public building commits.
+
+The earlier pilot has **18 independent source facts and 36 derived cases; no
+statistical or performance claims are made from it**. Its labels are
+**provisional, single-annotator**; question independence is not established.

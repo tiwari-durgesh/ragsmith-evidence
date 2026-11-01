@@ -94,3 +94,99 @@ Checks: full suite 720 passed, one existing Starlette/AnyIO warning; relative
 links in current docs verified. No failures, cuts or modifications to protected
 documents. Setup/install commands were documented, not executed; no registry or
 external API access occurred in this session.
+
+## Item 5 — final checks and screenshots
+
+Completed. Ten PNGs in `docs/screenshots/` cover synthetic input/results, citation
+focus, parse failure, projector mode and explanation pages. All are 1280x720
+browser captures, 670,766 bytes total, checked as readable PNGs. No private primary
+labels, new research questions or model outputs from external services appear.
+The sidebar navigation label does not describe the pasted synthetic input.
+
+Browser checks found and fixed numeric wrapping in projector mode and a tab reset
+caused by conditional element insertion. Numeric data cells now scroll rather than
+split values; display toggles preserve tab element order. No policy, prompt,
+retrieval order, numeric source value or budget changed. Both themes were checked;
+original system theme and display toggle restored. One browser checkbox locator
+timed out; the visible native browser control worked and verified the setting.
+No product failure was hidden or tuned away.
+
+The final six-case UI smoke used only existing pilot inputs through the new shared
+bridge: all six completed with zero inference calls, including the visible
+controlled-conflict truncation warning (3,016 conservative input units, one omitted
+unit). The earlier pilot has **18 independent source facts and 36 derived cases;
+no statistical or performance claims are made from it**. Labels remain
+**provisional, single-annotator** and question independence is not established.
+The separate stub runner's incomplete candidates remain recorded failures.
+
+Security/privacy checks: 208 tracked public text files scanned before screenshots;
+no credential-pattern matches and no tracked model/.env/private-label filename
+candidates. Three matching ignored local model/label filenames were inventoried
+without reading their contents. Some old ignored third-party probe dependency
+directories denied enumeration; the inventory is not a complete audit of all
+ignored files. No attempt was made to read private annotations or new corpus
+questions. No actual credentials or labels were printed. Protected-file byte hashes
+matched the seven starting snapshots (preregistration/amendments/public manifest).
+The frozen src tree and source diff were checked unchanged.
+
+A prior demo process occupied localhost:8501. Only exact-identified Streamlit Python
+processes were restarted. PowerShell Stop-Process returned an internal null-reference
+error on the second restart; stopping the same verified PIDs through the standard
+.NET process API released the port. No network/security settings were changed.
+The final local demo was stopped to free RAM; no model server was started.
+
+### Complete pytest record
+
+| Queue item / run | Result | Duration | Warning |
+|---|---|---|---|
+| 1: redesign | 695 passed | 26.65s | Existing Starlette/AnyIO deprecation |
+| 1: theme/header fixes | 695 passed | 24.62s | Same |
+| 2: contracts/runner | 720 passed | 19.24s | Same |
+| 2: failure handling | 720 passed | 17.58s | Same |
+| 3: reviewer kit | 720 passed | 16.93s | Same |
+| 4: documentation | 720 passed | 17.19s | Same |
+| 5: initial final checks | 720 passed | 16.45s | Same |
+| 5: projector/tab fixes | 720 passed | 17.49s | Same |
+
+No pytest failures, removed ingestion tests or reverted items. Extra checks:
+practice JSON/blinding/blank return, documentation links, all PNGs, shared-service
+six-case UI smoke, schema equality and clean-diff whitespace checks passed.
+AppTest's standalone ScriptRunContext notices are expected and not application
+exceptions. No performance evaluation, inference or calibration was run.
+
+### Commits and scope
+
+- `bee46b3`: frontend redesign.
+- `6395ae3`: explicit-input runner and shared transport contracts.
+- `a0581c9`: synthetic reviewer kit.
+- `4e723a7`: current documentation, architecture and professor summary.
+- Final-check commit: screenshots, presentation fixes and this completed log.
+
+No requested item was cut. The runner remains deliberately a skeleton with no
+real-data loader, batch scoring or calibration implementation; this is its
+requested scope, not evidence that research gates are complete. No PDF parser,
+new model, external service, new corpus or unrequested diagnostics were added.
+No preregistration/amendment/public-manifest changes, src changes, branch/tag
+changes, push, money spent or external API calls. All commits are local on
+`codex/public-progress`.
+
+### Exact Windows launch command
+
+The environment is already installed and prepared samples are local:
+
+```powershell
+Set-Location 'C:\Users\YOUR_USERNAME\Desktop\ragsmith-evidence'
+.\.venv-api\Scripts\python.exe -m streamlit run app\frontend\streamlit_app.py --server.address 127.0.0.1 --server.port 8501 --server.headless true --browser.gatherUsageStats false
+```
+
+Open http://127.0.0.1:8501. No API/model server is needed. Local model stays off.
+Stop with Ctrl+C. No packages were downloaded during this overnight session.
+
+Queue complete; stopping early as authorized, rather than starting additional
+work to fill the time allowance. Final stopped timestamp and verification follow.
+
+Finalization recorded 2026-11-01 20:16:24 UTC (November 2, 01:46:24 IST),
+27 minutes 7 seconds after session start; queue finished well before the hard
+stop. Remaining activity is only the final local commit and clean-status/source
+verification. The current PROJECT_STATE also points to the new status/log so
+historical validation counts are not mistaken for current readiness.

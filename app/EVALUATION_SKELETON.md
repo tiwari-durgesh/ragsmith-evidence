@@ -44,3 +44,7 @@ assessment remains unchanged. `app.checked_service` checks malformed grids,
 validates the response and logs error codes/counts without questions, table
 contents, answers, labels or full exception strings. API/UI wiring imports this
 bridge. This is transport validation, not a new evidence policy.
+
+The prior pilot has **18 independent source facts and 36 derived cases; no
+statistical or performance claims are made from it**. Its labels remain
+**provisional, single-annotator**; question independence is not established.

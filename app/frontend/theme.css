@@ -18,6 +18,8 @@ button[role="tab"] {font-weight:600;font-size:16px;padding:0.7rem 0.5rem;}
 .source-table th,.source-table td {padding:13px 14px;text-align:left;border:1px solid var(--rs-border);white-space:pre-wrap;overflow-wrap:anywhere;min-width:80px;}
 .source-table tr:first-child th {background:var(--rs-panel);font-weight:650;}
 .source-table .row-index {min-width:28px;width:38px;color:var(--rs-muted);font-weight:400;}
+.source-table td {min-width:110px;white-space:pre;overflow-wrap:normal;}
+.source-table th[scope="row"]:not(.row-index) {min-width:190px;}
 .source-table .verified-cell {background:#d1fae5;color:#064e3b;box-shadow:inset 0 0 0 2px #059669;}
 .source-table .baseline-cell {background:#fef3c7;color:#78350f;box-shadow:inset 0 0 0 2px #d97706;}
 .source-table :target {outline:4px solid #2563eb;outline-offset:-4px;scroll-margin-top:100px;}

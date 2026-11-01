@@ -359,3 +359,29 @@ Starlette/AnyIO deprecation warning remains. Six prepared pilot inputs were
 checked through the UI with zero inference requests. Browser checks confirmed
 source-cell anchor navigation and the four demonstration behaviors. The existing
 controlled-conflict packing truncation is visibly disclosed without tuning.
+
+## Overnight readiness update — November 2
+
+The redesigned Streamlit UI has sidebar cases/display settings, source/result
+workspace, citation chips, comparison cards and five tabs with pipeline/research
+explanations. Shared outer request/response contracts and content-free operational
+logging now wrap the API and frontend. An explicit-input runner skeleton exposes
+retrieval, an injected local answerer and candidate verification; its confidence
+threshold is **unset**, with no confidence-policy decision or calibration. It has
+no data loader, selection, real batch scoring or automatic model startup.
+
+The synthetic reviewer training/practice kit, architecture, current project status,
+professor summary and updated demo script are complete. Final suite: **720 tests
+passed**, one existing dependency deprecation warning; all six existing pilot UI
+inputs checked with zero inference requests. Ten browser screenshots use synthetic
+inputs or explanation pages. Source, verifier, contradiction policy, assessment
+schema, preregistration/amendments and public manifest remain unchanged. Python
+3.11 is still unverified. The prior pilot has **18 independent source facts and
+36 derived cases; no statistical or performance claims are made from it**.
+Labels remain **provisional, single-annotator**; independence is not established.
+
+No development/evaluation questions inspected, selected or labeled; no model run,
+external API, calibration, tuning or push. All work remains local on
+`codex/public-progress`. Use [current project status](docs/project-status.md) for
+research gates and the [overnight log](docs/overnight-log.md) for checks/decisions.
+The demo process was stopped; launch instructions are in the log and README.
