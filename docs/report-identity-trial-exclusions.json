@@ -1,0 +1,147 @@
+{
+  "purpose": "identity/exclusion audit only; no question fields accessed for eligibility, labels or evaluation selection",
+  "source_sha256": "2df6e722cdbaaa37efcbfb280f5c9a15be29a6ec18f618ef936fe63cc6d07c69",
+  "source_contexts": 2201,
+  "pilot_contexts": 9,
+  "timed_contexts": 5,
+  "matched_contexts": 5,
+  "matched_distinct_report_families": 4,
+  "pilot_contexts_deferred": 4,
+  "context_exclusions": [
+    {
+      "context_id": "12550948-0d8e-40bb-b643-da2d8e2ab6f0",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": "1644675-2019-03-31",
+      "identity_status": "matched in five-context trial"
+    },
+    {
+      "context_id": "a5283e18-51a8-4d2a-a6be-cba392b1f375",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": null,
+      "identity_status": "lookup deferred after trial limit"
+    },
+    {
+      "context_id": "ed8b53ea-a594-4380-bafd-5fa8d9ee3c0a",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": "1053507-2019-12-31",
+      "identity_status": "matched in five-context trial"
+    },
+    {
+      "context_id": "e3462c1a-1e69-4a4a-b9e1-b65898926335",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": null,
+      "identity_status": "lookup deferred after trial limit"
+    },
+    {
+      "context_id": "71649e80-12e2-4c60-8177-2825f9b4e375",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": null,
+      "identity_status": "lookup deferred after trial limit"
+    },
+    {
+      "context_id": "0ff0244d-7a27-4650-94ab-9cd26268e656",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": "1594805-2019-12-31",
+      "identity_status": "matched in five-context trial"
+    },
+    {
+      "context_id": "6d277ec5-5e5c-4cea-8c71-b53dca5aa44b",
+      "decision": "exclude pending source-backed false-positive clearance",
+      "reason": "fixed pilot table duplicate/near-duplicate threshold met",
+      "matches": [
+        {
+          "pilot_context_id": "0ff0244d-7a27-4650-94ab-9cd26268e656",
+          "normalized_table_equal": false,
+          "token_5_shingle_jaccard": 0.14705882352941177,
+          "smaller_table_row_overlap": 0.6
+        }
+      ]
+    },
+    {
+      "context_id": "b79cd05c-76c5-41ae-9bf9-3bf399507b46",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": null,
+      "identity_status": "lookup deferred after trial limit"
+    },
+    {
+      "context_id": "0763f40c-4de1-417b-b3b0-7080ce64ba5b",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": "17843-2019-06-30",
+      "identity_status": "matched in five-context trial"
+    },
+    {
+      "context_id": "59ee6792-ddc9-4963-a2bd-cd15e6a13703",
+      "decision": "exclude",
+      "reason": "exact pilot context UID",
+      "report_family": "17843-2019-06-30",
+      "identity_status": "matched in five-context trial"
+    },
+    {
+      "context_id": "ab9baef4-2dfd-4182-8a17-11032ff8d168",
+      "decision": "exclude pending source-backed false-positive clearance",
+      "reason": "fixed pilot table duplicate/near-duplicate threshold met",
+      "matches": [
+        {
+          "pilot_context_id": "a5283e18-51a8-4d2a-a6be-cba392b1f375",
+          "normalized_table_equal": false,
+          "token_5_shingle_jaccard": 0.08163265306122448,
+          "smaller_table_row_overlap": 0.5
+        }
+      ]
+    }
+  ],
+  "family_exclusions": [
+    {
+      "family_id": "1053507-2019-12-31",
+      "issuer": "American Tower Corporation",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1053507/000105350720000028/amt1231201910k.htm",
+      "accession": "0001053507-20-000028"
+    },
+    {
+      "family_id": "17843-2019-06-30",
+      "issuer": "Carpenter Technology Corporation",
+      "period": "2019-06-30",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/17843/000001784319000058/crs630201910k.htm",
+      "accession": "0000017843-19-000058"
+    },
+    {
+      "family_id": "1644675-2019-03-31",
+      "issuer": "Mimecast Limited",
+      "period": "2019-03-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1644675/000156459019020753/mime-10k_20190331.htm",
+      "accession": "0001564590-19-020753"
+    },
+    {
+      "family_id": "1594805-2019-12-31",
+      "issuer": "Shopify Inc.",
+      "period": "2019-12-31",
+      "decision": "exclude all versions/excerpts from evaluation and calibration",
+      "reason": "source report family used by existing pilot",
+      "official_source_url": "https://www.sec.gov/Archives/edgar/data/1594805/000159480520000010/exhibit13mda2019.htm",
+      "accession": "0001594805-20-000010"
+    }
+  ],
+  "excluded_context_count": 11,
+  "remaining_contexts_not_identity_certified": 2190,
+  "question_similarity_screen": "not run: question text was intentionally not accessed under this identity-only instruction",
+  "all_family_membership_complete": false,
+  "genuine_partial_eligible_established": 0,
+  "genuine_conflict_eligible_established": 0,
+  "actual_genuine_partial_conflict_survivors": "unknown; source/answerability eligibility not established; zero verified does not mean zero exist",
+  "evaluation_selection_status": "blocked: four pilot identities and report-wide membership/exclusions remain unresolved"
+}

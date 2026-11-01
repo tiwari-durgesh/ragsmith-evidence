@@ -54,6 +54,18 @@ quotas. Seed 1729 fixes a source-only quota-constrained selection procedure for
 sessions, plus 2–4 hours of identity work; prepare a blinded 30-case second-human
 packet. No selection or implementation was performed; execution awaits approval.
 
+The user subsequently authorized an identity-only timed trial on five source
+contexts. The [trial report](report-identity-five-context-trial.md) records five
+pilot context-to-family matches across four report families, 8.88 lookup minutes,
+and nine pilot-UID plus two unresolved table-similarity exclusions. Four pilot
+identities and split-wide membership remain unresolved; genuine partial/conflict
+eligibility counts are unknown. External lookups stopped after five. Because
+the full manual context-reconciliation scenario exceeds the four-hour cap, a
+[30-question reduced-scope proposal](thirty-question-reduced-scope-proposal.md)
+was prepared, not implemented. Its bounded-original-report corpus would change
+the approved corpus boundary and requires explicit approval before further work.
+No evaluation questions were inspected, selected, labeled or run in the trial.
+
 1. Complete the 18 human-judgment labels, save and lock them. Construction
    determines the remaining 18 labels. Preserve the frozen src tree.
 2. The auxiliary LLM labeler and comparison were skipped by explicit instruction.
