@@ -117,3 +117,14 @@ conditional on an explicit amendment accepting unresolved report identity and
 changing family-based allocation/claims; content hashes cannot prove report
 disjointness. Option B retains stronger provenance but needs more engineering.
 No option, adapter implementation, corpus lock or evaluation selection is adopted.
+
+The user approved Option C as a direction subject to reviewing the concrete
+[excerpt-corpus amendment](option-c-excerpt-corpus-amendment.md). It fixes pilot
+company-name/table-hash exclusions, transitive excerpt groups, seed 1729 and a
+five-question total cap per group. It retains evaluation 12/9/5/4 and development
+8/6/3/3; genuine-quota shortfalls require another amendment. Unresolved report
+overlap is explicitly accepted, with no independence-between-questions or
+generalization-to-other-documents claims. The separate-module engineering plan
+is 6–10 hours with a hard stop, not an implementation performed or authorized by
+the document. Its hash is recorded in the public manifest. Await user approval
+of this amendment before selecting data; no corpus lock, ingestion code or run.

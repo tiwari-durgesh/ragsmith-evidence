@@ -67,6 +67,18 @@
       "publication": "local commit only; not yet pushed or tagged",
       "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
       "evaluation_data_selected": false
+    },
+    {
+      "path": "docs/option-c-excerpt-corpus-amendment.md",
+      "git_blob": "e61c3f4399a8e6cb422a2d4cac70d03c2716e5e1",
+      "sha256": "78eca0bab6ce0f21c4310dc44508b2f4f09cada0a48778ce17260ad79c56c3d2",
+      "bytes": 19548,
+      "recorded_utc": "2026-11-01T18:12:16.756901+00:00",
+      "parent_commit": "ed763041dd0bf8c6a55d635d90eeb7bcde9ca9cb",
+      "status": "Option C direction approved; concrete amendment awaits user approval; documentation only, no ingestion implementation or selection",
+      "publication": "local commit only; not pushed or tagged",
+      "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
+      "evaluation_data_selected": false
     }
   ],
   "subsequent_amendments_note": "Append-only records after prereg-public-v1; original tag/snapshot fields above are historical, unchanged and do not cover later amendments. Hashes use exact Git blob bytes."
