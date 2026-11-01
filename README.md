@@ -1,7 +1,8 @@
-# RAGSmith-Evidence — Phase 4, Batch 1
+# RAGSmith-Evidence — Phase 4, value lookup integration
 
 A **local-only research prototype** with ingestion, lexical search, structured
-evidence-sufficiency assessment, and an application-level assertion interface.
+evidence-sufficiency assessment, an assertion interface, and optional verified
+value lookup with supporting citations.
 All example content is synthetic. The complete hybrid RAG system and research
 evaluation remain planned.
 
@@ -19,6 +20,11 @@ python -m ragsmith.cli search "revenue"
 ```
 
 If activation is blocked, run `.\.venv\Scripts\python.exe -m pip install -e ".[dev]"` and use that Python executable for subsequent commands.
+
+Python 3.11 is **unverified in this continuation**: the existing `.venv` refers
+to an unavailable Python installation. The 335-test suite passed under bundled
+Python 3.12.14 using the environment's existing packages. That does not establish
+Python 3.11 compatibility or verify a fresh dependency installation.
 
 ## Your own files
 
@@ -47,8 +53,8 @@ SQLite database: `data/processed/evidence.db`. Append-only ingestion audit manif
 
 ## Application-level assessment
 
-Phase 4 Batch 1 accepts explicit claims and caller-supplied evidence. It verifies
-an expected value; it does not yet answer questions whose values are unknown.
+The Batch 1 assertion interface accepts explicit claims and caller-supplied
+evidence. It verifies a supplied expected value.
 Question text is retained for display, and the caller supplies the requirements.
 `full` applies to those supplied claims, not to the completeness of the caller's
 decomposition of the natural-language question.
@@ -56,13 +62,35 @@ decomposition of the natural-language question.
 See [the Batch 1 usage guide](docs/phase4-batch1.md) and the
 [example request](configs/assertion_request.json). The existing Phase 3 report
 is retained under `assessment` in a versioned application envelope. No existing
-verification or contradiction policy changes in this batch.
+verification or contradiction policy changes in that interface.
+
+## Optional value lookup
+
+`ragsmith.lookup_pipeline.assess_lookup_question` accepts explicit metric/year
+requirements without expected answers. Its separate discovery module extracts
+candidates from supported table rows and passes every candidate through the
+unchanged verifier against all supplied evidence in scope. Conflicts still cause
+abstention. Supported values appear in `answers` with support-only provenance
+citations; the unchanged assessment schema retains examined evidence for auditing.
+
+Load `LookupConfig.from_file(Path("configs/lookup-enabled.json"))` to enable
+discovery, or use `configs/lookup-disabled.json` to disable it with identical
+inputs. The default is disabled. The effective config is recorded in each result.
+See the [value lookup guide](docs/value-lookup.md) for a runnable example,
+status definitions, scope constraints, and ablation limitations.
+
+In the new lookup path, `missing` means no matching candidate was found in
+supplied interpretable evidence in scope. `unverified` means evidence could not
+be interpreted or discovery was disabled. Missing evidence in a retrieved set
+does not prove the answer is absent from the corpus. Legacy assertion behavior
+remains unchanged for compatibility.
 
 ## Next batches
 
-Connect existing document retrieval to assessment, construct evidence-bounded
-responses, then validate the complete workflow. A separate value-lookup path for
-questions without expected values requires a decision before implementation.
+Connect existing document retrieval to assessment, expand response construction,
+then validate the complete workflow. Unknown-value lookup currently operates on
+caller-supplied evidence and explicit requirements; automatic natural-language
+decomposition and database retrieval integration are not implemented in this batch.
 Full hybrid retrieval, OCR, richer PDF tables, and research benchmarks remain
 future work. Current automated tests establish software behavior, not research
 superiority or novelty.
