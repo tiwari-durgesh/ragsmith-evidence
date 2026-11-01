@@ -235,3 +235,13 @@ local pilot-only sample inputs. It wraps the frozen QA pipeline without changing
 `src/`; local-model research comparisons explicitly use an **uncalibrated demo
 threshold**. This is not a new evaluation or corpus lock. See the [engineering
 handoff](docs/tonight-engineering-handoff.md) for validation and remaining scope.
+
+## Local frontend prototype
+
+The [Streamlit guide](app/frontend/README.md) provides the single Windows launch
+command. It calls the existing service directly, keeps the model off, and shows
+six pilot cases with source-cell citation links and the frozen extraction-only,
+binary and graded comparison. A JSON paste tab and one-page limitations panel
+are included. Use the [four-case demo script](app/frontend/DEMO_SCRIPT.md).
+**Prototype. Provisional pilot only. No performance claims.** No evaluation or
+development data is selected or loaded; `src/` remains frozen.

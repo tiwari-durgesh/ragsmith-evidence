@@ -333,6 +333,29 @@ research run. Default API comparisons are the frozen pilot baselines; optional
 local Qwen mode compares the three research policies with an explicitly
 uncalibrated demo threshold. Genuine-quota feasibility and independent human
 review remain prerequisites for paper results. See [API commands](app/README.md)
-and the [engineering handoff](docs/tonight-engineering-handoff.md). Frontend work
-awaits the user's next request. Frozen `src/` tree remains
+and the [engineering handoff](docs/tonight-engineering-handoff.md). Frozen `src/` tree remains
 `3261c6087757b9f3d9aed1166e264de45ac4f479`.
+
+## November 2 frontend update
+
+The local Streamlit prototype in `app/frontend/` imports the existing service
+directly, with local model inference forced off. It displays the six prepared
+pilot cases, original source cells, linked numbered citations, decision/gaps and
+the three frozen pilot baseline cards. It includes a JSON paste tab, controlled
+conflict notice and a one-page limitations panel. Changing inputs hides stale
+results. The visible banner is **Prototype. Provisional pilot only. No performance
+claims.** The earlier pilot has **18 independent source facts and 36 derived
+cases; no statistical or performance claims are made from it**. Labels remain
+**provisional, single-annotator**; question independence is not established.
+
+No evaluation/development data or private human labels are read; no model/API
+inference or tuning is performed. Source, verifier, contradiction policy and
+schema remain unchanged. Python 3.12.14 is used; Python 3.11 remains unverified.
+The building work stays local on `codex/public-progress`, with no push. See the
+[frontend launch guide](app/frontend/README.md) and
+[four-case demonstration](app/frontend/DEMO_SCRIPT.md).
+Validation: **695 tests pass**, including 26 frontend checks; one existing
+Starlette/AnyIO deprecation warning remains. Six prepared pilot inputs were
+checked through the UI with zero inference requests. Browser checks confirmed
+source-cell anchor navigation and the four demonstration behaviors. The existing
+controlled-conflict packing truncation is visibly disclosed without tuning.
