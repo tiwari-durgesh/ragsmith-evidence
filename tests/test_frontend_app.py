@@ -39,7 +39,8 @@ def test_initial_view_has_six_options_banner_and_no_auto_inference(ui):
     assert len(ui.selectbox[0].options) == 6
     assert any(view.BANNER == item.value for item in ui.warning)
     assert "pilot_result" not in ui.session_state
-    assert [t.label for t in ui.tabs] == ["Prepared pilot cases", "Paste your own table", "Limitations"]
+    assert [t.label for t in ui.tabs] == ["Prepared pilot cases", "Paste your own table", "How it works", "Limitations", "About the research"]
+    assert ui.sidebar.selectbox[0].label == "Choose a prepared case"
 
 
 @pytest.mark.parametrize("index,decision", [(0, "full"), (1, "full"), (2, "partial"), (3, "partial"), (4, "abstain"), (5, "abstain")])
@@ -64,7 +65,7 @@ def test_switching_case_hides_stale_result_and_highlights(ui):
     ui.button(key="run_pilot").click().run()
     ui.selectbox[0].select_index(2).run()
     assert not ui.exception
-    assert not any(s.value == "Result" for s in ui.subheader)
+    assert any("Ready to inspect" in item.value for item in ui.info)
     assert not any('class="verified-cell"' in m.value for m in ui.markdown)
 
 
@@ -81,7 +82,7 @@ def test_custom_changes_hide_stale_results(ui):
     assert ui.session_state["custom_result"]["result"]["decision"] == "full"
     ui.text_area(key="custom_table").set_value("{broken").run()
     assert not ui.exception
-    assert not any(s.value == "Result" for s in ui.subheader)
+    assert not any('class="decision full"' in m.value for m in ui.markdown)
 
 
 def test_missing_samples_still_allows_custom_and_limitations(monkeypatch):

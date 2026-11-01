@@ -106,7 +106,9 @@ def table_html(table: list[list[str]], result: dict | None = None, *, prefix: st
         for ci, value in enumerate(row):
             mark = marked.get((ri, ci))
             css = "verified-cell" if mark and mark["verified"] else "baseline-cell" if mark else ""
-            refs = '' if not mark else '<span class="cell-refs">' + html.escape(" · ".join(mark["references"])) + '</span>'
+            refs = '' if not mark else '<span class="cell-refs">' + ''.join(
+                f'<a class="citation-chip" target="_self" href="#{cell_id(prefix, ri, ci)}" aria-label="Citation {html.escape(ref)}">{html.escape(ref)}</a>'
+                for ref in mark["references"]) + '</span>'
             tag = "th" if ri == 0 or ci == 0 else "td"
             scope = ' scope="col"' if ri == 0 else ' scope="row"' if ci == 0 else ''
             cells.append(f'<{tag}{scope} id="{cell_id(prefix, ri, ci)}" class="{css}">{html.escape(value)}{refs}</{tag}>')
@@ -123,7 +125,8 @@ def badge_html(decision: str, *, extraction_only: bool = False) -> str:
     label, detail = labels[decision]
     if extraction_only and decision == "full":
         detail = "At least one value extracted; coverage not checked"
-    return f'<div class="decision {decision}" role="status"><strong>{label}</strong><span>{detail}</span></div>'
+    icon = {"full": "✓", "partial": "◐", "abstain": "⊘"}[decision]
+    return f'<div class="decision {decision}" role="status"><span class="decision-icon" aria-hidden="true">{icon}</span><strong>{label}</strong><span>{detail}</span></div>'
 
 
 def value_html(value: dict, citations: list[dict], table: list[list[str]], *, prefix: str, ref_prefix: str = "") -> str:

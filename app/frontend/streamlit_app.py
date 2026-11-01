@@ -19,39 +19,16 @@ from app.frontend.view import (
 from scripts.tatqa_excerpt_ingestion import digest
 
 
-CSS = """
-<style>
-.block-container {max-width:1260px;padding-top:2rem;padding-bottom:3rem;}
-.source-scroll {max-height:430px;overflow:auto;border:1px solid #cbd5e1;border-radius:10px;margin:0.5rem 0 1rem;}
-.source-table {border-collapse:collapse;width:100%;font-family:system-ui,sans-serif;font-size:14px;}
-.source-table caption {text-align:left;padding:10px 14px;color:#475569;font-size:12px;background:#f8fafc;}
-.source-table th,.source-table td {padding:12px 14px;text-align:left;border:1px solid #e2e8f0;white-space:pre-wrap;overflow-wrap:anywhere;color:#172033;background:#fff;}
-.source-table tr:first-child th {background:#edf2f7;font-weight:650;}
-.source-table .row-index {width:42px;color:#64748b;background:#f8fafc;font-weight:400;}
-.source-table .verified-cell {background:#d1fae5;color:#064e3b;box-shadow:inset 0 0 0 2px #059669;}
-.source-table .baseline-cell {background:#fef3c7;color:#78350f;box-shadow:inset 0 0 0 1px #d97706;}
-.source-table :target {outline:3px solid #2563eb;outline-offset:-3px;scroll-margin-top:100px;}
-.cell-refs {display:block;font-size:11px;font-weight:650;margin-top:5px;}
-.decision {display:flex;align-items:center;gap:14px;border-radius:9px;padding:13px 16px;margin:0.5rem 0 1rem;font-family:system-ui,sans-serif;flex-wrap:wrap;}
-.decision strong {letter-spacing:0.06em;font-size:14px;}
-.decision span {font-size:14px;}
-.decision.full {background:#d1fae5;color:#065f46;}
-.decision.partial {background:#fef3c7;color:#78350f;}
-.decision.abstain {background:#fee2e2;color:#991b1b;}
-.answer-value {padding:10px 0;border-bottom:1px solid #e2e8f0;font-family:system-ui,sans-serif;overflow-wrap:anywhere;}
-.answer-value strong {font-size:21px;}
-.fact-label {font-size:14px;}
-.answer-value a,.source-link {color:#2563eb;font-weight:650;text-decoration:underline;}
-</style>
-"""
+CSS = Path(__file__).with_name('theme.css').read_text(encoding='utf-8')
 
 
 def show_question(payload):
     st.subheader("Question")
     st.text(payload["question"])
     st.caption("Requested facts · explicit inputs, not automatically decomposed")
-    st.dataframe([{"Requested fact": f["metric"], "Year": str(f["year"])}
-                  for f in payload["requested_facts"]], hide_index=True, width="stretch")
+    chips = ''.join('<li>' + html.escape(f['metric']) + '<b>' + str(f['year']) + '</b></li>'
+                    for f in payload['requested_facts'])
+    st.markdown('<ul class="fact-list">' + chips + '</ul>', unsafe_allow_html=True)
 
 
 def render_results(result, payload, prefix):
@@ -79,11 +56,14 @@ def render_results(result, payload, prefix):
         st.write("All requested facts are supported by the retained evidence for this run.")
     if result["packing"]["truncated"]:
         st.warning("Only part of the source evidence fit this run. Omitted evidence could contain support or conflicts; this is not a completeness guarantee.")
+
+
+def render_comparison(result, payload, prefix):
     st.subheader("Three-baseline comparison")
     st.caption("Same retained evidence. E = extraction-only, B = binary, G = graded. Baseline citations link to the same source table.")
     by_name = {x["variant"]: x for x in result["baselines"]}
     for column, (variant, title, short) in zip(st.columns(3), BASELINES):
-        with column:
+        with column, st.container(border=True):
             st.markdown(f"#### {title}")
             baseline = by_name[variant]
             st.markdown(badge_html(baseline["decision"], extraction_only=variant == "extraction_only"), unsafe_allow_html=True)
@@ -119,10 +99,24 @@ def main():
     st.set_page_config(page_title="RAGSmith · Evidence prototype", page_icon="📄", layout="wide",
                        menu_items={"Get Help": None, "Report a bug": None})
     st.markdown(CSS, unsafe_allow_html=True)
-    st.title("RAGSmith · Evidence prototype")
+    st.markdown('<div class="eyebrow">EVIDENCE-AWARE QUESTION ANSWERING</div>', unsafe_allow_html=True)
+    st.title("RAGSmith Evidence")
+    st.markdown('<p class="intro">See what a table supports, what remains unresolved, and where every returned value comes from.</p>', unsafe_allow_html=True)
     st.warning(BANNER)
     st.caption("Runs locally through the existing pipeline · Local model OFF · No external inference API")
-    prepared, custom, limitations = st.tabs(["Prepared pilot cases", "Paste your own table", "Limitations"])
+    with st.sidebar:
+        st.markdown("### Demo workspace")
+        st.caption("Six existing pilot examples. No research data selection.")
+        case_slot = st.container()
+        st.divider()
+        st.markdown("### Display settings")
+        projector = st.checkbox("Projector text", value=False, key="projector")
+        st.caption("Presentation setting only. Policies and evidence are fixed.")
+        st.markdown("**Local model: OFF**")
+        st.caption("No external inference · No calibration")
+    if projector:
+        st.markdown('<style>.stMarkdown p,.stText,.source-table,.fact-list li {font-size:19px!important;}.answer-value strong {font-size:30px;}</style>', unsafe_allow_html=True)
+    prepared, custom, how, limitations, about = st.tabs(["Prepared pilot cases", "Paste your own table", "How it works", "Limitations", "About the research"])
     with prepared:
         try:
             packet = load_samples()
@@ -133,7 +127,8 @@ def main():
             cases = packet["cases"]
             labels = {"full": "Full", "partial": "Partial", "controlled_conflict": "Conflict · controlled test case", "abstain": "Abstain"}
             options = {f"{case['sample_id']} · {labels[case['demo_category']]}": case for case in cases}
-            choice = st.selectbox("Choose a prepared case", list(options), key="pilot_case")
+            with case_slot:
+                choice = st.selectbox("Choose a prepared case", list(options), key="pilot_case")
             case = options[choice]
             payload = case["request"]
             if case["demo_category"] == "controlled_conflict":
@@ -143,9 +138,17 @@ def main():
                 run_and_store(payload, "pilot_result")
             stored = st.session_state.get("pilot_result", {})
             result = stored.get("result") if stored.get("signature") == digest(payload) else None
-            show_source(payload, result, "pilot")
+            source_column, result_column = st.columns([1.15, 1], gap="large")
+            with source_column:
+                show_source(payload, result, "pilot")
+            with result_column:
+                if result:
+                    render_results(result, payload, "pilot")
+                else:
+                    st.subheader("Result")
+                    st.info("Ready to inspect. Click Run to check this supplied evidence.")
             if result:
-                render_results(result, payload, "pilot")
+                render_comparison(result, payload, "pilot")
     with custom:
         st.subheader("Try an ad hoc table")
         st.caption("This is a local prototype input, not evaluation/development data. Supply facts explicitly. Header repair is unsupported.")
@@ -173,6 +176,14 @@ def main():
         if result:
             show_source(payload, result, "custom")
             render_results(result, payload, "custom")
+            render_comparison(result, payload, "custom")
+    with how:
+        st.subheader("From a request to checkable evidence")
+        st.caption("Read left to right, then continue on the next row. This is the implemented lookup path.")
+        st.markdown(Path(__file__).with_name("how_it_works.html").read_text(encoding="utf-8"), unsafe_allow_html=True)
+        st.info("Requirements are explicit inputs, carried unchanged through retrieval and all policies. The diagram shows their verification role; it does not imply automatic decomposition after retrieval.")
+    with about:
+        st.markdown(Path(__file__).with_name("about.md").read_text(encoding="utf-8"))
     with limitations:
         st.markdown(Path(__file__).with_name("limitations.md").read_text(encoding="utf-8"))
 
