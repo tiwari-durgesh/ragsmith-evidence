@@ -136,6 +136,16 @@ record incomplete work; do not skip a source scan or independent review. The
 synthetic diagnostic is separately authorized and budgeted; it cannot consume
 time reserved for the required natural labels.
 
+The author's nine-hour limit is cumulative across confirmation, labeling,
+candidate checks and reconciliation. Because the main design can take 9.6 hours,
+record actual active time by task and pause after development labeling, before
+starting evaluation labeling, to compare the remaining budget with the work
+still required. If nine hours is reached sooner, stop immediately and preserve
+completed records and pending items. If the remainder will not fit, keep
+evaluation labeling paused until the author explicitly approves a revised plan
+or stops the study. Do not shorten the rubric, trim already labeled development
+cases, or reuse a threshold for a different design to fit the cap.
+
 **Smaller option, not adopted:** evaluate **18 (7 full / 9 partial / 2 missing)**
 in six groups and develop on **14 (6 full / 6 partial / 2 missing)** in four other
 groups, retaining the five-question cap. This preserves the primary partial

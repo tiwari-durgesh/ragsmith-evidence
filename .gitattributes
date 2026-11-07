@@ -1,0 +1,2 @@
+# Keep the checked-out amendment byte-identical to its hashed Git blob.
+docs/natural-study-no-conflict-amendment.md text eol=lf
