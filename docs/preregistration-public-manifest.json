@@ -82,12 +82,12 @@
     },
     {
       "path": "docs/natural-study-no-conflict-amendment.md",
-      "git_blob": "99cc9f0e1741133e7dcddaa046b5bd078a708b5e",
-      "sha256": "d15892a455f21ccca4b8c73ff750f68b8de83e0cdc04043062d34f27cc471f1b",
-      "bytes": 10316,
-      "recorded_utc": "2026-11-07T11:57:58.294122+00:00",
-      "parent_commit": "1e2e30f62a69937c54f7ba58115e6ba62abab1ee",
-      "status": "Draft plan-level amendment; concrete design awaits approval; no confirmation, allocation or selection",
+      "git_blob": "2840df4d6a1fe52a5e7aa5a6e8408fa75020700e",
+      "sha256": "e27caee601af9f4e5db6908b3fc94d4a9d79fd485fe7606ab79ff286aa9bfdd5",
+      "bytes": 10356,
+      "recorded_utc": "2026-11-07T12:23:47.3426943Z",
+      "parent_commit": "4e5382355e100eb9695bf819b3e775b68ce283c8",
+      "status": "Main natural-study design adopted at plan level; smaller option considered and not adopted; no confirmation, allocation or selection authorized",
       "publication": "local commit only; not pushed or tagged",
       "source_tree": "3261c6087757b9f3d9aed1166e264de45ac4f479",
       "evaluation_data_selected": false

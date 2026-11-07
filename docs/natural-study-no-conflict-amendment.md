@@ -1,15 +1,14 @@
-# Draft amendment: natural study without a conflict stratum
+# Amendment: natural study without a conflict stratum
 
-**Plan only; concrete amendment awaits approval.** This draft does not reopen
-the feasibility gate. It authorizes no confirmation, adjudication, allocation,
-selection, calibration, model run or constructed test. It changes no existing
-document or recorded result. If approved, it supersedes the natural conflict
-quotas and the associated totals in the
+**ADOPTED design; plan only.** Adoption does not reopen the feasibility gate or
+authorize confirmation, adjudication, allocation, selection, calibration, a model
+run or a constructed test. No prior results change. This amendment supersedes the
+natural conflict quotas and the associated totals in the
 [Option C amendment](option-c-excerpt-corpus-amendment.md).
 
 ## Natural evaluation and development
 
-| Proposed partition | Excerpt groups | Full | Partial | Missing | Total |
+| Adopted partition | Excerpt groups | Full | Partial | Missing | Total |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Evaluation | 6 | 12 | 9 | 5 | 26 |
 | Development | 4 other | 8 | 6 | 3 | 17 |
@@ -40,8 +39,8 @@ fill each group to five. This does not establish disjoint underlying reports.
 
 After separate execution approval, follow the
 [confirmation and reservation plan](partial-confirmation-and-allocation-plan.md).
-If this concrete amendment is approved, the 23 prior audit drafts may be
-considered as **unconfirmed inputs** to the new source-only eligibility screen;
+The 23 prior audit drafts may be considered as **unconfirmed inputs** to the
+new source-only eligibility screen;
 none is grandfathered, eligible by default, or selected. This is a prospective
 eligibility rule for a new phase, not a revision of the historical audit or an
 upgrade to its labels. Before confirmation, freeze the group roles, provisional
@@ -50,8 +49,8 @@ mixes. Stop if the required mix cannot be reserved and confirmed, if fewer than
 15 eligible distinct partials remain, or if no joint allocation meets the caps
 and exclusions. No unresolved-group top-up or smaller design takes effect
 automatically. Independent human review covers **all 26 evaluation cases**
-before any paper results, replacing the prior 30-case review count only upon
-approval. Source gold is reviewed blind to other labels and system outputs and
+before any paper results, replacing the prior 30-case review count. Source gold
+is reviewed blind to other labels and system outputs and
 locked independently before adjudication. Without a reviewer, results remain
 provisional and internal.
 
@@ -83,7 +82,7 @@ Existing allocation and calibration tooling still enforces the old mixes and
 20-case guard. A later approved engineering pass must adapt and test only those
 size/mix checks outside `src/` on synthetic inputs, with the algorithm, metrics
 and policies unchanged. Re-freeze the affected tooling before authoring or
-selection. This draft does not change or run that tooling.
+selection. This amendment does not change or run that tooling.
 
 ## Separate constructed conflict diagnostic
 
@@ -129,24 +128,26 @@ User label timing assumes 3–4 minutes per full, 2–3 minutes to record a prev
 confirmed partial, and 10–12 minutes per missing. Reviewer source timing assumes
 3–4, 8–10 and 12–15 minutes respectively, with fresh absence checks. Estimates
 are not measured throughput. Confirmation remains capped at four hours; use
-roughly two-hour sessions and reserve time for labeling and reconciliation. If
-either estimate exceeds nine hours before reservation, prefer the smaller option
-below only after explicit approval. If either cap is reached later, stop and
-record incomplete work; do not skip a source scan or independent review. The
+roughly two-hour sessions and reserve time for labeling and reconciliation. The
 synthetic diagnostic is separately authorized and budgeted; it cannot consume
 time reserved for the required natural labels.
 
-The author's nine-hour limit is cumulative across confirmation, labeling,
-candidate checks and reconciliation. Because the main design can take 9.6 hours,
-record actual active time by task and pause after development labeling, before
-starting evaluation labeling, to compare the remaining budget with the work
-still required. If nine hours is reached sooner, stop immediately and preserve
-completed records and pending items. If the remainder will not fit, keep
-evaluation labeling paused until the author explicitly approves a revised plan
-or stops the study. Do not shorten the rubric, trim already labeled development
-cases, or reuse a threshold for a different design to fit the cap.
+The author's 9.0-hour limit is cumulative across confirmation, labeling,
+candidate checks and reconciliation. Record active time by task. Because the
+adopted design can take 9.6 hours, pause after development labeling, before
+starting evaluation labeling, to decide whether the remaining work fits the
+remaining budget. If cumulative time reaches 9.0 hours at any point, including
+before that checkpoint or during evaluation labeling, stop immediately and
+preserve completed records and pending items. If the remaining work will not
+fit, keep it paused until the author explicitly decides whether to continue
+under a revised time budget or stop. No question is dropped, replaced or
+reselected based on difficulty, system behavior or time pressure, and the
+compositions do not change after confirmation begins without a new public
+amendment. Do not shorten the rubric, skip a source scan or independent review,
+or reuse a threshold for a different design to fit the cap. If the reviewer
+reaches nine hours, pause their review and record the incomplete work.
 
-**Smaller option, not adopted:** evaluate **18 (7 full / 9 partial / 2 missing)**
+**Smaller option — considered and not adopted:** evaluate **18 (7 full / 9 partial / 2 missing)**
 in six groups and develop on **14 (6 full / 6 partial / 2 missing)** in four other
 groups, retaining the five-question cap. This preserves the primary partial
 sample and 9/6 target while reducing the number of additional full and expensive
