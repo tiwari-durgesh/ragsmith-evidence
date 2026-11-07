@@ -85,6 +85,8 @@ Blank primary-human review fields are not completed labels. Suggested review tim
 is 15–25 minutes for the three conflict checks and 10–15 minutes for the partial.
 This is not independent human inter-annotator agreement.
 
+human spot check of 4 items: 4 agree, 0 disagree, 0 unsure
+
 Elapsed wall time from private preparation start through first-pass source records
 was **7.31 minutes**, including helper preparation and recording. Initial packet
 preparation took **27.21 seconds**; conflict opening through decision recording
