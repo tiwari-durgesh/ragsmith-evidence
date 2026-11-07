@@ -39,3 +39,5 @@ rejections** for the user's spot check remain in ignored private files. No
 prior spot-check notes were read. Zero upstream question/answer values were
 decoded, zero system outputs were inspected, and zero evaluation or development
 questions were selected. No calibration or constructed conflict test was run.
+
+human spot check of 5 rejected groups: 5 agree, 0 disagree, 0 unsure
